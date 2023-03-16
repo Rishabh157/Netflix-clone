@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 1000px;
+    background-color: #141414;
+    /*  all body makes the light black  */
+}
+
+/***** When user scroll the page this classes change the color from transparent nav-bar to black nav-bar *****/
+
+.nav-bar-tarnsparent {
+    transition-timing-function: ease-in;
+    transition: all 0.5s;
+}
+
+.nav-bar-black {
+    background-color: #141414;
+}
+
+/***** it rotate the profile arrow icon 180 deg when user hover profile icon and profilePanel at the same time *****/
+
+.arrowClass {
+    transition: all 250ms ease-out;
+}
+
+.parent-profile:hover .arrowClass {
+    transform: rotate(180deg);
+}
+
+.child-profile {
+    transition: all 150ms ease-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+    background: linear-gradient(to left, rgba(39, 44, 30, -1) -92%, rgba(0, 0, 0, 1) 68%);
+    opacity: 0;
+}
+
+.parent-profile:hover>.child-profile {
+    opacity: 1;
+    visibility: visible;
+}
+
+/******* & this is for Account Page Profile Section *******/
+.child-profileAccount {
+    transition: all 150ms ease-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+    background: #000000;
+    opacity: 0;
+}
+
+.parent-profile:hover>.child-profileAccount {
+    opacity: 1;
+    visibility: visible;
+}
+
+/***** When user hover on the notification bell icon then notification panel opend with transition *****/
+.child-notifi {
+    transition: all 150ms ease-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+    background: linear-gradient(to left, rgba(25, 27, 60, 0) -297%, rgba(0, 0, 0, 1) 181%);
+    opacity: 0;
+}
+
+.parent-notifi:hover>.child-notifi {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* it's for notification panel movies overview plot truncate  */
+.truncate-notifi {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/*****  When user click the search icon then Input box open with animation ******/
+.input-class {
+    transition: all 560ms ease-in-out;
+    opacity: 0;
+    width: 1%;
+    z-index: 100;
+}
+
+.input-class:focus {
+    width: 70%;
+    visibility: visible;
+    opacity: 1;
+}
+
