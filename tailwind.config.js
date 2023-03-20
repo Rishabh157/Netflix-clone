@@ -4,13 +4,15 @@ module.exports = {
   theme: {
     backgroundImage: {
       'page-btn': 'linear-gradient(180deg, #e6e6e6, #ddd)',
-      'page-btn-active' : 'linear-gradient(180deg, #ffffff, #d5d5d5)',
+      'page-btn-active': 'linear-gradient(180deg, #ffffff, #d5d5d5)',
     },
     borderWidth: {
       DEFAULT: '1px'
     },
     extend: {
       colors: {
+        'netflix-btn': '#E50914',
+        'netflix-btn-hover': '#C11119',
         'link': '#0073e6',
         'light-black': '#141414',
         'footer-gray': '#808080',
@@ -20,6 +22,15 @@ module.exports = {
         'bg-ag': '#33333399',
         'account-page': '#F2F2F2',
         'btn': '#e6e6e6',
+        'inp-err': '#EB3942',
+      },
+      transitionTimingFunction: {
+        'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',
+        'out-btn': 'cubic-bezier(0.9, 0, 0.51, 1)'
+      },
+      transitionDuration: {
+        '0': '0ms',
+        '250': '250ms',
       }
     },
   },

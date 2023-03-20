@@ -95,3 +95,19 @@ body {
     opacity: 1;
 }
 
+select {
+    background: black(0.5);
+}
+
+button {
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-height: 2rem;
+}
+
+.form-control {
+    background-color: transparent;
+    font-size: 15px;
+}
+
+
