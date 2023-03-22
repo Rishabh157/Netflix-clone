@@ -3,10 +3,12 @@ import Header from '../Atoms/Header';
 import Input from '../Atoms/Input';
 import Button from '../Atoms/Button';
 import { BsChevronRight } from 'react-icons/bs';
+import Footer from '../Atoms/Footer';
 
 const HomeRegister = () => {
     return (
         <div>
+
             <Header />
 
             <div className='flex justify-center items-center h-screen'>
@@ -33,8 +35,12 @@ const HomeRegister = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
+
         </div>
     )
 }
 
 export default HomeRegister;
+    

@@ -8,7 +8,7 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
 
     return (
         <div className={`pt-10 py-5 ${footerColor}`}>
-            
+
             <div className='grid grid-cols-12 mb-10'>
                 <div className='col-span-1'></div>
                 <div className='col-span-2'>
@@ -22,28 +22,28 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
 
                         <li>
                             <a
-                                href='http://localhost:3000/' >
+                                href='https://www.instagram.com/rishabhgour0007/' target='_blank' rel='noreferrer'>
                                 <AiOutlineInstagram fill='#ffffff' size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
-                                href='http://localhost:3000/' >
+                                href='https://twitter.com/Rishabhgour157' target='_blank' rel='noreferrer'>
                                 <BsTwitter fill='#ffffff' size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
-                                href='http://localhost:3000/' >
+                                href='https://github.com/rishabh157' target='_blank' rel='noreferrer'>
                                 <BsGithub fill='#ffffff' size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
-                                href='http://localhost:3000/' >
+                                href='https://www.linkedin.com/in/rishabh-gour-3b0861221/' target='_blank' rel='noreferrer'>
                                 <AiFillLinkedin fill='#ffffff' size={25} />
                             </a>
                         </li>
