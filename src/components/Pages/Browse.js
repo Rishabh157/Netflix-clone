@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Atoms/Navbar';
 import Banner from '../Atoms/Banner';
 
+
 const Browse = () => {
 
     const [navColor, setnavColor] = useState(false)

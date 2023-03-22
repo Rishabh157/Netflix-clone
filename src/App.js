@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeRegister from './components/Pages/HomeRegister';
+
 import Browse from './components/Pages/Browse';
 import YourAccount from "./components/Pages/YourAccount";
+
+const MainIndexPaths = ['/', '/signup/registration']
 
 const App = () => {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomeRegister />} />
+        {MainIndexPaths?.map((path, index) => <Route path={path} key={index} element={<HomeRegister />} />)}
         <Route path='/browse' element={<Browse />} />
         <Route path='/YourAccount' element={<YourAccount />} />
       </Routes>

@@ -10,6 +10,7 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
         <div className={`pt-10 py-5 ${footerColor}`}>
 
             <div className='grid grid-cols-12 mb-10'>
+
                 <div className='col-span-1'></div>
                 <div className='col-span-2'>
                     <ul className='flex  justify-between'>
@@ -49,6 +50,19 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </li>
                     </ul>
                 </div>
+
+                <div className='col-span-10 mt-10'>
+                    <div className='grid grid-cols-12'>
+                        <div className='col-span-1'></div>
+                        <div className='col-span-6 pl-6'>
+                            <h1 className='text-footer-gray'>Questions? Call
+                                <span className='underline pl-2 font-mono'>9009648224</span>
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+
 
             </div>
 
@@ -95,7 +109,7 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
             <div className='grid grid-cols-12 mt-10'>
                 <div className='col-span-1'></div>
                 <div className='col-span-2'>
-                    <p className='text-[12px] text-footer-gray'> 2022 - 2023 Netflix, inc.</p>
+                    <p className='text-[12px] text-footer-gray'> 1997 Netflix, inc.</p>
                 </div>
             </div>
 

@@ -11,7 +11,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        'main-body': '#141414',
         'netflix-btn': '#E50914',
+        'text' : '#333',
         'netflix-btn-hover': '#C11119',
         'link': '#0073e6',
         'light-black': '#141414',

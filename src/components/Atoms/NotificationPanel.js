@@ -54,7 +54,7 @@ const NotificationPanel = () => {
             .then((res) => res.json())
             .then(data => {
                 setnotifiData(data.results)
-                console.log(data?.results)
+                // console.log(data?.results)
             })
             .catch(err => console.log(err))
     }, [])
