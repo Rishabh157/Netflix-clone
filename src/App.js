@@ -5,7 +5,7 @@ import HomeRegister from './components/Pages/HomeRegister';
 import Browse from './components/Pages/Browse';
 import YourAccount from "./components/Pages/YourAccount";
 
-const MainIndexPaths = ['/', '/signup/registration']
+const MainIndexPaths = ['/', '/signup/registration', 'signup/regform', 'signup']
 
 const App = () => {
 

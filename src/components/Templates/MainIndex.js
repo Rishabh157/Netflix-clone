@@ -2,9 +2,13 @@ import React from 'react';
 import Input from '../Atoms/Input';
 import Button from '../Atoms/Button';
 import { RxChevronRight } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 
 const MainIndex = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className='flex justify-center items-center h-screen'>
 
@@ -24,6 +28,7 @@ const MainIndex = () => {
                         text='Get Started'
                         icon={<RxChevronRight fill='#ffffff' size={28} />}
                         className='w-none text-[25px] py-1 px-4'
+                        onClick={()=> navigate('/signup/registration') }
                     />
                 </div>
 

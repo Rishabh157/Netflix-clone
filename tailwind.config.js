@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         'main-body': '#141414',
         'netflix-btn': '#E50914',
-        'text' : '#333',
+        'text': '#333',
         'netflix-btn-hover': '#C11119',
         'link': '#0073e6',
         'light-black': '#141414',
@@ -25,6 +25,8 @@ module.exports = {
         'account-page': '#F2F2F2',
         'btn': '#e6e6e6',
         'inp-err': '#EB3942',
+        'footer': '#f3f3f3',
+        'success': '#5fa53f',
       },
       transitionTimingFunction: {
         'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',

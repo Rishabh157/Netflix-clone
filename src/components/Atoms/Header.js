@@ -23,9 +23,8 @@ const Header = () => {
 
             <div className='col-span-6'>
 
-                {location?.pathname !== '/' ? <div className='flex justify-end items-center gap-x-6 pt-2'> <Button
-                    text='Sign In'
-                    className='bg-transparent text-text text-[19px] font-medium' />
+                {location?.pathname !== '/' ? <div className='flex justify-end items-center gap-x-6 pt-2'>
+                    <span className='bg-transparent text-text text-[19px] font-medium hover:underline'>Sign In</span>
                 </div> : <div className='flex justify-end items-center gap-x-6 pt-2'>
                     <div className='relative flex items-center'>
                         <BsGlobe className='absolute left-2' fill='#ffffff' />
