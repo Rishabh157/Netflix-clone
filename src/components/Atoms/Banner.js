@@ -6,8 +6,6 @@ const Banner = () => {
 
     const [banner, setBanner] = useState({});
 
-
-
     const bannerImages = [
         {
             id: 1,
@@ -48,13 +46,13 @@ const Banner = () => {
     ]
 
     useEffect(() => {
-            const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
-            setBanner(randomImage)
+        const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
+        setBanner(randomImage)
         // fetch('https://api.themoviedb.org/3/trending/all/week?api_key=f1b92f4ce0a6c48358b6a55b97b243e7&language=en-US')
         //     .then((res) => res.json())
         //     .then(data => setBanner(data.results[Math.floor(Math.random() * data.results?.length)]))
         //     .catch(err => console.log(err))
-    }, [])
+    },[banner])
 
 
     return (
