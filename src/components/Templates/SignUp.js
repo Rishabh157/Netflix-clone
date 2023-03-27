@@ -3,8 +3,12 @@ import Steps from '../Atoms/Steps';
 import Button from '../Atoms/Button';
 import checkMarkImg from '../../images/checkmark.png';
 import { IoCheckmarkOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44'>
 
@@ -49,6 +53,7 @@ const SignUp = () => {
                 <Button
                     text='Next'
                     className='w-full text-[24px] py-[12.5px] px-[6em] font-normal'
+                    onClick={()=> navigate('/signup/creditoption')}
                 />
             </div>
         </div>

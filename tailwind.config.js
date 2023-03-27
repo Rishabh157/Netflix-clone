@@ -27,7 +27,9 @@ module.exports = {
         'inp-err': '#EB3942',
         'footer': '#f3f3f3',
         'success': '#5fa53f',
-        'pay-line' : '#ccc',
+        'pay-line': '#ccc',
+        'gray': '#8c8c8c',
+        'gray-light': '#f4f4f4',
       },
       transitionTimingFunction: {
         'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeRegister from './components/Pages/HomeRegister';
-
 import Browse from './components/Pages/Browse';
 import YourAccount from "./components/Pages/YourAccount";
 
