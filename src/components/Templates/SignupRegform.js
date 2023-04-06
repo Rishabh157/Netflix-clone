@@ -43,9 +43,7 @@ const SignupRegform = () => {
                     <Button
                         text='Next'
                         className='w-full text-[24px] py-[16.5px] px-[2em] font-normal '
-                        onClick={() => {
-                            navigate('/signup')
-                        }}
+                        onClick={() => navigate('/signup')}
                     />
                 </div>
             </div>

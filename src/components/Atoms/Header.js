@@ -2,16 +2,16 @@ import React from 'react'
 import logo from '../../images/netflix.svg';
 import Button from './Button';
 import { BsGlobe } from 'react-icons/bs';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
-
-const Header = () => {
+const Header = ({ className }) => {
 
     const location = useLocation();
-    // console.log('header', location.pathname)
+    const navigate = useNavigate();
 
     return (
-        <div className={`grid grid-cols-12 py-4 px-10 ${location?.pathname !== '/' ? 'bg-white border-b border-btn' : 'bg-main-body'}`}>
+        <div className={twMerge(`grid grid-cols-12 py-4 px-10 ${location?.pathname !== '/' ? 'bg-white border-b border-btn' : 'bg-main-body'}`, `${className}`)}>
 
             <div className='col-span-6 flex'>
                 <img
@@ -24,7 +24,7 @@ const Header = () => {
             <div className='col-span-6'>
 
                 {location?.pathname !== '/' ? <div className='flex justify-end items-center gap-x-6 pt-2'>
-                    <span className='bg-transparent text-text text-[19px] font-medium hover:underline'>Sign In</span>
+                    <span className='bg-transparent text-text text-[19px] font-medium cursor-pointer hover:underline'>Sign In</span>
                 </div> : <div className='flex justify-end items-center gap-x-6 pt-2'>
                     <div className='relative flex items-center'>
                         <BsGlobe className='absolute left-2' fill='#ffffff' />
@@ -36,7 +36,7 @@ const Header = () => {
                     <div>
                         <Button
                             text='Sign In'
-                            onClick={() => console.log('Sign In')}
+                            onClick={() => navigate('/')}
                         />
                     </div>
                 </div>
