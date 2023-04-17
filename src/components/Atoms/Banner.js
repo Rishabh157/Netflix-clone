@@ -44,7 +44,7 @@ const Banner = () => {
             overview: 'Two astronomers go on a media tour to warn humankind of a planet-killing comet hurtling toward Earth. The response from a distracted world: Meh.'
         },
     ]
-
+    
     useEffect(() => {
         const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
         setBanner(randomImage)
@@ -52,7 +52,7 @@ const Banner = () => {
         //     .then((res) => res.json())
         //     .then(data => setBanner(data.results[Math.floor(Math.random() * data.results?.length)]))
         //     .catch(err => console.log(err))
-    },[banner])
+    },[])
 
 
     return (

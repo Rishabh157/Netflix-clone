@@ -31,6 +31,7 @@ module.exports = {
         'gray': '#8c8c8c',
         'gray-light': '#f4f4f4',
         'check-box': '#737373',
+        'info' : '#e87c03',
       },
       transitionTimingFunction: {
         'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',

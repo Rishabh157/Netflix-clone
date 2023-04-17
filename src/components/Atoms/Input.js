@@ -21,7 +21,7 @@ const Input = ({ label, type, placeholder, value, className, labelClassName, end
                 {endIcon && <div className='absolute right-2 top-4'>{endIcon}</div>}
 
             </div>
-            {isError && <p className='text-inp-err text-[0.875rem] font-normal mt-[0.25rem]'> {errorMsg} </p>}
+            {isError && <p className='text-inp-err text-[0.875rem] py-[5px] px-[3px] font-normal mt-[0.25rem]'> {errorMsg} </p>}
         </div>
     )
 };

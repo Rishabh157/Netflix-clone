@@ -9,6 +9,7 @@ import { BiCreditCard } from 'react-icons/bi';
 import { BsQuestionCircle } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 import Button from '../Atoms/Button';
+import { useNavigate } from 'react-router-dom';
 
 const cardImagesArray = [
     { id: 1, img: VisaImg, alt: 'visa-img' },
@@ -19,6 +20,8 @@ const cardImagesArray = [
 
 const Creditoption = () => {
 
+
+    const navigate = useNavigate();
 
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44'>
@@ -35,7 +38,7 @@ const Creditoption = () => {
                 <div className='flex gap-x-1 my-2'>
                     {cardImagesArray?.map((image, index) => <img key={image?.id || index} className='h-[25px]' src={image?.img} alt={image?.alt} />)}
                 </div>
-                
+
                 <div>
 
                     <div className='grid grid-cols-12 gap-2'>
@@ -108,7 +111,8 @@ const Creditoption = () => {
                         <div className='col-span-12 my-2'>
                             <Button
                                 text='Start Membership'
-                                className='w-full text-[24px] py-[16.5px] px-[2em] font-normal '
+                                className='w-full text-[24px] py-[16.5px] px-[2em] font-normal'
+                                onClick={() => navigate('/browse')}
                             />
                         </div>
 

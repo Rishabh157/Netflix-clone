@@ -13,7 +13,7 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
 
                 <div className='col-span-1'></div>
                 <div className='col-span-2'>
-                    <ul className='flex  justify-between'>
+                    <ul className='flex justify-between'>
                         <li>
                             <a
                                 href='http://localhost:3000/' >
@@ -63,47 +63,63 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                     </div>
                 </div>
 
-
+        
             </div>
 
             <div className='grid grid-cols-12 '>
                 <div className='col-span-1'></div>
                 <div className='col-span-2'>
                     <ul className='flex flex-col justify-between'>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>
-                            auto description
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>auto description</span>
                         </li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>
-                            investor relations
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>investor relations</span>
                         </li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>
-                            legal notices
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>legal notices</span>
                         </li>
                     </ul>
                 </div>
                 <div className='col-span-2'>
                     <ul className='flex flex-col justify-between'>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>help center</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>jobs</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>cookie preferences</li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>help center</span>
+                        </li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>jobs</span>
+                        </li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>cookie preferences</span>
+                        </li>
                     </ul>
                 </div>
                 <div className='col-span-2'>
                     <ul className='flex flex-col justify-between'>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>gift cards</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>terms of use</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>corporate information</li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>gift cards </span>
+                        </li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>terms of use </span>
+                        </li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>corporate information </span>
+                        </li>
                     </ul>
                 </div>
                 <div className='col-span-2'>
                     <ul className='flex flex-col justify-between'>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>media center</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>privacy</li>
-                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px] hover:underline cursor-pointer'>contact us</li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>media center</span>
+                        </li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>privacy</span></li>
+                        <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
+                            <span className='hover:underline cursor-pointer'>contact us</span>
+                        </li>
                     </ul>
                 </div>
                 <div className='col-span-3'></div>
-
             </div>
 
             <div className='grid grid-cols-12 mt-10'>

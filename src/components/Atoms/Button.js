@@ -1,9 +1,10 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const Button = ({ text, type, className, onBlur, onClick, icon }) => {
+const Button = ({ text, type, className, onBlur, onClick, icon, disable=false }) => {
     return (
         <button
+            disabled={disable}
             type={type}
             onClick={onClick}
             onBlur={onBlur}
