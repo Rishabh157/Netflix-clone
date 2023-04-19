@@ -122,3 +122,17 @@ button {
 .login-bg-bottom {
     background: linear-gradient(180deg, rgba(24, 28, 4, 4.5) 0, transparent);
 }
+
+
+.ton{
+    /* position: absolute; */
+    border-width: 10px 10px 0;
+    border: 0 solid red;
+    border-top-color: #e50914;
+    content: "";
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
+}

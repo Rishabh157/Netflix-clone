@@ -6,6 +6,7 @@ import SignupRegform from '../Templates/SignupRegform';
 import SignUp from '../Templates/SignUp';
 import PaymentPicker from '../Templates/PaymentPicker';
 import Creditoption from '../Templates/Creditoption';
+import Planform from '../Templates/Planform';
 import Footer from '../Atoms/Footer';
 import { useLocation } from 'react-router-dom';
 
@@ -15,16 +16,18 @@ const HomeRegister = () => {
 
     return (
         <div>
-
             <Header />
+
             {location?.pathname === '/' ? <MainIndex /> : null}
             {location?.pathname === '/signup/registration' ? <SignUpRegistration /> : null}
             {location?.pathname === '/signup/regform' ? <SignupRegform /> : null}
             {location?.pathname === '/signup' ? <SignUp /> : null}
             {location?.pathname === '/signup/paymentPicker' ? <PaymentPicker /> : null}
             {location?.pathname === '/signup/creditoption' ? <Creditoption /> : null}
+            {location?.pathname === '/signup/planform' ? <Planform /> : null}
 
             <Footer footerColor={location?.pathname === '/signup/registration' ? 'bg-footer' : null} />
+
         </div>
     )
 }

@@ -12,6 +12,7 @@ const MainIndexPaths = [
   'signup',
   'signup/paymentPicker',
   'signup/creditoption',
+  '/signup/planform',
 ]
 
 const App = () => {
