@@ -8,11 +8,11 @@ import YourAccount from "./components/Pages/YourAccount";
 const MainIndexPaths = [
   '/',
   '/signup/registration',
-  'signup/regform',
-  'signup',
-  'signup/paymentPicker',
-  'signup/creditoption',
+  '/signup/regform',
+  '/signup',
   '/signup/planform',
+  '/signup/paymentPicker',
+  '/signup/creditoption',
 ]
 
 const App = () => {

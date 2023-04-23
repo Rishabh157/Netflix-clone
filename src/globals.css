@@ -124,7 +124,7 @@ button {
 }
 
 
-.ton{
+.ton {
     /* position: absolute; */
     border-width: 10px 10px 0;
     border: 0 solid red;
@@ -135,4 +135,9 @@ button {
     position: absolute;
     top: 100%;
     transform: translateX(-50%);
+}
+
+/*  this remove last three table row border in planform  */
+#plan-form:nth-last-child(-n+3) {
+    border: none;
 }

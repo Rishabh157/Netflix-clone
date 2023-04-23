@@ -53,7 +53,7 @@ const SignUp = () => {
                 <Button
                     text='Next'
                     className='w-full text-[24px] py-[12.5px] px-[6em] font-normal'
-                    onClick={()=> navigate('/signup/creditoption')}
+                    onClick={()=> navigate('/signup/planform')}
                 />
             </div>
         </div>
