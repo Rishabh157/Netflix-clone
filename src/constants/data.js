@@ -1,5 +1,3 @@
-import { IoCheckmarkOutline } from 'react-icons/io5';
-import { BiRupee } from 'react-icons/bi';
 import { BsPhone, BsTabletLandscape } from 'react-icons/bs';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
 import { CgScreen } from 'react-icons/cg';
@@ -186,4 +184,3 @@ export const plansTitle = [
     'Recommendations just for you.',
     'Change or cancel your plan anytime.'
 ]
-
