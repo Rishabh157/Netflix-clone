@@ -2,6 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
+    screens: {
+      ms:'346px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     backgroundImage: {
       'page-btn': 'linear-gradient(180deg, #e6e6e6, #ddd)',
       'page-btn-active': 'linear-gradient(180deg, #ffffff, #d5d5d5)',
@@ -31,7 +39,7 @@ module.exports = {
         'gray': '#8c8c8c',
         'gray-light': '#f4f4f4',
         'check-box': '#737373',
-        'info' : '#e87c03',
+        'info': '#e87c03',
       },
       transitionTimingFunction: {
         'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',

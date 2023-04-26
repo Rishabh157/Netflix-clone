@@ -24,7 +24,7 @@ const Creditoption = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='grid justify-items-center bg-white pt-10 pb-44'>
+        <div className='grid justify-items-center bg-white pt-10 pb-44 px-2'>
 
             <div>
 
@@ -47,7 +47,7 @@ const Creditoption = () => {
                             <Input
                                 label='Card Number'
                                 placeholder='Enter Card number'
-                                className='border-[1px] text-black border-black text-[16px] focus:font-thin rounded-[2px]'
+                                className='border-[1px] text-black border-black text-[16px] rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 endIcon={<BiCreditCard size={30} fill='rgb(153, 153, 153)' />}
                                 isSuccess={true}
@@ -58,7 +58,7 @@ const Creditoption = () => {
                             <Input
                                 label='Expiration date'
                                 placeholder='Enter Expiration date'
-                                className='border-[1px] border-black text-gray text-[16px] focus:text-gray focus:font-thin rounded-[2px]'
+                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 isSuccess={true}
                             />
@@ -68,7 +68,7 @@ const Creditoption = () => {
                             <Input
                                 label='CVV'
                                 placeholder='Enter CVV number'
-                                className='border-[1px] border-black text-gray text-[16px] focus:text-gray focus:font-thin rounded-[2px]'
+                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 endIcon={<BsQuestionCircle size={30} fill='rgb(153, 153, 153)' />}
                                 isSuccess={true}
@@ -79,7 +79,7 @@ const Creditoption = () => {
                             <Input
                                 label='First name'
                                 placeholder='Enter First name'
-                                className='border-[1px] border-black text-gray text-[16px] focus:text-gray focus:font-thin rounded-[2px]'
+                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 isSuccess={true}
                             />
@@ -89,7 +89,7 @@ const Creditoption = () => {
                             <Input
                                 label='Last name'
                                 placeholder='Enter Last name'
-                                className='border-[1px] border-black text-gray text-[16px] focus:text-gray focus:font-thin rounded-[2px]'
+                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 isSuccess={true}
                             />
@@ -103,7 +103,7 @@ const Creditoption = () => {
                             </div>
 
                             <div>
-                                <Link className='text-link text-[16px] font-bold'>Change</Link>
+                                <Link to='/signup/planform' className='text-link text-[16px] font-bold'>Change</Link>
                             </div>
 
                         </div>

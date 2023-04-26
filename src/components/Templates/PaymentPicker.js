@@ -36,7 +36,7 @@ const PaymentMakerBox = ({ title, imagesArray, onClick }) => {
     return (
         <div
             onClick={onClick}
-            className='bg-white flex justify-between items-center px-[10px] py-[22px] gap-20 border-[2px] border-pay-line rounded-[5px] text-text mt-2 cursor-pointer'>
+            className='bg-white flex justify-between items-center gap-20 border-[2px] border-pay-line rounded-[5px] text-text mt-2 cursor-pointer px-[10px] lg:py-[22px] md:py-[22px] sm:py-[20px] py-[16px]'>
             <div className='flex items-center gap-x-5'>
                 <div>
                     <span>{title}</span>
@@ -60,40 +60,34 @@ const PaymentPicker = () => {
     return (
         <div className='grid justify-items-center bg-white pt-8 pb-48'>
 
+            <img className='inline-block mx-auto h-[50px] w-[50px] mb-6' src={LockImg} alt='checkMark-img' />
+
+            <Steps
+                firstStep={3}
+                secondSteps={3}
+            />
+
             <div>
+                <h1 className='text-[32px] font-semibold text-text text-center'>Choose how to pay</h1>
 
-                <div className='text-center mb-6'>
-                    <img className='inline-block mx-auto h-[50px] w-[50px]' src={LockImg} alt='checkMark-img' />
-                </div>
+                <p className='text-[18px] font-normal text-text text-center mt-2'>
+                    Your payment is encrypted and you can change your <br /> payment method at anytime.
+                </p>
 
-                <div className='text-center'>
-                    <Steps
-                        firstStep={3}
-                        secondSteps={3}
-                    />
-                </div>
-
-                <div>
-                    <h1 className='text-[32px] font-bold text-text text-center'>Choose how to pay</h1>
-
-                    <p className='text-[18px] font-normal text-text text-center mt-2'>
-                        Your payment is encrypted and you can change how <br /> you pay anytime.
-                    </p>
-
-                    <h1 className='text-[18px] font-semibold text-text text-center mt-[10px]'>
-                        Secure for peace of mind. <br />
-                        Cancel easily online.
-                    </h1>
-                </div>
-
-
+                <h1 className='text-[18px] font-semibold text-text text-center mt-[10px]'>
+                    Secure for peace of mind. <br />
+                    Cancel easily online.
+                </h1>
             </div>
 
-            <div className='mt-6'>
+
+            <div className='mt-6 ms:px-4'>
+
                 <div className='flex justify-end gap-x-1'>
                     <span className='text-[13px] text-text'>End-to-end encrypted</span>
                     <AiOutlineLock size={16} fill='#FFB53F' />
                 </div>
+                
                 <PaymentMakerBox
                     title='Credit or Debit Card'
                     imagesArray={cardImagesArray}
