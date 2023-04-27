@@ -25,10 +25,11 @@ const SignupRegform = () => {
                 <div className='mt-2'>
                     <Input
                         label='Email'
-                        value={'rishabhgour157@gmail.com'}
+                        // value={}
                         className='border-[1px] border-black text-black text-[16px] focus:text-black rounded-[2px]'
                         labelClassName='text-black font-bold'
                         isSuccess={true}
+                        
                     />
                 </div>
                 <div className='mt-2'>

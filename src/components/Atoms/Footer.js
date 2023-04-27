@@ -3,9 +3,27 @@ import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineInstagram, AiFillLinkedin } from 'react-icons/ai';
 import { BsTwitter, BsGithub } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+const getBackgroundColor = (route) => {
+
+    switch (route) {
+        case '/':
+            return '#FFFFF7';
+            break;
+        case '/login':
+            return '#FFFFF7';
+            break;
+        default:
+            return '#454545 ';
+    }
+}
 
 
-const Footer = ({ footerColor = 'bg-light-black' }) => {
+const Footer = ({ footerColor = 'bg-white' }) => {
+    
+    const { pathname } = useLocation();
+    const socialMediaIconColor = getBackgroundColor(pathname);
 
     return (
         <div className={`pt-10 py-5 ${footerColor}`}>
@@ -18,35 +36,35 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         <li>
                             <a
                                 href='http://localhost:3000/' >
-                                <FaFacebookF fill='#ffffff' size={25} />
+                                <FaFacebookF fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
                                 href='https://www.instagram.com/rishabhgour0007/' target='_blank' rel='noreferrer'>
-                                <AiOutlineInstagram fill='#ffffff' size={25} />
+                                <AiOutlineInstagram fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
                                 href='https://twitter.com/Rishabhgour157' target='_blank' rel='noreferrer'>
-                                <BsTwitter fill='#ffffff' size={25} />
+                                <BsTwitter fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
                                 href='https://github.com/rishabh157' target='_blank' rel='noreferrer'>
-                                <BsGithub fill='#ffffff' size={25} />
+                                <BsGithub fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
                                 href='https://www.linkedin.com/in/rishabh-gour-3b0861221/' target='_blank' rel='noreferrer'>
-                                <AiFillLinkedin fill='#ffffff' size={25} />
+                                <AiFillLinkedin fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
                     </ul>
@@ -63,7 +81,6 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </div>
                     </div>
                 </div>
-
 
             </div>
 

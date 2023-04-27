@@ -10,7 +10,6 @@ const Login = () => {
 
     const [checked, setChecked] = useState(false);
     const [show, setShow] = useState(false);
-
     const handleShowPassword = () => show ? setShow(false) : setShow(true)
 
     return (
@@ -18,9 +17,9 @@ const Login = () => {
 
             <Header className='bg-tarnsparent border-none login-bg-bottom' />
 
-            <div className='flex justify-center mb-24'>
+            <div className='flex justify-center lg:mb-24 md:mb-24 sm:mb-24 ms:mb-0'>
 
-                <div className='w-[32%] h-[100vh] pt-[60px] px-[68px] rounded-[4px] bg-[rgba(0,0,0,.75)] border-[1px] '>
+                <div className='lg:w-[32%] md:w-[68%] sm:w-[100%] h-[100vh] pt-[60px] lg:px-[68px] md:px-[62px] sm:px-[50px] ms:px-[30px] lg:rounded-[4px] md:rounded-[4px] sm:rounded-[4px] ms:rounded-none bg-[rgba(0,0,0,.75)] border-[1px]'>
 
                     <h1 className='text-[32px] text-white font-bold mb-[28px]'>Sign In</h1>
 
@@ -73,7 +72,7 @@ const Login = () => {
                         <p className='text-[#b3b3b3] text-[13px] font-normal cursor-pointer hover:underline'>Need help?</p>
                     </div>
 
-                    <div className='mt-[100px]'>
+                    <div className='mt-[80px]'>
                         <p className='text-check-box my-2'>New to Netflix?
                             <span className='text-white hover:underline'><Link to='/'> Sign up now.</Link></span>
                         </p>

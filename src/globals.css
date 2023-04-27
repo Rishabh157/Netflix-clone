@@ -110,18 +110,27 @@ button {
     background-image: url('./images/background.jpg');
     background-size: cover;
     height: 100%;
-    min-height: 100vh;
-    /* overflow: hidden; */
-    /* position: absolute; */
-    /* width: 100%; */
     z-index: -1;
-    /* opacity: .5; */
-
 }
 
 .login-bg-bottom {
     background: linear-gradient(180deg, rgba(24, 28, 4, 4.5) 0, transparent);
 }
+
+@media (max-width: 640px) {
+    .login-bg {
+        background-image: none;
+        background-size: cover;
+        /* height: 100%; */
+        /* z-index: -1; */
+    }
+
+    .login-bg-bottom {
+        /* background-color: black; */
+        background: none;
+    }
+}
+
 
 
 .ton {

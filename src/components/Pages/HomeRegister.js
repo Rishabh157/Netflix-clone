@@ -12,22 +12,19 @@ import { useLocation } from 'react-router-dom';
 
 const HomeRegister = () => {
 
-    let location = useLocation();
+    let { pathname } = useLocation();
 
     return (
         <div>
             <Header />
-
-            {location?.pathname === '/' ? <MainIndex /> : null}
-            {location?.pathname === '/signup/registration' ? <SignUpRegistration /> : null}
-            {location?.pathname === '/signup/regform' ? <SignupRegform /> : null}
-            {location?.pathname === '/signup' ? <SignUp /> : null}
-            {location?.pathname === '/signup/paymentPicker' ? <PaymentPicker /> : null}
-            {location?.pathname === '/signup/creditoption' ? <Creditoption /> : null}
-            {location?.pathname === '/signup/planform' ? <Planform /> : null}
-
-            <Footer footerColor={location?.pathname === '/signup/registration' ? 'bg-footer' : null} />
-
+            {pathname === '/' ? <MainIndex /> : null}
+            {pathname === '/signup/registration' ? <SignUpRegistration /> : null}
+            {pathname === '/signup/regform' ? <SignupRegform /> : null}
+            {pathname === '/signup' ? <SignUp /> : null}
+            {pathname === '/signup/paymentPicker' ? <PaymentPicker /> : null}
+            {pathname === '/signup/creditoption' ? <Creditoption /> : null}
+            {pathname === '/signup/planform' ? <Planform /> : null}
+            <Footer footerColor={pathname === '/' || pathname === '/login' ? 'bg-black' : 'bg-white'} />
         </div>
     )
 }
