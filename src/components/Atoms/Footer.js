@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineInstagram, AiFillLinkedin } from 'react-icons/ai';
 import { BsTwitter, BsGithub } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 
 const Footer = ({ footerColor = 'bg-light-black' }) => {
@@ -11,8 +12,8 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
 
             <div className='grid grid-cols-12 mb-10'>
 
-                <div className='col-span-1'></div>
-                <div className='col-span-2'>
+                <div className='lg:col-span-1 md:col-span-1 sm:col-span-0 ms:col-span-0'></div>
+                <div className='lg:col-span-2 md:col-span-2 sm:col-span-4 ms:col-span-6'>
                     <ul className='flex justify-between'>
                         <li>
                             <a
@@ -53,22 +54,24 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
 
                 <div className='col-span-10 mt-10'>
                     <div className='grid grid-cols-12'>
-                        <div className='col-span-1'></div>
-                        <div className='col-span-6 pl-6'>
-                            <h1 className='text-footer-gray'>Questions? Call
-                                <span className='underline pl-2 font-mono'>9009648224</span>
-                            </h1>
+                        <div className='lg:col-span-1 md:col-span-1 sm:col-span-0 ms:col-span-1'></div>
+                        <div className='lg:col-span-6 md:col-span-6 sm:col-span-5 ms:col-span-11 lg:pl-6 md:pl-6 sm:pl-6 ms:pl-2'>
+                            <div className='text-footer-gray flex'>
+                                <h1>Questions? Call</h1>
+                                <Link to='tel:9009648224' className='underline-none pl-2 font-mono hover:text-footer-gray'>9009648224</Link>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
-        
+
             </div>
 
-            <div className='grid grid-cols-12 '>
-                <div className='col-span-1'></div>
-                <div className='col-span-2'>
+            <div className='grid grid-cols-12 lg:px-0 md:px-0 sm:px-0 ms:px-8'>
+
+                <div className='col-span-1 lg:block md:block sm:block ms:hidden'></div>
+
+                <div className='lg:col-span-2 md:col-span-2 sm:col-span-4 ms:col-span-6'>
                     <ul className='flex flex-col justify-between'>
                         <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
                             <span className='hover:underline cursor-pointer'>auto description</span>
@@ -81,7 +84,8 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </li>
                     </ul>
                 </div>
-                <div className='col-span-2'>
+
+                <div className='lg:col-span-2 md:col-span-2 sm:col-span-4 ms:col-span-6'>
                     <ul className='flex flex-col justify-between'>
                         <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
                             <span className='hover:underline cursor-pointer'>help center</span>
@@ -94,7 +98,8 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </li>
                     </ul>
                 </div>
-                <div className='col-span-2'>
+
+                <div className='select-none lg:col-span-2 md:col-span-2 sm:col-span-4 ms:col-span-6'>
                     <ul className='flex flex-col justify-between'>
                         <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
                             <span className='hover:underline cursor-pointer'>gift cards </span>
@@ -107,7 +112,8 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </li>
                     </ul>
                 </div>
-                <div className='col-span-2'>
+
+                <div className='lg:col-span-2 md:col-span-2 sm:col-span-4 ms:col-span-6'>
                     <ul className='flex flex-col justify-between'>
                         <li className='pb-3 inline-block capitalize text-footer-gray text-[13px]'>
                             <span className='hover:underline cursor-pointer'>media center</span>
@@ -119,12 +125,12 @@ const Footer = ({ footerColor = 'bg-light-black' }) => {
                         </li>
                     </ul>
                 </div>
-                <div className='col-span-3'></div>
+
             </div>
 
             <div className='grid grid-cols-12 mt-10'>
                 <div className='col-span-1'></div>
-                <div className='col-span-2'>
+                <div className='lg:col-span-3 md:col-span-4 sm:col-span-4 ms:col-span-6'>
                     <p className='text-[12px] text-footer-gray'> 1997 Netflix, inc.</p>
                 </div>
             </div>

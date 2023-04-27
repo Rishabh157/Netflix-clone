@@ -34,7 +34,7 @@ const MainIndex = () => {
                         className='flex text-[25px] py-[11px] px-4 lg:w-52 md:w-52 sm:w-52 ms:w-52'
                         onClick={() => navigate('/signup/registration')}
                     />
-                    
+
                 </div>
 
             </div>
