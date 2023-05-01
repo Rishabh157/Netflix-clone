@@ -48,6 +48,14 @@ module.exports = {
       transitionDuration: {
         '0': '0ms',
         '250': '250ms',
+      },
+      keyframes : {
+         'moviepulse' : { 
+          '50%' : { opacity : '0.5' }
+          }
+      },
+      animation : {
+        'movie-card-pulse' : 'moviepulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
       }
     },
   },

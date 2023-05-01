@@ -21,7 +21,7 @@ const getBackgroundColor = (route) => {
 
 
 const Footer = ({ footerColor = 'bg-white' }) => {
-    
+
     const { pathname } = useLocation();
     const socialMediaIconColor = getBackgroundColor(pathname);
 
