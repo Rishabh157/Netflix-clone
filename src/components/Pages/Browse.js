@@ -2,10 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Atoms/Navbar';
 import Banner from '../Atoms/Banner';
 import MovieCard from '../Atoms/MoviesCard';
+import ScrollSlider from '../Atoms/ScrollSlider';
+
 
 const Browse = () => {
 
-    const [navColor, setnavColor] = useState(false)
+
+    const [navColor, setnavColor] = useState(false);
+    const [photos, setPhotos] = useState([]);
+
+    const getDummyData = () => {
+
+        fetch('https://jsonplaceholder.typicode.com/photos')
+            .then((res) => res.json())
+            .then((data) => setPhotos(data))
+            .catch(err => console.log(err));
+    }
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -15,6 +27,8 @@ const Browse = () => {
                 setnavColor(false)
             }
         })
+
+        getDummyData()
     }, [])
 
     return (
@@ -22,15 +36,24 @@ const Browse = () => {
             <Navbar bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'} />
             <Banner />
 
-            <div className='mt-12 px-4 flex w-full flex-row justify-between'>
 
-                <MovieCard
-                    image={'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Images_%281972_poster%29.jpg/220px-Images_%281972_poster%29.jpg'}
-                />
-                
+            <div className='mt-10'>
+                <ScrollSlider
+                    id={1}
+                >
+                    {photos?.slice(0, 20).map((photo, ind) => {
+                        return (
+                            <MovieCard
+                                key={ind}
+                                url={`/watch/${photo?.id}`}
+                                image={photo?.thumbnailUrl}
+                            />
+                        )
+                    })}
+                </ScrollSlider>
             </div>
 
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 
