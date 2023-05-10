@@ -234,3 +234,18 @@ button {
     opacity: 1;
     background: transparent;
 }
+
+/* --------------------------------------------- */
+/* Banner Component movie or title overview disAppear after few second video played */
+
+#overview {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
+
+#overview:hover{
+    opacity: 0.5;
+    /* visibility: hidden; */
+}
+ 

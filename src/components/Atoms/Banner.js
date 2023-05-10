@@ -43,8 +43,14 @@ const Banner = () => {
             img: 'https://occ-0-41-1501.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABY1OVKZd_K_s2iOkjhfaREZdmJgd4yaAjrDsjyikLQ0TQvdSzxKIel8TSONr_H7GGT25NIyvzc6YEhBxJIZEL9o5WHXSFWF7QLYy.webp?r=5f3',
             overview: 'Two astronomers go on a media tour to warn humankind of a planet-killing comet hurtling toward Earth. The response from a distracted world: Meh.'
         },
+        {
+            id: 7,
+            title: "Vincenzo",
+            img: 'https://occ-0-2483-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZWXhaCt6ZWB9TV1IkSi_TOX7Q0cMIQ5WdUu9Baexmp-R8w6eITdklv5tEykYgpZy4ek5iqMY8zZlcmQTgJ4sfeeXQur9qm_cXsa.webp?r=1d2',
+            overview: 'During a visit to his motherland, a Korean-Italian mafia lawyer gives an unrivaled conglomerate a taste of its own medicine with a side of justice.'
+        },
     ]
-    
+
     useEffect(() => {
         const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
         setBanner(randomImage)
@@ -52,7 +58,10 @@ const Banner = () => {
         //     .then((res) => res.json())
         //     .then(data => setBanner(data.results[Math.floor(Math.random() * data.results?.length)]))
         //     .catch(err => console.log(err))
-    },[])
+    }, [])
+
+
+ 
 
 
     return (
@@ -63,7 +72,7 @@ const Banner = () => {
                 backgroundSize: 'cover',
                 backgroundRepeat: "no-repeat",
                 position: 'relative',
-                top: '-65px',
+                top: '-81px',
                 zIndex: '10',
                 display: 'flex',
                 alignItems: 'center',
@@ -74,7 +83,9 @@ const Banner = () => {
 
                 <h1 className='text-[60px] font-bold text-white select-none'>{banner?.title}</h1>
 
-                <p className='text-white pr-20 select-none'>
+                <p
+                    id='overview'
+                    className='text-white pr-20 select-none'>
                     {banner?.overview}
                 </p>
 
