@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 
 const Banner = () => {
 
     const [banner, setBanner] = useState({});
+    const [isPlay, setIsPlay] = useState(false);
+
+    // refrence element titleHeading and overview Banner
+    const titleRef = useRef(null);
+    const overviewRef = useRef(null);
 
     const bannerImages = [
         {
@@ -52,8 +57,12 @@ const Banner = () => {
     ]
 
     useEffect(() => {
+
+        document.title = 'Home - Netflix';
+
         const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
         setBanner(randomImage)
+
         // fetch('https://api.themoviedb.org/3/trending/all/week?api_key=f1b92f4ce0a6c48358b6a55b97b243e7&language=en-US')
         //     .then((res) => res.json())
         //     .then(data => setBanner(data.results[Math.floor(Math.random() * data.results?.length)]))
@@ -61,8 +70,35 @@ const Banner = () => {
     }, [])
 
 
- 
+    // this function is called for play video
+    const handlePlay = () => {
 
+        setTimeout(() => {
+            setIsPlay(true);
+
+            titleRef.current.style.transform = 'translateY(90px)';
+            // titleRef.current.style.fontSize = '52px';
+
+            overviewRef.current.style.opacity = '0';
+            overviewRef.current.style.transform = 'translateY(60px)';
+        }, 200);
+    }
+
+
+    // this function is called for pause video
+    const handlePause = () => {
+
+        setTimeout(() => {
+            setIsPlay(false);
+
+            titleRef.current.style.transform = 'translateY(0px)';
+            // titleRef.current.style.fontSize = '60px';
+
+            overviewRef.current.style.opacity = '1';
+            overviewRef.current.style.transform = 'translateY(0px)';
+
+        }, 200);
+    }
 
     return (
         <div
@@ -79,29 +115,47 @@ const Banner = () => {
                 paddingLeft: '38px'
             }}>
 
-            <div className='w-[50%] h-[400px] z-50 pt-44'>
+            <div className='w-[50%] h-[400px] pt-40'>
 
-                <h1 className='text-[60px] font-bold text-white select-none'>{banner?.title}</h1>
+                <h1
+                    id='banner-heading'
+                    ref={titleRef}
+                    className='banner-title inline-block text-[60px] font-bold text-white select-none'>
+                    {banner?.title}
+                </h1>
 
                 <p
-                    id='overview'
-                    className='text-white pr-20 select-none'>
+                    id='overView'
+                    ref={overviewRef}
+                    className={`text-white pr-20 select-none banner-overview`}>
                     {banner?.overview}
                 </p>
 
                 <div className='flex mt-5'>
-                    <button className='flex items-center px-6 py-1 bg-white rounded font-bold mr-4'>
-                        <BsFillPlayFill size={35} className='mr-1' />
+
+                    <button
+                        className='flex top-0 items-center px-6 py-1 bg-white rounded font-bold mr-4 select-none cursor-pointer'
+                        type='button'
+                        onClick={() => isPlay ? handlePause() : handlePlay()}
+                    >
+                        {isPlay ? <BsPauseFill
+                            size={35}
+                            className='mr-1'
+                        /> : <BsFillPlayFill
+                            size={35}
+                            className='mr-1'
+                        />}
                         Play
                     </button>
-                    <button className='flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold'>
+
+                    <button className='flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none'>
                         <AiOutlineInfoCircle size={32} color='' className='mr-1' />
                         More Info
                     </button>
                 </div>
             </div>
 
-            <div className='absolute select-none right-0 bottom-24 px-4 py-1 font-semibold bg-bg-ag text-white text-[14px] rounded-tl-sm rounded-bl-sm'>
+            <div className='absolute select-none right-0 bottom-24 px-4 py-1 font-semibold bg-bg-ag text-white text-[14px] border-l-white border-l-[2px]'>
                 U&#x2f;A 13+
             </div>
 

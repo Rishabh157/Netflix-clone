@@ -161,6 +161,12 @@ button {
 .scroll-wrapper {
     width: 100%;
     overflow: hidden;
+    overflow-x: scroll;
+}
+
+/* this class enable the scroll when user move left to right mouse pad or via mouse */
+.scroll-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .scroll-content {
@@ -168,7 +174,6 @@ button {
     transition: transform 0.3s ease;
 }
 
-/* ------------------------------------- */
 /* right scroll button functionality */
 .scroll-right-button {
     position: absolute;
@@ -237,15 +242,10 @@ button {
 
 /* --------------------------------------------- */
 /* Banner Component movie or title overview disAppear after few second video played */
-
-#overview {
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.3s ease;
+.banner-title {
+    transition: all 0.5s ease-out;
 }
 
-#overview:hover{
-    opacity: 0.5;
-    /* visibility: hidden; */
+.banner-overview {
+    transition: all 0.5s ease-out;
 }
- 

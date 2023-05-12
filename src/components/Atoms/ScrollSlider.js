@@ -6,12 +6,12 @@ const ScrollSlider = (props) => {
   const scrollWrapper = document.getElementById(`scroll-wrapper${props.id}`);
   const scrollContent = document.getElementById(`scroll-content${props.id}`);
   const scrollRightButton = document.getElementById(`scroll-right-button${props.id}`);
-  // const scrollLeftButton = document.querySelector('.scroll-left-button');
+  // const scrollLeftButton = document.getElementById(`scroll-left-button${props.id}`);
 
   const handleScrollRight = () => {
 
     scrollWrapper.scrollBy({
-      left: 1500,
+      left: 800,
       behavior: 'smooth'
     })
 
@@ -28,13 +28,18 @@ const ScrollSlider = (props) => {
   const handleScrollLeft = () => {
 
     scrollWrapper.scrollBy({
-      left: -1000,
+      left: -800,
       behavior: 'smooth'
     })
 
     // const maxScrollLeft = scrollContent.scrollWidth - scrollContent.clientWidth
-    // scrollLeftButton.style.display = scrollWrapper.scrollLeft < maxScrollLeft ? 'none' : 'block';
-
+    // scrollLeftButton.style.display = scrollWrapper.scrollLeft >= maxScrollLeft ? 'none' : 'grid';
+    // scrollLeftButton.style.placeItems = scrollWrapper.scrollLeft >= maxScrollLeft ? 'none' : 'center';
+    
+    // console.log(scrollLeftButton)
+    // scrollLeftButton.style.display = scrollWrapper.scrollLeft >= 201 ? 'none' : 'block';
+    // setscrollLeftPx(scrollWrapper.scrollWidth)
+    // console.log(scrollWrapper.scrollLeft, maxScrollLeft)
   }
 
   return (
