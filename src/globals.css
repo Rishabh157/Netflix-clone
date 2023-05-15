@@ -73,6 +73,23 @@ body {
     visibility: visible;
 }
 
+
+.child-browse {
+    position: absolute;
+    top: 30px;
+    left: -32px;
+    transition: all 150ms ease-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+    background: linear-gradient(to left, rgba(25, 27, 60, 0) -297%, rgba(0, 0, 0, 1) 181%);
+    opacity: 0;
+}
+
+.browse-parent:hover>.child-browse {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* it's for notification panel movies overview plot truncate  */
 .truncate-notifi {
     display: -webkit-box;
