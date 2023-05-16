@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const TopNav = ({ bgColor }) => {
     return (
-        <div className={`${bgColor} sticky top-0 z-50 py-5 pl-10`}>
+        <div className={`${bgColor} sticky top-0 z-50 py-4 pl-10`}>
 
             <div className='grid grid-cols-12'>
 
