@@ -54,6 +54,12 @@ const Banner = () => {
             img: 'https://occ-0-2483-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZWXhaCt6ZWB9TV1IkSi_TOX7Q0cMIQ5WdUu9Baexmp-R8w6eITdklv5tEykYgpZy4ek5iqMY8zZlcmQTgJ4sfeeXQur9qm_cXsa.webp?r=1d2',
             overview: 'During a visit to his motherland, a Korean-Italian mafia lawyer gives an unrivaled conglomerate a taste of its own medicine with a side of justice.'
         },
+        {
+            id: 8,
+            title: "The Watcher",
+            img: 'https://occ-0-2483-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABWeLwoCqgmzXCqR1VZhDBxfMf-5Ajk_1wDNJaUyOq6KqSIbrYUOBY6rYjjAxkAGjZ1rMBnaCZtjYWWcCdcjCTsfmsWFBZFt5Knrt.webp?r=733',
+            overview: "Ominous letters. Strange neighbors. Sinister threats. A family moves into their suburban dream home, only to discover they've inherited a nightmare."
+        },
     ]
 
     useEffect(() => {
