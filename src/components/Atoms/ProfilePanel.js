@@ -16,7 +16,9 @@ const ProfilePanel = ({ isAccountPanel = false }) => {
                         src={firstProfile}
                         alt=''
                     />
-                    <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>priya</span>
+                    <Link to='/browse'>
+                        <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>priya</span>
+                    </Link>
                 </div>
 
 

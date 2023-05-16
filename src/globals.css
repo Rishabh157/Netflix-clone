@@ -107,9 +107,20 @@ body {
 }
 
 .input-class:focus {
-    width: 70%;
     visibility: visible;
     opacity: 1;
+}
+
+@media screen and (min-width: 346px) {
+    .input-class:focus {
+        width: 96%;
+    }    
+}
+
+@media screen and (min-width: 640px){
+    .input-class:focus {
+        width: 60%;
+    }    
 }
 
 select {
