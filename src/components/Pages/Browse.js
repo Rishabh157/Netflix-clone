@@ -45,13 +45,14 @@ const Browse = () => {
                         return (
                             <MovieCard
                                 key={ind}
-                                url={`/watch/${photo?.id}`}
+                                // url={`/watch/${photo?.id}`}
                                 image={photo?.thumbnailUrl}
                             />
                         )
                     })}
                 </ScrollSlider>
             </div>
+
 
         </React.Fragment >
     )
