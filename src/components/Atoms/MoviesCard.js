@@ -13,6 +13,7 @@ const MovieCard = ({ image, url, onClick }) => {
                     src={image}
                     className='absolute top-0 left-0 object-cover h-full w-full rounded '
                     alt='movie-card'
+                    loading='lazy'
                 />
             </div>
         </Link>

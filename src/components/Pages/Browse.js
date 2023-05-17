@@ -3,6 +3,7 @@ import Navbar from '../Atoms/Navbar';
 import Banner from '../Atoms/Banner';
 import MovieCard from '../Atoms/MoviesCard';
 import ScrollSlider from '../Atoms/ScrollSlider';
+import { API_KEY , TMDB_URL } from '../../constants/constants';
 
 
 const Browse = () => {
@@ -18,6 +19,21 @@ const Browse = () => {
             .then((data) => setPhotos(data))
             .catch(err => console.log(err));
     }
+
+
+
+    const [NotificationPanelData, setnotifiData] = useState([])
+
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
+            .then((res) => res.json())
+            .then(data => {
+                setnotifiData(data.results)
+                // console.log(data?.results)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -37,16 +53,17 @@ const Browse = () => {
             <Banner />
 
 
-            <div className='mt-10'>
+            <div className='my-72'>
                 <ScrollSlider
                     id={1}
                 >
-                    {photos?.slice(0, 20).map((photo, ind) => {
+                    {NotificationPanelData?.map((photo, ind) => {
+                        console.log(photo);
                         return (
                             <MovieCard
                                 key={ind}
                                 // url={`/watch/${photo?.id}`}
-                                image={photo?.thumbnailUrl}
+                                image={`${TMDB_URL}${photo.poster_path}`}
                             />
                         )
                     })}

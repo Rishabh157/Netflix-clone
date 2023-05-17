@@ -50,14 +50,14 @@ const ScrollSlider = (props) => {
 
       {isLeftBtnVisible && <button
         id={`scroll-left-button${props.id}`}
-        className='scroll-left-button'
+        className='scroll-left-button lg:flex md:flex sm:hidden ms:hidden'
         onClick={() => handleScrollLeft()}>
         <BsChevronLeft size={35} color='#ffffff' />
       </button>}
 
       <div
         id={`scroll-right-button${props.id}`}
-        className="scroll-right-button"
+        className="scroll-right-button lg:flex md:flex sm:hidden ms:hidden"
         onClick={() => handleScrollRight()}>
         <BsChevronRight size={35} color='#ffffff' />
       </div>
