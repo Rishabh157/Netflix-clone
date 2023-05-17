@@ -49,15 +49,14 @@ const NotificationPanel = () => {
 
     const [NotificationPanelData, setnotifiData] = useState([])
 
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
-            .then((res) => res.json())
-            .then(data => {
-                setnotifiData(data.results)
-                // console.log(data?.results)
-            })
-            .catch(err => console.log(err))
-    }, [])
+    // useEffect(() => {
+    //     fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
+    //         .then((res) => res.json())
+    //         .then(data => {
+    //             setnotifiData(data.results)
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
 
     return (
         <>

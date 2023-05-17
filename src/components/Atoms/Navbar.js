@@ -23,7 +23,7 @@ const Navbar = ({ bgColor }) => {
                         </Link>
 
                         <div className='flex ml-8 ms:block sm:block md:block lg:hidden relative browse-parent'>
-                            <span className='text-white flex items-center font-bold text-[15px] transition cursor-pointer hover:text-gray-300'>
+                            <span className='text-white select-none flex items-center font-bold text-[15px] transition cursor-pointer hover:text-gray-300'>
                                 Browse <AiFillCaretDown size={10} fill='#ffffff' />
                             </span>
                             <MobileBrowsePanel />

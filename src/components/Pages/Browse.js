@@ -22,17 +22,17 @@ const Browse = () => {
 
 
 
-    const [NotificationPanelData, setnotifiData] = useState([])
+    // const [NotificationPanelData, setnotifiData] = useState([])
 
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
-            .then((res) => res.json())
-            .then(data => {
-                setnotifiData(data.results)
-                // console.log(data?.results)
-            })
-            .catch(err => console.log(err))
-    }, [])
+    // useEffect(() => {
+    //     fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
+    //         .then((res) => res.json())
+    //         .then(data => {
+    //             setnotifiData(data.results)
+    //             // console.log(data?.results)
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
 
 
     useEffect(() => {
@@ -53,12 +53,11 @@ const Browse = () => {
             <Banner />
 
 
-            <div className='my-72'>
+            {/* <div className='my-72'>
                 <ScrollSlider
                     id={1}
                 >
                     {NotificationPanelData?.map((photo, ind) => {
-                        console.log(photo);
                         return (
                             <MovieCard
                                 key={ind}
@@ -68,7 +67,7 @@ const Browse = () => {
                         )
                     })}
                 </ScrollSlider>
-            </div>
+            </div> */}
 
 
         </React.Fragment >

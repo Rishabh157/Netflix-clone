@@ -121,19 +121,19 @@ const Banner = () => {
                 paddingLeft: '38px'
             }}>
 
-            <div className='w-[50%] h-[400px] pt-40'>
+            <div className='lg:pt-40 md:pt-40 sm:pt-28 ms:pt-24 lg:w-[50%] md:w-[60%] sm:w-[80%] ms:w-[80%]'>
 
                 <h1
                     id='banner-heading'
                     ref={titleRef}
-                    className='banner-title inline-block text-[60px] font-bold text-white select-none'>
+                    className='banner-title inline-block font-bold text-white select-none lg:text-[60px] md:text-[54px] sm:text-[38px] ms:text-[36px]'>
                     {banner?.title}
                 </h1>
 
                 <p
                     id='overView'
                     ref={overviewRef}
-                    className={`text-white pr-20 select-none banner-overview`}>
+                    className={`text-white select-none banner-overview lg:pr-20 md:pr-16 sm:pr-0 ms:pr-0 lg:text-[16px] md:text-[16px] sm:text-[16px] ms:text-[14px]`}>
                     {banner?.overview}
                 </p>
 
@@ -154,14 +154,14 @@ const Banner = () => {
                         Play
                     </button>
 
-                    <button className='flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none'>
+                    <button className={`flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none ${isPlay && 'opacity-0 transition-all duration-300'}`}>
                         <AiOutlineInfoCircle size={32} color='' className='mr-1' />
                         More Info
                     </button>
                 </div>
             </div>
 
-            <div className='absolute select-none right-0 bottom-24 px-4 py-1 font-semibold bg-bg-ag text-white text-[14px] border-l-white border-l-[2px]'>
+            <div className='absolute select-none right-0 px-4 py-1 font-semibold bg-bg-ag text-white text-[14px] border-l-white border-l-[2px] lg:bottom-24 md:bottom-24 sm:bottom-32 ms:bottom-32'>
                 U&#x2f;A 13+
             </div>
 
