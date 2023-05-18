@@ -3,22 +3,15 @@ import Navbar from '../Atoms/Navbar';
 import Banner from '../Atoms/Banner';
 import MovieCard from '../Atoms/MoviesCard';
 import ScrollSlider from '../Atoms/ScrollSlider';
-import { API_KEY , TMDB_URL } from '../../constants/constants';
+import { API_KEY, TMDB_URL } from '../../constants/constants';
+import SliderSection from '../Molecules/SliderSection';
 
 
 const Browse = () => {
 
 
     const [navColor, setnavColor] = useState(false);
-    const [photos, setPhotos] = useState([]);
 
-    const getDummyData = () => {
-
-        fetch('https://jsonplaceholder.typicode.com/photos')
-            .then((res) => res.json())
-            .then((data) => setPhotos(data))
-            .catch(err => console.log(err));
-    }
 
 
 
@@ -44,7 +37,6 @@ const Browse = () => {
             }
         })
 
-        getDummyData()
     }, [])
 
     return (
@@ -52,23 +44,10 @@ const Browse = () => {
             <Navbar bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'} />
             <Banner />
 
-
-            {/* <div className='my-72'>
-                <ScrollSlider
-                    id={1}
-                >
-                    {NotificationPanelData?.map((photo, ind) => {
-                        return (
-                            <MovieCard
-                                key={ind}
-                                // url={`/watch/${photo?.id}`}
-                                image={`${TMDB_URL}${photo.poster_path}`}
-                            />
-                        )
-                    })}
-                </ScrollSlider>
-            </div> */}
-
+            <SliderSection
+                title='Trending'
+                isExploreAllEnable={true}
+            />
 
         </React.Fragment >
     )

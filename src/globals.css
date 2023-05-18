@@ -7,6 +7,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #141414;
+    height: 2500px;
     /*  all body makes the light black  */
 }
 
@@ -113,13 +114,13 @@ body {
 @media screen and (min-width: 346px) {
     .input-class:focus {
         width: 96%;
-    }    
+    }
 }
 
-@media screen and (min-width: 640px){
+@media screen and (min-width: 640px) {
     .input-class:focus {
         width: 60%;
-    }    
+    }
 }
 
 select {
@@ -276,3 +277,68 @@ button {
 .banner-overview {
     transition: all 0.5s ease-out;
 }
+
+/* slider section Explore All design css */
+
+.slider-section-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.explore-all-icon {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-68px);
+    transition: all 0.3s ease-in-out;
+    height: 20px;
+    width: 20px;
+}
+
+.slider-section-card:hover .explore-all-icon {
+    opacity: 1;
+    visibility: visible;
+}
+
+.explore-all-text {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    font-weight: 600;
+    transform: translateX(-20px);
+}
+
+.slider-section-title:hover+.flex .explore-all-text {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.slider-section-title:hover+.flex .explore-all-icon {
+    transform: translateX(0px);
+    height: 16px;
+    width: 16px;
+}
+
+
+/* Netflix loader */
+
+.netflix-loader {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 3px solid #FFF;
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+

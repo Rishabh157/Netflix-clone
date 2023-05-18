@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '../Atoms/Input';
 import Button from '../Atoms/Button';
 import { RxChevronRight } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
-
+import ErrorMessage from '../Atoms/ErrorMessage';
+import { emailRegExp } from '../../constants/regularExpressions';
 
 const MainIndex = () => {
 
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [isError, setIsError] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false)
+
+
+    const handleSubmit = () => {
+        if (emailRegExp.test(email)) {
+            setIsError(false)
+            setIsSuccess(true)
+        } else {
+            setIsError(true)
+        }
+    }
+
 
     return (
         <div className='flex justify-center lg:items-center md:items-center sm:items-center ms:items-start min-h-screen'>
@@ -20,20 +35,42 @@ const MainIndex = () => {
                 </h4>
                 <h6 className='lg:text-[1.5rem] md:text-[1.5rem] sm:text-[1.3rem] ms:text-[1.1rem] font-normal text-white leading-[1.875rem] my-[1rem] text-center'>Ready to watch? Enter your email to create or restart your membership.</h6>
 
-                <div className='flex justify-center gap-x-2 ms:items-center lg:flex-row md:flex-row sm:flex-row ms:flex-col ms:gap-y-4'>
+                <div className='flex justify-center gap-x-2 lg:flex-row md:flex-row sm:flex-row ms:flex-col lg:items-start md:items-start sm:items-start ms:items-center ms:gap-y-4 '>
 
-                    <Input
-                        label='Email address'
-                        placeholder='Enter your email address'
-                        className='w-[387px]'
-                    />
+                    <div>
+                        <Input
+                            label='Email address'
+                            placeholder='Enter your email address'
+                            className='w-[387px]'
+                            value={email}
+                            isError={isError}
+                            isSuccess={isSuccess}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                                // handleChangeEmail(e.target.value)
+                            }}
+                        />
+                        {/* <ErrorMessage
+                            isError={isError}
+                            errorMsg={email ? 'invalid email' : ''}
+                        /> */}
+                    </div>
 
-                    <Button
-                        text='Get Started'
-                        icon={<RxChevronRight fill='#ffffff' size={28} />}
-                        className='flex text-[25px] py-[11px] px-4 lg:w-52 md:w-52 sm:w-52 ms:w-52'
-                        onClick={() => navigate('/signup/registration')}
-                    />
+
+                    <div className='flex items-start'>
+                        <Button
+                            isLoading={isSuccess}
+                            text='Get Started'
+                            icon={<RxChevronRight fill='#ffffff' size={28} />}
+                            className='flex text-[25px] py-[11px] px-4 lg:w-52 md:w-52 sm:w-52 ms:w-52'
+                            disable={isSuccess}
+                            onClick={() => {
+                                // navigate('/signup/registration')
+                                handleSubmit()
+                                setIsSuccess(true)
+                            }}
+                        />
+                    </div>
 
                 </div>
 

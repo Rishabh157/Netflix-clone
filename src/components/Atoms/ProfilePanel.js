@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const ProfilePanel = ({ isAccountPanel = false }) => {
     return (
-        <div className={`py-3 border-[1px] absolute right-0 top-12 rounded-[2px] border-notifi-border  ${isAccountPanel ? 'w-[160px] child-profileAccount' : 'w-[220px] child-profile'}`}>
+        <div className={`py-3 border-[1px] absolute right-0 top-12 rounded-[2px] border-notifi-border  ${isAccountPanel ? 'w-[160px] child-profileAccount' : 'lg:w-[210px] md:w-[220px] sm:w-[180px] ms:w-[170px] child-profile'}`}>
 
             <div className='px-2'>
                 <div className='flex items-center mb-3'>
@@ -51,11 +51,11 @@ const ProfilePanel = ({ isAccountPanel = false }) => {
 
                 <div className='flex items-center mb-3 px-1'>
                     {!isAccountPanel && <AiOutlineUser color='#c3b5b5' size={25} />}
-                    <span className={`${!isAccountPanel && 'pl-3'} capitalize text-notifi-name text-[13px] cursor-pointer hover:underline`}>
-                        <Link to='/YourAccount'>
+                    <Link to='/YourAccount'>
+                        <span className={`${!isAccountPanel && 'pl-3'} capitalize text-notifi-name text-[13px] cursor-pointer hover:underline`}>
                             account
-                        </Link>
-                    </span>
+                        </span>
+                    </Link>
                 </div>
 
                 <div className='flex items-center mb-3 px-1'>

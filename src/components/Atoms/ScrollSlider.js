@@ -43,7 +43,7 @@ const ScrollSlider = (props) => {
     <div className='scroll-container'>
 
       <div id={`scroll-wrapper${props.id}`} className="scroll-wrapper">
-        <div id={`scroll-content${props.id}`} className="scroll-content pl-10">
+        <div id={`scroll-content${props.id}`} className="scroll-content lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2">
           {props.children}
         </div>
       </div>
