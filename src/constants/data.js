@@ -173,10 +173,10 @@ export const planCardTable = [
 
 
 export const cardTitles = [
-    { id: '1', title: 'Mobile' },
-    { id: '2', title: 'Basic' },
-    { id: '3', title: 'Standard' },
-    { id: '4', title: 'Premium' },
+    { id: '1', plan: 'Mobile', price: '149' },
+    { id: '2', plan: 'Basic', price: '199' },
+    { id: '3', plan: 'Standard', price: '499' },
+    { id: '4', plan: 'Premium', price: '649' },
 ]
 
 export const plansTitle = [

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Steps from '../Atoms/Steps';
 import { IoCheckmarkOutline } from 'react-icons/io5';
 import { BiRupee } from 'react-icons/bi';
 import { planCardTable, cardTitles, plansTitle } from '../../constants/data';
 import Button from '../Atoms/Button';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const PlanCard = ({ title, isActive, onClick }) => {
     return (
@@ -25,7 +24,44 @@ const Planform = () => {
 
 
     const [active, setActive] = useState('1');
+    const [plan, setPlan] = useState('Mobile');
+    const [price, setPrice] = useState('149');
+    const [isRedirect, setIsRedirect] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleChangePlan = (id, plan, price) => {
+        setActive(id)
+        setPlan(plan)
+        setPrice(price)
+    }
+
+    const handleSubmit = (plan, price) => {
+
+        localStorage.setItem('plan', plan);
+        localStorage.setItem('price', price);
+
+        if (isRedirect) {
+            navigate('/signup/creditoption')
+        } else {
+            if (plan && price) {
+                navigate('/signup/paymentPicker')
+            }
+        }
+    }
+
+
+    useEffect(() => {
+
+        // for get query from URL 
+        const queryParams = new URLSearchParams(location.search);
+        const queryParamValue = Boolean(queryParams.get('change'));
+
+        if (queryParamValue) {
+            setIsRedirect(queryParamValue)
+        }
+
+    }, [])
 
 
     return (
@@ -68,9 +104,9 @@ const Planform = () => {
                                         key={title.id || index}
                                         className='col-span-3'>
                                         <PlanCard
-                                            onClick={() => setActive(title.id)}
+                                            onClick={() => handleChangePlan(title.id, title.plan, title.price)}
                                             isActive={active === title.id}
-                                            title={title.title}
+                                            title={title.plan}
                                         />
                                     </div>
                                 )}
@@ -127,7 +163,7 @@ const Planform = () => {
                         <Button
                             text='Next'
                             className='text-[24px] font-normal py-[20.5px] px-[8em]'
-                            onClick={()=> navigate('/signup/paymentPicker') }
+                            onClick={() => handleSubmit(plan, price)}
                         />
                     </div>
                 </div>

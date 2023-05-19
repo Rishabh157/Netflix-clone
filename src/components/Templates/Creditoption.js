@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Steps from '../Atoms/Steps';
 import VisaImg from '../../images/visa.png';
 import MasterCardImg from '../../images/mastercard.png';
@@ -20,8 +20,19 @@ const cardImagesArray = [
 
 const Creditoption = () => {
 
-
     const navigate = useNavigate();
+    const [plan, setPlan] = useState('Mobile');
+    const [price, setPrice] = useState('149');
+
+    useEffect(() => {
+
+        const plan = localStorage.getItem('plan') ? localStorage.getItem('plan') : '';
+        const price = localStorage.getItem('price') ? localStorage.getItem('price') : '';
+
+        setPlan(plan);
+        setPrice(price);
+
+    }, [])
 
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44 px-2'>
@@ -98,12 +109,12 @@ const Creditoption = () => {
                         <div className='col-span-12 py-[7px] px-[14px] bg-gray-light rounded flex justify-between items-center'>
 
                             <div>
-                                <p className='text-text text-[16px] font-bold'> ₹ 199/month </p>
-                                <p className='text-[#737373] text-[16px] font-normal'> Basic </p>
+                                <p className='text-text text-[16px] font-bold'> ₹ {price}/month </p>
+                                <p className='text-[#737373] text-[16px] font-normal'> {plan} </p>
                             </div>
 
                             <div>
-                                <Link to='/signup/planform' className='text-link text-[16px] font-bold'>Change</Link>
+                                <Link to='/signup/planform?change=true' className='text-link text-[16px] font-bold'>Change</Link>
                             </div>
 
                         </div>
