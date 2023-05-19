@@ -25,7 +25,15 @@ const Input = ({
             <input
                 type={type}
                 name={name}
-                className={twMerge(`form-control placeholder:select-none bg-transparent shadow-none text-white text-[15px] pt-[1.5rem] pb-[0.5rem] px-[1rem] placeholder:text-white focus:text-white focus:border-white ${isSuccess && 'focus:border-green-400 border-green-400'} ${isInfo && 'border-[#ffc107]'} ${isError && 'focus:border-inp-err border-inp-err'} focus:bg-transparent`, `${className}`)}
+                className={twMerge(`form-control placeholder:select-none
+                 bg-transparent shadow-none text-white text-[15px] pt-[1.5rem]
+                 pb-[0.5rem] px-[1rem] placeholder:text-white focus:text-white
+               focus:border-white 
+                 ${isSuccess && 'focus:border-green-400 border-green-400'} 
+                 ${isInfo && 'border-[#ffc107]'} 
+                 ${isError && 'focus:border-inp-err border-inp-err'} 
+                 focus:bg-transparent`, `${className}`)
+                }
                 placeholder={placeholder}
                 value={value}
                 id={id}

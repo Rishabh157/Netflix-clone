@@ -46,7 +46,7 @@ const SliderSection = ({ title, isExploreAllEnable, titleClassName, data = [] })
                     id={1}
                 >
                     {photos?.slice(0, 20)?.map((photo, ind) => {
-                        console.log(photo)
+                        // console.log(photo)
                         return (
                             <MovieCard
                                 key={ind}

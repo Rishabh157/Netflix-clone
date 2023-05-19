@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Input from '../Atoms/Input';
 import Button from '../Atoms/Button';
 import { RxChevronRight } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
-import ErrorMessage from '../Atoms/ErrorMessage';
+// import ErrorMessage from '../Atoms/ErrorMessage';
 import { emailRegExp } from '../../constants/regularExpressions';
 
 const MainIndex = () => {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [isError, setIsError] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false)
+    const [isValid, setIsValid] = useState(false);
+
+
+    const handleChangeEmail = (value) => {
+        setEmail(value);
+        const isValidEmail = emailRegExp.test(value);
+        setIsValid(isValidEmail);
+    };
 
 
     const handleSubmit = () => {
-        if (emailRegExp.test(email)) {
-            setIsError(false)
-            setIsSuccess(true)
-        } else {
-            setIsError(true)
+        if (isValid) {
+            navigate('/signup/registration');
+            localStorage.setItem('email', email);
         }
-    }
+    };
 
 
     return (
@@ -43,31 +47,28 @@ const MainIndex = () => {
                             placeholder='Enter your email address'
                             className='w-[387px]'
                             value={email}
-                            isError={isError}
-                            isSuccess={isSuccess}
-                            onChange={(e) => {
-                                setEmail(e.target.value)
-                                // handleChangeEmail(e.target.value)
-                            }}
+                            isError={email?.length > 5 ? !emailRegExp.test(email) : false}
+                            isSuccess={email?.length > 5 ? emailRegExp.test(email) : false}
+                            onChange={(e) => handleChangeEmail(e.target.value)}
                         />
+
                         {/* <ErrorMessage
                             isError={isError}
                             errorMsg={email ? 'invalid email' : ''}
                         /> */}
+
                     </div>
 
 
                     <div className='flex items-start'>
                         <Button
-                            isLoading={isSuccess}
+                            disable={!isValid}
+                            // isLoading={isValid}
                             text='Get Started'
                             icon={<RxChevronRight fill='#ffffff' size={28} />}
                             className='flex text-[25px] py-[11px] px-4 lg:w-52 md:w-52 sm:w-52 ms:w-52'
-                            disable={isSuccess}
                             onClick={() => {
-                                // navigate('/signup/registration')
                                 handleSubmit()
-                                setIsSuccess(true)
                             }}
                         />
                     </div>
