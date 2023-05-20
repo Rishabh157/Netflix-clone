@@ -10,6 +10,7 @@ import { BsQuestionCircle } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 import Button from '../Atoms/Button';
 import { useNavigate } from 'react-router-dom';
+import { nameRegExp, cvvRegExp, cardNumberRegExp, expDateRegExp } from '../../constants/regularExpressions';
 
 const cardImagesArray = [
     { id: 1, img: VisaImg, alt: 'visa-img' },
@@ -18,21 +19,82 @@ const cardImagesArray = [
     { id: 4, img: DinerImg, alt: 'diners-img' },
 ]
 
+const PLANFORM = {
+    PLAN: {
+        MOBILE: 'Mobile',
+        BASIC: 'Basic',
+        STANDARD: 'Standard',
+        PREMIUM: 'Premium',
+    },
+    PRICE: {
+        VALUE_149: '149',
+        VALUE_199: '199',
+        VALUE_499: '499',
+        VALUE_649: '649',
+    }
+};
+
 const Creditoption = () => {
 
     const navigate = useNavigate();
-    const [plan, setPlan] = useState('Mobile');
-    const [price, setPrice] = useState('149');
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [expDate, setExpDate] = useState('');
+    const [cvv, setCvv] = useState('');
+    const [plan, setPlan] = useState('');
+    const [price, setPrice] = useState('');
+    
+
+    // for expireDate formated value
+    const handleExpDateChange = (e) => {
+        const inputValue = e.target.value;
+
+        const formatedExpDate = inputValue.replace(expDateRegExp, '$1-$2');
+
+        if (expDate.length <= 4) {
+            setExpDate(formatedExpDate);
+        } else {
+            setExpDate('')
+        }
+    }
+
+    // for cardNumber formated function
+    const formatedCardNumber = (value) => {
+        const formatedValue = value.replace(cardNumberRegExp, (match, p1, p2, p3) => {
+            return p1 + (p1 && p2 ? '-' : '') + p2 + (p2 && p3 ? '-' : '') + p3;
+        });
+
+        // console.log(formatedValue);
+        return formatedValue;
+    }
+
+    const handleChangeCardNumber = (e) => {
+
+        const inputNumber = e.target.value;
+        const finalResult = formatedCardNumber(inputNumber);
+
+        setCardNumber(finalResult);
+    }
 
     useEffect(() => {
 
         const plan = localStorage.getItem('plan') ? localStorage.getItem('plan') : '';
         const price = localStorage.getItem('price') ? localStorage.getItem('price') : '';
 
-        setPlan(plan);
-        setPrice(price);
+        if (plan === PLANFORM.PLAN.MOBILE || plan === PLANFORM.PLAN.BASIC || plan === PLANFORM.PLAN.STANDARD || plan === PLANFORM.PLAN.PREMIUM) {
+            if (price === PLANFORM.PRICE.VALUE_149 || price === PLANFORM.PRICE.VALUE_199 || price === PLANFORM.PRICE.VALUE_499 || price === PLANFORM.PRICE.VALUE_649) {
+                setPlan(plan);
+                setPrice(price);
+            } else {
+                navigate('/', { replace: true });
+            };
+        } else {
+            navigate('/', { replace: true });
+        };
 
-    }, [])
+    }, [navigate]);
 
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44 px-2'>
@@ -56,53 +118,75 @@ const Creditoption = () => {
 
                         <div className='col-span-12'>
                             <Input
+                                isFocusBorderBlack
                                 label='Card Number'
                                 placeholder='Enter Card number'
                                 className='border-[1px] text-black border-black text-[16px] rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 endIcon={<BiCreditCard size={30} fill='rgb(153, 153, 153)' />}
-                                isSuccess={true}
+                                value={cardNumber}
+                                // isSuccess={true}
+                                onChange={(e) => handleChangeCardNumber(e)}
                             />
                         </div>
 
                         <div className='col-span-6'>
                             <Input
-                                label='Expiration date'
+                                isFocusBorderBlack
+                                label='Expiration date (MM/YY)'
                                 placeholder='Enter Expiration date'
                                 className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
-                                isSuccess={true}
+                                value={expDate}
+                                onChange={(e) => handleExpDateChange(e)}
+                            // isSuccess={true}
                             />
                         </div>
 
                         <div className='col-span-6'>
                             <Input
+                                isFocusBorderBlack
                                 label='CVV'
                                 placeholder='Enter CVV number'
                                 className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
                                 labelClassName='text-black font-bold'
                                 endIcon={<BsQuestionCircle size={30} fill='rgb(153, 153, 153)' />}
-                                isSuccess={true}
+                                value={cvv}
+                                isSuccess={cvvRegExp.test(cvv)}
+                                isError={cvv.length >= 2 ? !cvvRegExp.test(cvv) : false}
+                                onChange={(e) => setCvv(e.target.value)}
                             />
                         </div>
 
                         <div className='col-span-12'>
                             <Input
+                                isFocusBorderBlack
                                 label='First name'
                                 placeholder='Enter First name'
-                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
+                                className='border-[1px] border-black text-black text-[16px] rounded-[2px]'
+                                value={firstName}
                                 labelClassName='text-black font-bold'
-                                isSuccess={true}
+                                isSuccess={nameRegExp.test(firstName)}
+                                isError={firstName.length > 1 ? !nameRegExp.test(firstName) : false}
+                                onChange={(e) => {
+                                    setFirstName(e.target.value);
+                                }}
                             />
                         </div>
 
                         <div className='col-span-12'>
                             <Input
+                                isFocusBorderBlack
                                 label='Last name'
                                 placeholder='Enter Last name'
-                                className='border-[1px] border-black text-black text-[16px]  rounded-[2px]'
+                                className={`border-black border-[1px] text-black text-[16px] rounded-[2px]`}
                                 labelClassName='text-black font-bold'
-                                isSuccess={true}
+                                value={lastName}
+                                isSuccess={nameRegExp.test(lastName)}
+                                isError={lastName.length > 1 ? !nameRegExp.test(lastName) : false}
+                                onChange={(e) => {
+                                    setLastName(e.target.value);
+                                }}
                             />
                         </div>
 

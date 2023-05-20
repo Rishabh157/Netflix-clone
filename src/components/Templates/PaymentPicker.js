@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Steps from '../Atoms/Steps';
 import LockImg from '../../images/lock.png';
 import VisaImg from '../../images/visa.png';
@@ -13,6 +13,7 @@ import GooglePayImg from '../../images/googlePay.png';
 import { BsChevronRight } from 'react-icons/bs';
 import { AiOutlineLock } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { emailRegExp } from '../../constants/regularExpressions';
 
 
 const cardImagesArray = [
@@ -20,7 +21,7 @@ const cardImagesArray = [
     { id: 2, img: MasterCardImg, alt: 'mastercard-img' },
     { id: 3, img: AmexImg, alt: 'american-express-img' },
     { id: 4, img: DinerImg, alt: 'diners-img' },
-]
+];
 
 const upiImagesArray = [
     { id: 1, img: BhimUpiImg, alt: 'bhim-upi-img' },
@@ -28,8 +29,7 @@ const upiImagesArray = [
     { id: 3, img: PhonePeImg, alt: 'phone-pe-img' },
     { id: 4, img: AmazonePayImg, alt: 'amazone-pay-img' },
     { id: 5, img: GooglePayImg, alt: 'google-pay-img' },
-]
-
+];
 
 const PaymentMakerBox = ({ title, imagesArray, onClick }) => {
 
@@ -49,13 +49,21 @@ const PaymentMakerBox = ({ title, imagesArray, onClick }) => {
                 <BsChevronRight size={24} />
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 const PaymentPicker = () => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const email = localStorage.getItem('email') ? localStorage.getItem('email') : '';
+        const isValidEmail = emailRegExp.test(email);
+        if (!isValidEmail) {
+            navigate('/');
+        }
+    }, [navigate])
 
     return (
         <div className='grid justify-items-center bg-white pt-8 pb-48'>
@@ -87,7 +95,7 @@ const PaymentPicker = () => {
                     <span className='text-[13px] text-text'>End-to-end encrypted</span>
                     <AiOutlineLock size={16} fill='#FFB53F' />
                 </div>
-                
+
                 <PaymentMakerBox
                     title='Credit or Debit Card'
                     imagesArray={cardImagesArray}

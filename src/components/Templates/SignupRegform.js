@@ -44,17 +44,16 @@ const SignupRegform = () => {
     useEffect(() => {
 
         const email = localStorage.getItem('email') ? localStorage.getItem('email') : '';
-
         const isValidEmail = emailRegExp.test(email);
 
         if (isValidEmail) {
             setEmail(email);
             setIsValid(isValidEmail);
+        } else {
+            navigate('/', { replace: true });
         }
 
-        // console.log(isValidEmail)
-
-    }, []);
+    }, [navigate]);
 
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44'>

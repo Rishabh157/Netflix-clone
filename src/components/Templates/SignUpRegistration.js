@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import devicesImg from '../../images/divices.png';
 import Steps from '../Atoms/Steps';
 import Button from '../Atoms/Button';
 import { useNavigate } from 'react-router-dom';
+import { emailRegExp } from '../../constants/regularExpressions';
+
 
 const SignUpRegistration = () => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const email = localStorage.getItem('email') ? localStorage.getItem('email') : '';
+        const isValidEmail = emailRegExp.test(email);
+        if (!isValidEmail) {
+            navigate('/');
+        }
+    }, [navigate]);
 
     return (
         <div className='grid justify-items-center bg-white py-28'>

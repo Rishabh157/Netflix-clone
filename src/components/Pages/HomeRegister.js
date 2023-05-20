@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 
 const HomeRegister = () => {
 
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
 
     return (
         <div>
@@ -22,8 +22,8 @@ const HomeRegister = () => {
             {pathname === '/signup/regform' ? <SignupRegform /> : null}
             {pathname === '/signup' ? <SignUp /> : null}
             {pathname === '/signup/paymentPicker' ? <PaymentPicker /> : null}
-            {pathname === '/signup/creditoption' ? <Creditoption /> : null}
             {pathname === '/signup/planform' ? <Planform /> : null}
+            {pathname === '/signup/creditoption' ? <Creditoption /> : null}
             <Footer footerColor={pathname === '/' || pathname === '/login' ? 'bg-black' : 'bg-white'} />
         </div>
     )

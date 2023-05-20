@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Steps from '../Atoms/Steps';
 import Button from '../Atoms/Button';
 import checkMarkImg from '../../images/checkmark.png';
 import { IoCheckmarkOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import { emailRegExp } from '../../constants/regularExpressions';
 
 const SignUp = () => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const email = localStorage.getItem('email') ? localStorage.getItem('email') : '';
+        const isValidEmail = emailRegExp.test(email);
+        if (!isValidEmail) {
+            navigate('/');
+        }
+    }, [navigate])
 
     return (
         <div className='grid justify-items-center bg-white pt-10 pb-44'>
@@ -53,7 +62,7 @@ const SignUp = () => {
                 <Button
                     text='Next'
                     className='w-full text-[24px] py-[12.5px] px-[6em] font-normal'
-                    onClick={()=> navigate('/signup/planform')}
+                    onClick={() => navigate('/signup/planform')}
                 />
             </div>
         </div>
