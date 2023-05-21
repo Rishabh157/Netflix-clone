@@ -45,7 +45,7 @@ const Creditoption = () => {
     const [cvv, setCvv] = useState('');
     const [plan, setPlan] = useState('');
     const [price, setPrice] = useState('');
-    
+
 
     // for expireDate formated value
     const handleExpDateChange = (e) => {
@@ -116,7 +116,7 @@ const Creditoption = () => {
 
                     <div className='grid grid-cols-12 gap-2'>
 
-                        <div className='col-span-12'>
+                        <div className='col-span-12'> 
                             <Input
                                 isFocusBorderBlack
                                 label='Card Number'

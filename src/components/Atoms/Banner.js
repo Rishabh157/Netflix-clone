@@ -1,80 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
+import { TMDB_URL } from '../../constants/constants';
 
-const Banner = () => {
+const Banner = ({ bannerImg, title, overview, }) => {
 
-    const [banner, setBanner] = useState({});
     const [isPlay, setIsPlay] = useState(false);
 
     // refrence element titleHeading and overview Banner
     const titleRef = useRef(null);
     const overviewRef = useRef(null);
-
-    const bannerImages = [
-        {
-            id: 1,
-            title: 'KOTA FACTORY',
-            img: 'https://occ-0-41-1501.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABdPMPY3gQdLsvF4NwdhAHzDrg2SyXwK4jp7Qb3-onfVMauBAncR0Vwow9RpjPdrjcK0lg4gOgOMA9pj1CWXHYyDDvcw0uLHx_Fp-.webp?r=a01',
-            overview: 'In a city of coaching centers known to train India’s finest collegiate minds, an earnest but unexceptional student and his friends navigate campus life.',
-        },
-        {
-            id: 2,
-            title: 'RED ROSE',
-            img: 'https://occ-0-41-1501.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZPhO_NpKg65JQinSeaoBlEl8B-nYqTacAzPSA0qycQIqTlShqsQTO_IbQg9tpcfEkZDziSFOw70U3YR0290RYEDQw8kQnJHQ8nY.webp?r=d61',
-            overview: 'A ragtag crew of teens must survive a summer of terror after downloading an app that makes dangerous demands with deadly consequences.'
-        },
-        {
-            id: 3,
-            title: 'CLASS',
-            img: 'https://occ-0-41-1501.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABemPhsiQ4QQmuymWPbClH1NCUIweq_kAC1sDj1L310_AvM5EG9BPqZtRvaotVbAJ7IISI6oZ5TrTr5QO6bG2bvJ1YLjbUVzhINUd.webp?r=857',
-            overview: 'Three students from a poor neighborhood join an exclusive high school for Delhi elite where dark secrets and rumors ultimately lead to murder.',
-        },
-        {
-            id: 4,
-            title: 'MAN OF STEEL',
-            img: 'https://occ-0-56-41.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABQlIffxPThswD1EqwX3Z92A8Kp3fBJ9Fina24YfUv1Au9SdRnJif_mlDPsXX6PKnFBjJVe98CYwyyAZrjafrdO6MDeyP3aqYIYME.webp?r=e47',
-            overview: 'Drifter Clark Kent must keep his powers hidden from the world, but when an evil general plans to destroy Earth, the Man of Steel springs into action.',
-        },
-        {
-            id: 5,
-            title: 'KNIGHT AND DAY',
-            img: 'https://occ-0-56-41.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABXbn0g_c3ji-Quzh4dHqEazoCXSGSOROYpAOLt3SoeqkldZfiAUEuDmaxBsAmZOr-8PBZyuGutHubRiBzM09N58vmOzGiF7cb5cI.webp?r=8e4',
-            overview: 'A woman s airport meet-cute kicks off a wild globe-trotting adventure with a secret agent who might be a keeper — if they can both stay alive.'
-        },
-        {
-            id: 6,
-            title: "Don't Look UP",
-            img: 'https://occ-0-41-1501.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABY1OVKZd_K_s2iOkjhfaREZdmJgd4yaAjrDsjyikLQ0TQvdSzxKIel8TSONr_H7GGT25NIyvzc6YEhBxJIZEL9o5WHXSFWF7QLYy.webp?r=5f3',
-            overview: 'Two astronomers go on a media tour to warn humankind of a planet-killing comet hurtling toward Earth. The response from a distracted world: Meh.'
-        },
-        {
-            id: 7,
-            title: "Vincenzo",
-            img: 'https://occ-0-2483-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZWXhaCt6ZWB9TV1IkSi_TOX7Q0cMIQ5WdUu9Baexmp-R8w6eITdklv5tEykYgpZy4ek5iqMY8zZlcmQTgJ4sfeeXQur9qm_cXsa.webp?r=1d2',
-            overview: 'During a visit to his motherland, a Korean-Italian mafia lawyer gives an unrivaled conglomerate a taste of its own medicine with a side of justice.'
-        },
-        {
-            id: 8,
-            title: "The Watcher",
-            img: 'https://occ-0-2483-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABWeLwoCqgmzXCqR1VZhDBxfMf-5Ajk_1wDNJaUyOq6KqSIbrYUOBY6rYjjAxkAGjZ1rMBnaCZtjYWWcCdcjCTsfmsWFBZFt5Knrt.webp?r=733',
-            overview: "Ominous letters. Strange neighbors. Sinister threats. A family moves into their suburban dream home, only to discover they've inherited a nightmare."
-        },
-    ]
-
-    useEffect(() => {
-
-        document.title = 'Home - Netflix';
-
-        const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)]
-        setBanner(randomImage)
-
-        // fetch('https://api.themoviedb.org/3/trending/all/week?api_key=f1b92f4ce0a6c48358b6a55b97b243e7&language=en-US')
-        //     .then((res) => res.json())
-        //     .then(data => setBanner(data.results[Math.floor(Math.random() * data.results?.length)]))
-        //     .catch(err => console.log(err))
-    }, [])
-
 
     // this function is called for play video
     const handlePlay = () => {
@@ -83,7 +18,8 @@ const Banner = () => {
             setIsPlay(true);
 
             titleRef.current.style.transform = 'translateY(90px)';
-            // titleRef.current.style.fontSize = '52px';
+            titleRef.current.style.opacity = '0.9';
+            // titleRef.current.style.fontSize = '42px';
 
             overviewRef.current.style.opacity = '0';
             overviewRef.current.style.transform = 'translateY(60px)';
@@ -98,6 +34,7 @@ const Banner = () => {
             setIsPlay(false);
 
             titleRef.current.style.transform = 'translateY(0px)';
+            titleRef.current.style.opacity = '1';
             // titleRef.current.style.fontSize = '60px';
 
             overviewRef.current.style.opacity = '1';
@@ -109,7 +46,7 @@ const Banner = () => {
     return (
         <div
             style={{
-                backgroundImage: `url(${banner?.img})`,
+                backgroundImage: `url(${TMDB_URL}${bannerImg})`,
                 height: '100vh',
                 backgroundSize: 'cover',
                 backgroundRepeat: "no-repeat",
@@ -127,14 +64,14 @@ const Banner = () => {
                     id='banner-heading'
                     ref={titleRef}
                     className='banner-title inline-block font-bold text-white select-none lg:text-[60px] md:text-[54px] sm:text-[38px] ms:text-[36px]'>
-                    {banner?.title}
+                    {title}
                 </h1>
 
                 <p
                     id='overView'
                     ref={overviewRef}
-                    className={`text-white select-none banner-overview lg:pr-20 md:pr-16 sm:pr-0 ms:pr-0 lg:text-[16px] md:text-[16px] sm:text-[16px] ms:text-[14px]`}>
-                    {banner?.overview}
+                    className={`text-white select-none banner-overview lg:pr-20 md:pr-16 sm:pr-0 ms:pr-0 lg:text-[15px] md:text-[15px] sm:text-[16px] ms:text-[14px]`}>
+                    {overview}
                 </p>
 
                 <div className='flex mt-5'>

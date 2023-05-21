@@ -43,9 +43,11 @@ const MainIndex = () => {
 
                     <div>
                         <Input
+                            isFocusBorderBlack
                             label='Email address'
                             placeholder='Enter your email address'
-                            className='w-[387px]'
+                            labelClassName='text-white  '
+                            className='w-[387px] bg-main-body'
                             value={email}
                             isError={email?.length > 5 ? !emailRegExp.test(email) : false}
                             isSuccess={email?.length > 5 ? emailRegExp.test(email) : false}
