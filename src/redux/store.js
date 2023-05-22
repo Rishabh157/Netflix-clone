@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 // API
 import { bannerApi } from './services/BannerService';
-import { trendingApi } from "./services/TrendingService";
+import { browseApi } from "./services/BrowseService";
 
 //Slices
 import counterSlice from "./slice/counterSlice";
@@ -13,7 +13,7 @@ export const store = configureStore({
 
         // API
         [bannerApi.reducerPath]: bannerApi.reducer,
-        [trendingApi.reducerPath]: trendingApi.reducer,
+        [browseApi.reducerPath]: browseApi.reducer,
     },
 
     // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bannerApi.middleware),
@@ -22,7 +22,7 @@ export const store = configureStore({
             serializableCheck: false,
         }).concat([
             bannerApi.middleware,
-            trendingApi.middleware
+            browseApi.middleware
         ]),
 
 });

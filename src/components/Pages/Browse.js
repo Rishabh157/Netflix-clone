@@ -3,6 +3,7 @@ import Navbar from '../Atoms/Navbar';
 import Banner from '../Atoms/Banner';
 import BrowseSliders from '../Templates/BrowseSliders';
 import { useGetRandomBannerQuery } from '../../redux/services/BannerService';
+import Footer from '../Atoms/Footer';
 
 const Browse = () => {
 
@@ -46,6 +47,9 @@ const Browse = () => {
             />
 
             <BrowseSliders />
+
+
+            <Footer footerColor='bg-[#141414] mt-24' />
 
         </React.Fragment >
     )

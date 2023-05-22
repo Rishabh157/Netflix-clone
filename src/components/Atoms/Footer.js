@@ -74,9 +74,9 @@ const Footer = ({ footerColor = 'bg-white' }) => {
                     <div className='grid grid-cols-12'>
                         <div className='lg:col-span-1 md:col-span-1 sm:col-span-0 ms:col-span-1'></div>
                         <div className='lg:col-span-6 md:col-span-6 sm:col-span-5 ms:col-span-11 lg:pl-6 md:pl-6 sm:pl-6 ms:pl-2'>
-                            <div className='text-footer-gray flex'>
+                            <div className='text-footer-gray flex items-baseline'>
                                 <h1>Questions? Call</h1>
-                                <Link to='tel:9009648224' className='underline-none pl-2 font-mono hover:text-footer-gray'>9009648224</Link>
+                                <Link to='tel:9009648224' className='underline-none pl-2 font-mono hover:text-footer-gray'>+919009648224</Link>
                             </div>
                         </div>
                     </div>

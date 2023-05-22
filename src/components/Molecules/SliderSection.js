@@ -11,7 +11,7 @@ const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSlider
         <div className='slider-section-card'>
 
             <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2 mb-2 flex items-center'>
-                <h2 className={twMerge('slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block lg:text-[17px] md:text-[18px] sm:text-[20px] ms:text-[20px] font-medium cursor-pointer', titleClassName)}>
+                <h2 className={twMerge('slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium cursor-pointer', titleClassName)}>
                     {title}
                 </h2>
                 {isExploreAllEnable && <div className='select-none z-10 flex items-center lg:flex md:flex sm:flex ms:flex'>
@@ -29,8 +29,8 @@ const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSlider
                             <MovieCard
                                 key={ind}
                                 image={`${TMDB_URL}${photo?.poster_path}`}
-                            // url={`/watch/${photo?.id}`}
-                            // image={`${TMDB_URL}${photo.poster_path}`}
+                                // url={`/watch/${photo?.id}`}
+                                // image={`${TMDB_URL}${photo.poster_path}`}
                             />
                         )
                     })}
