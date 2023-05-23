@@ -2,27 +2,26 @@ import { configureStore } from "@reduxjs/toolkit";
 // API
 import { bannerApi } from './services/BannerService';
 import { browseApi } from "./services/BrowseService";
+import { searchApi } from "./services/SearchService";
 
 //Slices
-import counterSlice from "./slice/counterSlice";
+import searchSlice from "./slice/searchSlice";
 
 export const store = configureStore({
     reducer: {
         // redux slice
-        'rishabh': counterSlice,
-
+        searchValue: searchSlice,
         // API
         [bannerApi.reducerPath]: bannerApi.reducer,
         [browseApi.reducerPath]: browseApi.reducer,
+        [searchApi.reducerPath]: searchApi.reducer,
     },
-
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bannerApi.middleware),
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
         }).concat([
             bannerApi.middleware,
-            browseApi.middleware
+            browseApi.middleware,
+            searchApi.middleware,
         ]),
-
 });

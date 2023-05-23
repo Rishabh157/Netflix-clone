@@ -7,8 +7,18 @@ import ProfilePanel from './ProfilePanel';
 import MobileBrowsePanel from './MobileBrowsePanel';
 import NotificationPanel from './NotificationPanel';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearch } from '../../redux/slice/searchSlice';
 
 const Navbar = ({ bgColor }) => {
+
+    const { searchValue } = useSelector((state) => state.searchValue);
+    const dispatch = useDispatch();
+
+    // this function set the input value into the redux state
+    const handleSearch = (value) => {
+        dispatch(setSearch(value));
+    };
 
     return (
         <div className={`${bgColor} sticky top-0 z-50 py-4 lg:px-10 md:px-8 sm:px-4 ms:px-4`}>
@@ -27,7 +37,6 @@ const Navbar = ({ bgColor }) => {
                                 Browse <AiFillCaretDown size={10} fill='#ffffff' />
                             </span>
                             <MobileBrowsePanel />
-
                         </div>
 
                         <div className='ml-3 flex ms:hidden sm:hidden md:hidden lg:block'>
@@ -69,6 +78,8 @@ const Navbar = ({ bgColor }) => {
                             <input
                                 placeholder='Search'
                                 className='outline-none text-white text-[14px] bg-black px-4 py-[5px] border-white border-[1px] placeholder:text-gray-500 input-class'
+                                value={searchValue}
+                                onChange={(e) => handleSearch(e.target.value)}
                             />
                         </div>
 
