@@ -9,11 +9,8 @@ const getBackgroundColor = (route) => {
 
     switch (route) {
         case '/':
-            return '#FFFFF7';
-            break;
         case '/login':
             return '#FFFFF7';
-            break;
         default:
             return '#454545 ';
     }

@@ -61,7 +61,7 @@ const Planform = () => {
             setIsRedirect(queryParamValue)
         }
 
-    }, [])
+    }, [location])
 
 
     return (

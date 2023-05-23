@@ -15,7 +15,7 @@ const SingleWatchPage = () => {
                 .catch(err => console.log(err))
         }
         getDummyData()
-    }, [])
+    }, [id])
 
     return (
         <div className='text-white'>
