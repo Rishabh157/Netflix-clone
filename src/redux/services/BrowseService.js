@@ -72,6 +72,15 @@ export const browseApi = createApi({
             })
         }),
 
+        // Popular Movies
+        getPopularMovies: builder.query({
+            query: () => ({
+                url: `movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+                method: 'GET',
+                // body: body,
+            })
+        }),
+        
     })
 })
 
@@ -83,4 +92,5 @@ export const {
     useGetHorrorMoviesQuery,
     useGetRomanticMoviesQuery,
     useGetDocumentriesQuery,
+    useGetPopularMoviesQuery,
 } = browseApi;

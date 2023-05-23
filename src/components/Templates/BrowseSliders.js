@@ -8,6 +8,7 @@ import {
     useGetHorrorMoviesQuery,
     useGetRomanticMoviesQuery,
     useGetDocumentriesQuery,
+    useGetPopularMoviesQuery,
 } from '../../redux/services/BrowseService';
 import { useGetRandomBannerQuery } from '../../redux/services/BannerService';
 
@@ -22,6 +23,7 @@ const BrowseSliders = () => {
     const [horroMovies, setHorrosMovies] = useState([]);
     const [documentries, setDocumentries] = useState([]);
     const [romanticMovies, setRomanticMovies] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([]);
 
     const { isLoading: treLoading, isFetching: treFetching, data: treData } = useGetTrendingMoviesQuery('');
     const { isLoading: topLoading, isFetching: topFetching, data: topData } = useGetTopRatedMoviesQuery('');
@@ -31,6 +33,8 @@ const BrowseSliders = () => {
     const { isLoading: horrorLoading, isFetching: horrorFetching, data: horrorData } = useGetHorrorMoviesQuery('');
     const { isLoading: documentriesLoading, isFetching: documentriesFetching, data: documentriesData } = useGetDocumentriesQuery('');
     const { isLoading: romanticLoading, isFetching: romanticFetching, data: romanticData } = useGetRomanticMoviesQuery('');
+    const { isLoading: popularLoading, isFetching: popularFetching, data: popularData } = useGetPopularMoviesQuery('');
+
 
     // for getting trending movie 
     useEffect(() => {
@@ -94,6 +98,14 @@ const BrowseSliders = () => {
             setRomanticMovies(romanticData?.results);
         }
     }, [romanticLoading, romanticFetching, romanticData]);
+
+
+    // for getting popular movies 
+    useEffect(() => {
+        if (!popularLoading && !popularFetching) {
+            setPopularMovies(popularData?.results);
+        }
+    }, [popularLoading, popularFetching, popularData]);
 
 
     return (
@@ -183,6 +195,17 @@ const BrowseSliders = () => {
                     title='Romantic Movies'
                     isExploreAllEnable={true}
                     data={romanticMovies}
+                />
+            </div>
+
+
+            {/* POPULAR MOVIES  */}
+            <div className='mt-5'>
+                <SliderSection
+                    scrollSliderId={9}
+                    title='Popular Movies'
+                    isExploreAllEnable={true}
+                    data={popularMovies}
                 />
             </div>
 
