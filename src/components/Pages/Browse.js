@@ -5,13 +5,17 @@ import BrowseSliders from '../Templates/BrowseSliders';
 import SearchTemplate from '../Templates/SearchTemplate';
 import { useGetRandomBannerQuery } from '../../redux/services/BannerService';
 import Footer from '../Atoms/Footer';
-import { useSelector } from 'react-redux';
+import { useGetSearchMoviesMutation } from '../../redux/services/SearchService';
+
 
 const Browse = () => {
 
     const [banner, setBanner] = useState({});
     const [navColor, setnavColor] = useState(false);
-    const { searchValue } = useSelector((state) => state.searchValue);
+
+    const [searchValue, setSearchValue] = useState('');
+    const [page, setPage] = useState(1);
+
     const { isLoading, isFetching, data } = useGetRandomBannerQuery('');
 
 
@@ -35,10 +39,53 @@ const Browse = () => {
 
     }, []);
 
+
+
+    const [api] = useGetSearchMoviesMutation();
+    // const { isLoading, isFetching, data } = useGetSearchMoviesQuery({ page, searchValue });
+
+
+    const handleChangeSearchValue = (value) => {
+        console.log(value);
+        // api({ page, searchValue }).then((response) => {
+        //     console.log(response)
+        //     console.log('api is Calling please wait bhosdi walo ....');
+        // }).catch((err) => {
+        //     console.log(err);
+        // })
+    }
+
+
+    const debounce = (func, delay) => {
+
+        let timer;
+
+        return function () {
+            let context = this;
+            let args = arguments;
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                func.apply(context, arguments);
+            }, delay);
+        }
+
+    }
+
+    const debouncingFunHandleChangeSearchValue = debounce(handleChangeSearchValue, 2000);
+
+    
     return (
         <React.Fragment>
 
-            <Navbar bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'} />
+            <Navbar
+                searchValue={searchValue}
+                handleSearch={(value) => {
+                    setSearchValue(value);
+                    debouncingFunHandleChangeSearchValue(value);
+                }}
+                bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'}
+            />
 
             {searchValue?.length > 0 ? <SearchTemplate /> : <>
                 <Banner

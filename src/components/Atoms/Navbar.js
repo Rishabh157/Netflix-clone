@@ -7,18 +7,9 @@ import ProfilePanel from './ProfilePanel';
 import MobileBrowsePanel from './MobileBrowsePanel';
 import NotificationPanel from './NotificationPanel';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setSearch } from '../../redux/slice/searchSlice';
 
-const Navbar = ({ bgColor }) => {
 
-    const { searchValue } = useSelector((state) => state.searchValue);
-    const dispatch = useDispatch();
-
-    // this function set the input value into the redux state
-    const handleSearch = (value) => {
-        dispatch(setSearch(value));
-    };
+const Navbar = ({ bgColor , searchValue , handleSearch }) => {
 
     return (
         <div className={`${bgColor} sticky top-0 z-50 py-4 lg:px-10 md:px-8 sm:px-4 ms:px-4`}>

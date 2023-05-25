@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_URL } from '../../constants/constants';
+import { BASE_URL, API_KEY } from '../../constants/constants';
 
 export const searchApi = createApi({
     reducerPath: 'search',
@@ -10,18 +10,14 @@ export const searchApi = createApi({
     endpoints: (builder) => ({
 
         // get data for search input value
-        getSearchMovies: builder.query({
+        getSearchMovies: builder.mutation({
             query: ({ page, searchValue }) => ({
-                url: `search/movie?query=${searchValue}&include_adult=false&language=en-US&page=${page}`,
+                url: `search/multi?api_key=${API_KEY}&language=en-US&query=${searchValue}&page=${page}&include_adult=false`,
                 method: 'GET',
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMWI5MmY0Y2UwYTZjNDgzNThiNmE1NWI5N2IyNDNlNyIsInN1YiI6IjYyOTUxMzQyZGY4NmE4MzRlMjMwNzZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yqel-xJrol92czo-4Yrhqg13TGj-t-HUWH0GxugLBxo'
-                }
             })
         }),
-
 
     })
 })
 
-export const { useGetSearchMoviesQuery } = searchApi;
+export const { useGetSearchMoviesMutation } = searchApi;
