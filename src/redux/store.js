@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { bannerApi } from './services/BannerService';
 import { browseApi } from "./services/BrowseService";
 import { searchApi } from "./services/SearchService";
+import { watchApi } from "./services/WatchService";
 
 //Slices
 import searchSlice from "./slice/searchSlice";
@@ -15,6 +16,7 @@ export const store = configureStore({
         [bannerApi.reducerPath]: bannerApi.reducer,
         [browseApi.reducerPath]: browseApi.reducer,
         [searchApi.reducerPath]: searchApi.reducer,
+        [watchApi.reducerPath]: watchApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -23,5 +25,6 @@ export const store = configureStore({
             bannerApi.middleware,
             browseApi.middleware,
             searchApi.middleware,
+            watchApi.middleware,
         ]),
 });
