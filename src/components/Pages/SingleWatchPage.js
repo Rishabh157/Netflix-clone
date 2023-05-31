@@ -4,16 +4,18 @@ import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
 import { BsFillPlayFill, BsDot } from 'react-icons/bs';
-import { useGetSingleMovieInfoQuery } from '../../redux/services/WatchService';
+import { useGetSingleMovieInfoQuery, useGetPlayTrailerUrlQuery } from '../../redux/services/WatchService';
 import { getDateIntoDDMMYYY } from '../../common/date';
-
+import TrailerPlayModel from '../Atoms/TrailerPlayModel';
 
 const SingleWatchPage = () => {
 
     const { id } = useParams();
     const [movieData, setMovieData] = useState({});
+    const [trailerUrl, setTrailerUrl] = useState('');
+    const [isShowTrailer, setIsShowTrailer] = useState(false);
     const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery(id);
-
+    const { isLoading: trailerIsLoading, isFetching: trailerIsFetching, data: trailerData } = useGetPlayTrailerUrlQuery(id);
 
     const getMovieRunTimeIntoHours = (runTime) => {
 
@@ -33,15 +35,41 @@ const SingleWatchPage = () => {
     }, [isLoading, isFetching, data]);
 
 
+    useEffect(() => {
+
+        if (!trailerIsLoading && !trailerIsFetching) {
+            const filteredOfficialTrailers = trailerData?.results?.filter((ele) => {
+                if (ele?.type === 'Trailer' && ele?.official === true) {
+                    return ele
+                }
+                return false;
+            })
+            if (Array.isArray(filteredOfficialTrailers) && filteredOfficialTrailers?.length > 0) {
+                const randomObjTrailer = filteredOfficialTrailers[Math.floor(Math.random() * filteredOfficialTrailers?.length)];
+                setTrailerUrl(randomObjTrailer?.key);
+            } else {
+                const randomObjTrailer = trailerData?.results[Math.floor(Math.random() * trailerData?.results?.length)];
+                setTrailerUrl(randomObjTrailer?.key);
+            }
+        }
+    }, [trailerIsLoading, trailerIsFetching, trailerData])
+
+
     return (
         <React.Fragment>
 
             <Navbar bgColor='bg-black py-1' />
 
+            <TrailerPlayModel
+                show={isShowTrailer}
+                url={trailerUrl}
+                autoplay={1}
+                disableControls={1}
+                onClose={() => setIsShowTrailer(false)}
+            />
+
             <div
-                style={{
-                    backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`
-                }}
+                style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
                 className='h-[600px] bg-cover bg-no-repeat px-10 py-6'>
 
                 <div className='grid grid-cols-12'>
@@ -57,7 +85,7 @@ const SingleWatchPage = () => {
                     </div>
 
 
-                    <div className='col-span-9 py-16 px-6'>
+                    <div className='col-span-9 py-14 px-6'>
 
                         <div className='h-full w-full '>
 
@@ -94,7 +122,9 @@ const SingleWatchPage = () => {
                             </div>
 
                             <div className='h-[90px] flex items-center trailer-play-btns'>
-                                <div className='flex items-center transition-all cursor-pointer hover:opacity-70'>
+                                <div
+                                    onClick={() => setIsShowTrailer(true)}
+                                    className='flex items-center transition-all cursor-pointer hover:opacity-70'>
                                     <BsFillPlayFill size={36} fill='#ffffff' />
                                     <span className='text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                         Play Trailer

@@ -29,8 +29,7 @@ const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSlider
                             <MovieCard
                                 key={ind}
                                 image={`${TMDB_URL}${photo?.poster_path}`}
-                                // url={`/watch/${photo?.id}`}
-                                // image={`${TMDB_URL}${photo.poster_path}`}
+                                url={`/watch/${photo?.id}`}
                             />
                         )
                     })}

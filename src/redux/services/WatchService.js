@@ -17,7 +17,15 @@ export const watchApi = createApi({
             })
         }),
 
+        // play trailer for single movie via ID 
+        getPlayTrailerUrl: builder.query({
+            query: (id) => ({
+                url: `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`,
+                method: 'GET',
+            })
+        }),
+
     })
 })
 
-export const { useGetSingleMovieInfoQuery } = watchApi;
+export const { useGetSingleMovieInfoQuery , useGetPlayTrailerUrlQuery } = watchApi;
