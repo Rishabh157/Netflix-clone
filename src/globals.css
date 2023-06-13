@@ -363,3 +363,8 @@ button {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 650ms;
 }
+
+/* Cast card css */
+.cast-card-bg {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

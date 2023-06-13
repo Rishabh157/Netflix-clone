@@ -12,7 +12,7 @@ export const watchApi = createApi({
         // get data for single movie ot tv shows
         getSingleMovieInfo: builder.query({
             query: (id) => ({
-                url: `/movie/${id}?api_key=${API_KEY}`,
+                url: `/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`,
                 method: 'GET',
             })
         }),

@@ -7,6 +7,7 @@ import { BsFillPlayFill, BsDot } from 'react-icons/bs';
 import { useGetSingleMovieInfoQuery, useGetPlayTrailerUrlQuery } from '../../redux/services/WatchService';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
+import CastSlider from '../Templates/CastSlider';
 
 const SingleWatchPage = () => {
 
@@ -195,6 +196,9 @@ const SingleWatchPage = () => {
 
             </div>
 
+            <div className='mt-10 h-screen'>
+                <CastSlider data={movieData?.credits?.cast} />
+            </div>
 
             <Footer />
 
