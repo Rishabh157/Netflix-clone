@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import netflixlogo from '../../images/netflix.svg';
 import profilelogo from '../../images/profiler.png';
 import { BiBell } from 'react-icons/bi';
@@ -7,9 +7,36 @@ import ProfilePanel from './ProfilePanel';
 import MobileBrowsePanel from './MobileBrowsePanel';
 import NotificationPanel from './NotificationPanel';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearch, setIsSearch } from '../../redux/slice/searchSlice';
 
+const Navbar = ({ bgColor }) => {
 
-const Navbar = ({ bgColor , searchValue , handleSearch }) => {
+    const { searchValue } = useSelector((state) => state.searchValue);
+    const dispatch = useDispatch();
+
+    //.............searching product after 100 ms and if min length is 3.............. //
+    const debounce = (func) => {
+        let timer;
+        return function (...args) {
+            // setSearchQuery(...args);
+            const context = this;
+            dispatch(setIsSearch(false))
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(() => {
+                timer = null;
+                if (args[0].length === 3 || args[0].length > 3) {
+                    func.apply(context, args);
+                } else if (args[0].length === 0) {
+                    func.apply(context, args);
+                }
+            }, 600);
+        };
+    };
+
+    const optimizedFunc = useCallback(debounce(() => dispatch(setIsSearch(true))), []);
 
     return (
         <div className={`${bgColor} sticky top-0 z-50 py-4 lg:px-10 md:px-8 sm:px-4 ms:px-4`}>
@@ -70,7 +97,10 @@ const Navbar = ({ bgColor , searchValue , handleSearch }) => {
                                 placeholder='Search'
                                 className='outline-none text-white text-[14px] bg-black px-4 py-[5px] border-white border-[1px] placeholder:text-gray-500 input-class'
                                 value={searchValue}
-                                onChange={(e) => handleSearch(e.target.value)}
+                                onChange={(e) => {
+                                    optimizedFunc(e.target.value)
+                                    dispatch(setSearch(e.target.value))
+                                }}
                             />
                         </div>
 
