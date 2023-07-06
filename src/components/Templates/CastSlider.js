@@ -13,6 +13,7 @@ const CastSlider = ({ data }) => {
                 {data?.map((cast, ind) => {
                     return (
                         <CastCard
+                            key={ind}
                             castId={cast?.cast_id}
                             image={`${TMDB_URL}${cast?.profile_path}`}
                             originalName={cast?.original_name}

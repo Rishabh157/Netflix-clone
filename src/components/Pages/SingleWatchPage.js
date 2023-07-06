@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
@@ -12,17 +12,28 @@ import CastSlider from '../Templates/CastSlider';
 const SingleWatchPage = () => {
 
     const { id } = useParams();
+    const [searchParams] = useSearchParams();
+
+    const [trailerId, setTrailerId] = useState('');
+    const [urlType, setUrlType] = useState('');
+
     const [movieData, setMovieData] = useState({});
     const [trailerUrl, setTrailerUrl] = useState('');
     const [isShowTrailer, setIsShowTrailer] = useState(false);
-    const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery(id);
-    const { isLoading: trailerIsLoading, isFetching: trailerIsFetching, data: trailerData } = useGetPlayTrailerUrlQuery(id);
+    const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery({ id, type: urlType });
+
+    const {
+        isLoading: trailerIsLoading,
+        isFetching: trailerIsFetching,
+        data: trailerData
+    } = useGetPlayTrailerUrlQuery(
+        { id:trailerId, type: urlType },
+        {skip : !trailerId}
+        );
 
     const getMovieRunTimeIntoHours = (runTime) => {
-
         const hours = Math.floor(runTime / 60); // Get the number of hours
         const minutes = runTime % 60;  // Get the remaining minutes
-
         return {
             hours,
             minutes
@@ -32,7 +43,7 @@ const SingleWatchPage = () => {
     useEffect(() => {
         if (!isLoading && !isFetching) {
             setMovieData(data);
-        }
+        };
     }, [isLoading, isFetching, data]);
 
 
@@ -42,19 +53,27 @@ const SingleWatchPage = () => {
             const filteredOfficialTrailers = trailerData?.results?.filter((ele) => {
                 if (ele?.type === 'Trailer' && ele?.official === true) {
                     return ele
-                }
+                };
                 return false;
-            })
+            });
             if (Array.isArray(filteredOfficialTrailers) && filteredOfficialTrailers?.length > 0) {
                 const randomObjTrailer = filteredOfficialTrailers[Math.floor(Math.random() * filteredOfficialTrailers?.length)];
                 setTrailerUrl(randomObjTrailer?.key);
             } else {
                 const randomObjTrailer = trailerData?.results[Math.floor(Math.random() * trailerData?.results?.length)];
                 setTrailerUrl(randomObjTrailer?.key);
-            }
-        }
-    }, [trailerIsLoading, trailerIsFetching, trailerData])
+            };
+        };
+    }, [trailerIsLoading, trailerIsFetching, trailerData]);
 
+
+    useEffect(() => {
+        if (searchParams.get('type')) {
+            setUrlType(searchParams.get('type'));
+        } else {
+            setUrlType(searchParams.get('id'));
+        };
+    }, [searchParams]);
 
     return (
         <React.Fragment>
@@ -93,7 +112,7 @@ const SingleWatchPage = () => {
                             <h1 className='text-white font-bold inline text-[2.2rem]'>
                                 <a className='hover:text-white '
                                     href='/'>
-                                    {movieData?.original_title}
+                                    {movieData?.original_name}
                                     {/* <span className='tag-release-date opacity-80 px-2 font-normal'>
                                         (2011)
                                     </span> */}
@@ -124,7 +143,10 @@ const SingleWatchPage = () => {
 
                             <div className='h-[90px] flex items-center trailer-play-btns'>
                                 <div
-                                    onClick={() => setIsShowTrailer(true)}
+                                    onClick={() => {
+                                        setIsShowTrailer(true);
+                                        setTrailerId(movieData?.id);
+                                    }}
                                     className='flex items-center transition-all cursor-pointer hover:opacity-70'>
                                     <BsFillPlayFill size={36} fill='#ffffff' />
                                     <span className='text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>

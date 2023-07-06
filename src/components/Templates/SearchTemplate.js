@@ -28,28 +28,25 @@ const SearchTemplate = () => {
         if (isSearch) {
             handleSearch()
         }
+        // eslint-disable-next-line
     }, [isSearch])
-
 
     return (
         <div className={`py-20 lg:px-16 md:px-14 sm:px-5 ms:px-4`}>
-
 
             <div className='bg-[#141414]'>
 
                 <div className=''>
                     <p className='text-gray'>
                         Explore titles to : <span className='text-white ml-2'>
-                            {/* {searchValue} */}
+                            {searchValue}
                         </span>
                     </p>
                 </div>
 
 
                 <div className='mt-4'>
-
                     <div className='grid grid-cols-12 lg:gap-10 md:gap-8 sm:gap-4 ms:gap-4'>
-
                         {searchList?.length ? searchList?.map((item, ind) => {
                             return (
                                 <div
@@ -57,19 +54,14 @@ const SearchTemplate = () => {
                                     className='lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6'>
                                     <MovieCard
                                         image={`${TMDB_URL}${item?.poster_path}`}
-                                        url={`/watch/${item?.id}`}
+                                        url={`/watch/${item?.id}?type=${item?.media_type}`}
                                     />
                                 </div>
                             )
                         }) : <span className='text-white text-[32px]'> Loading ........</span>}
-
                     </div>
-
                 </div>
-
-
             </div>
-
         </div>
     )
 }

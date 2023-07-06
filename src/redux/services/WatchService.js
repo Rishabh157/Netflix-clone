@@ -9,18 +9,18 @@ export const watchApi = createApi({
 
     endpoints: (builder) => ({
 
-        // get data for single movie ot tv shows
+        // get overview for single movie & tv shows
         getSingleMovieInfo: builder.query({
-            query: (id) => ({
-                url: `/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`,
+            query: ({ id, type }) => ({
+                url: `/${type}/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`,
                 method: 'GET',
             })
         }),
 
-        // play trailer for single movie via ID 
+        // get trailer youtube id for single movie & tv shows 
         getPlayTrailerUrl: builder.query({
-            query: (id) => ({
-                url: `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`,
+            query: ({id, type}) => ({
+                url: `/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`,
                 method: 'GET',
             })
         }),
@@ -28,4 +28,7 @@ export const watchApi = createApi({
     })
 })
 
-export const { useGetSingleMovieInfoQuery , useGetPlayTrailerUrlQuery } = watchApi;
+export const {
+    useGetSingleMovieInfoQuery,
+    useGetPlayTrailerUrlQuery,
+} = watchApi;
