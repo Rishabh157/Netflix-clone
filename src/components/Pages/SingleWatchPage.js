@@ -112,10 +112,10 @@ const SingleWatchPage = () => {
                             <h1 className='text-white font-bold inline text-[2.2rem]'>
                                 <a className='hover:text-white '
                                     href='/'>
-                                    {movieData?.original_name}
-                                    {/* <span className='tag-release-date opacity-80 px-2 font-normal'>
-                                        (2011)
-                                    </span> */}
+                                    {movieData?.original_title}
+                                    <span className='tag-release-date opacity-80 px-2 font-normal'>
+                                        ({movieData?.release_date?.split('-')[0]})
+                                    </span>
                                 </a>
                             </h1>
 
