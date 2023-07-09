@@ -23,8 +23,12 @@ const SingleWatchPage = () => {
 
     const [trailerId, setTrailerId] = useState('');
     const [urlType, setUrlType] = useState('');
+
+    //  this state handle ATMInputPagination
     const [totalPage, setTotalPage] = useState();
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(1 || 1);
+    const [isHover, setIsHover] = useState(false);
+
 
     const [movieData, setMovieData] = useState({});
     const [similarMoviesData, setSimilarMoviesData] = useState([]);
@@ -266,13 +270,23 @@ const SingleWatchPage = () => {
                     </div>
                 </div>
 
-                <ATMInputPagination
-                    totalPages={totalPage}
-                    currentPage={page}
-                    onChange={(pageNumber) => {
-                        setPage(pageNumber)
-                    }}
-                />
+                <div className='mt-10'>
+                    <ATMInputPagination
+                        totalPages={totalPage}
+                        currentPage={page}
+                        isHover={isHover}
+                        onRemoveToolTip={() => {
+                            setIsHover(false)
+                        }}
+                        onChange={(pageNumber) => {
+                            if (pageNumber <= totalPage) {
+                                setPage(pageNumber)
+                            } else {
+                                setIsHover(true)
+                            }
+                        }}
+                    />
+                </div>
 
 
             </div>
