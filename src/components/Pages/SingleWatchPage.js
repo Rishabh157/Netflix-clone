@@ -7,7 +7,6 @@ import { BsFillPlayFill, BsDot } from 'react-icons/bs';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
 import CastSlider from '../Templates/CastSlider';
-import SliderSection from '../Molecules/SliderSection';
 import {
     useGetSingleMovieInfoQuery,
     useGetPlayTrailerUrlQuery,
