@@ -25,10 +25,19 @@ export const watchApi = createApi({
             })
         }),
 
+          // get similar movies or Tv shows via 
+          getSimilarShowsOrMovies: builder.query({
+            query: ({id, type , page}) => ({
+                url: `/${type}/${id}/similar?api_key=${API_KEY}&page=${page}&language=en-US&append_to_response=credits`,
+                method: 'GET',
+            })
+        }),
+
     })
 })
 
 export const {
     useGetSingleMovieInfoQuery,
     useGetPlayTrailerUrlQuery,
+    useGetSimilarShowsOrMoviesQuery,
 } = watchApi;

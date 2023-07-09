@@ -4,10 +4,18 @@ import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
 import { BsFillPlayFill, BsDot } from 'react-icons/bs';
-import { useGetSingleMovieInfoQuery, useGetPlayTrailerUrlQuery } from '../../redux/services/WatchService';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
 import CastSlider from '../Templates/CastSlider';
+import SliderSection from '../Molecules/SliderSection';
+import {
+    useGetSingleMovieInfoQuery,
+    useGetPlayTrailerUrlQuery,
+    useGetSimilarShowsOrMoviesQuery
+} from '../../redux/services/WatchService';
+import MovieCard from '../Atoms/MoviesCard';
+import ATMInputPagination from '../Atoms/ATMInputPagination';
+
 
 const SingleWatchPage = () => {
 
@@ -16,20 +24,37 @@ const SingleWatchPage = () => {
 
     const [trailerId, setTrailerId] = useState('');
     const [urlType, setUrlType] = useState('');
+    const [totalPage, setTotalPage] = useState();
+    const [page, setPage] = useState(1);
 
     const [movieData, setMovieData] = useState({});
+    const [similarMoviesData, setSimilarMoviesData] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
     const [isShowTrailer, setIsShowTrailer] = useState(false);
     const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery({ id, type: urlType });
+
+    const {
+        isLoading: isSimilarLoading,
+        isFetching: isSimilarFetching,
+        data: similarData
+    } = useGetSimilarShowsOrMoviesQuery({ id, type: urlType, page });
+
+
+    useEffect(() => {
+        if (!isSimilarLoading && !isSimilarFetching) {
+            setSimilarMoviesData(similarData?.results)
+            setTotalPage(similarData?.total_pages)
+        }
+    }, [isSimilarLoading, isSimilarFetching, similarData, page])
 
     const {
         isLoading: trailerIsLoading,
         isFetching: trailerIsFetching,
         data: trailerData
     } = useGetPlayTrailerUrlQuery(
-        { id:trailerId, type: urlType },
-        {skip : !trailerId}
-        );
+        { id: trailerId, type: urlType },
+        { skip: !trailerId }
+    );
 
     const getMovieRunTimeIntoHours = (runTime) => {
         const hours = Math.floor(runTime / 60); // Get the number of hours
@@ -170,8 +195,6 @@ const SingleWatchPage = () => {
                                 </div>
                             </div>
 
-
-
                             <div className='directors-name mt-4 grid grid-cols-12'>
 
                                 <div className='col-span-4'>
@@ -208,18 +231,51 @@ const SingleWatchPage = () => {
                                 </div>
 
                             </div>
-
-
                         </div>
-
                     </div>
 
                 </div>
 
             </div>
 
-            <div className='mt-10 h-screen'>
+            <div className='mt-10'>
                 <CastSlider data={movieData?.credits?.cast} />
+            </div>
+            {/* Similar movies section */}
+            <div className='py-20'>
+                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2 mb-2 flex items-center'>
+                    <h2 className='slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium cursor-pointer'>
+                        Similar Movies
+                    </h2>
+                    <span className='text-cyan-400 flex pl-2 text-[12px] explore-all-text'> Explore All  </span>
+                </div>
+
+
+                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                    <div className='grid grid-cols-12 gap-2'>
+                        {similarMoviesData?.map((ele, ind) => {
+                            return (
+                                <div className='p-2 col-span-2'>
+                                    <MovieCard
+                                        image={`${TMDB_URL}${ele?.poster_path}`}
+                                        url={`/watch/${ele?.id}`}
+                                    />
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+                </div>
+
+                <ATMInputPagination
+                    totalPages={totalPage}
+                    currentPage={page}
+                    onChange={(pageNumber) => {
+                        setPage(pageNumber)
+                    }}
+                />
+
+
             </div>
 
             <Footer />

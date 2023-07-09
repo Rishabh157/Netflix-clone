@@ -368,3 +368,11 @@ button {
 .cast-card-bg {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+/* it disabled the input type number right wheel */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+}

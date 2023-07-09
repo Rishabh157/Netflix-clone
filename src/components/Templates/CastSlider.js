@@ -8,7 +8,7 @@ const CastSlider = ({ data }) => {
         <React.Fragment>
             <h1 className='text-white pl-10 text-[22px] font-bold mb-2'>Top Cast</h1>
             <ScrollSlider
-                id={1}
+                id={0}
             >
                 {data?.map((cast, ind) => {
                     return (

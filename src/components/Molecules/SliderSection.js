@@ -6,7 +6,6 @@ import { twMerge } from 'tailwind-merge';
 import { TMDB_URL } from '../../constants/constants';
 
 const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSliderId, data = [] }) => {
-
     return (
         <div className='slider-section-card'>
 
