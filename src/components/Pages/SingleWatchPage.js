@@ -6,13 +6,13 @@ import Footer from '../Atoms/Footer';
 import { BsFillPlayFill, BsDot } from 'react-icons/bs';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
-import CastSlider from '../Templates/CastSlider';
 import { MediaType } from '../../constants/enum';
 import {
     useGetSingleMovieInfoQuery,
     useGetPlayTrailerUrlQuery,
     useGetSimilarShowsOrMoviesQuery
 } from '../../redux/services/WatchService';
+import CastSlider from '../Templates/CastSlider';
 import MovieCard from '../Atoms/MoviesCard';
 import ATMInputPagination from '../Atoms/ATMInputPagination';
 
@@ -161,15 +161,19 @@ const SingleWatchPage = () => {
                                     {urlType === MediaType.MovieCard
                                         ? movieData?.release_date && getDateIntoDDMMYYY(movieData?.release_date)
                                         : movieData?.first_air_date && getDateIntoDDMMYYY(movieData?.first_air_date)}
-                                    (IN)  <BsDot className='inline' fill='#ffffff' />
+                                    (IN) <BsDot className='inline' fill='#ffffff' />
                                 </span>
 
                                 <span className='text-white text-[15px]'>
-                                    {movieData?.genres?.map((genre, ind) => <React.Fragment key={ind}>{genre?.name + ' , '}</React.Fragment>)}
+                                    {
+                                        movieData?.genres?.map((ele) => ele.name).join(' , ')
+                                    }
+
 
                                     {/* Adventure, Action, Fantasy */}
-                                    <BsDot className='inline' fill='#ffffff' />
-                                    {getMovieRunTimeIntoHours(movieData?.runtime).hours}h {getMovieRunTimeIntoHours(movieData?.runtime).minutes}m
+                                    {movieData?.release_date && <BsDot className='inline' fill='#ffffff' />}
+                                    {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).hours + 'h'}
+                                    {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).minutes + 'm'}
                                 </span>
                             </div>
 
@@ -246,7 +250,7 @@ const SingleWatchPage = () => {
             </div>
 
             <div className='mt-10'>
-                <CastSlider data={movieData?.credits?.cast} />
+                {/* <CastSlider data={movieData?.credits?.cast} /> */}
             </div>
             {/* Similar movies section */}
             <div className='py-20'>
@@ -258,7 +262,7 @@ const SingleWatchPage = () => {
                 </div>
 
 
-                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                {/* <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
                     <div className='grid grid-cols-12 gap-2'>
                         {similarMoviesData?.map((ele, ind) => {
                             return (
@@ -272,7 +276,7 @@ const SingleWatchPage = () => {
                         })
                         }
                     </div>
-                </div>
+                </div> */}
 
                 <div className='mt-10'>
                     <ATMInputPagination
