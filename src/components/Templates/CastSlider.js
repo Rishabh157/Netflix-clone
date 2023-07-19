@@ -15,7 +15,7 @@ const CastSlider = ({ data }) => {
                         <CastCard
                             key={ind}
                             castId={cast?.cast_id}
-                            image={`${TMDB_URL}${cast?.profile_path}`}
+                            image={`${TMDB_URL}${cast?.profile_path || ''}`}
                             originalName={cast?.original_name}
                             characterName={cast?.character}
 

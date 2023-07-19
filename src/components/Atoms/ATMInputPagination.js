@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 const ATMInputPagination = ({ totalPages, currentPage, onChange, isHover, onRemoveToolTip, ...rest }) => {

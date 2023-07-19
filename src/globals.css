@@ -67,7 +67,7 @@ body {
     opacity: 0;
 }
 
-.parent-notifi:hover>.child-notifi {
+.child-notifi-show {
     opacity: 1;
     visibility: visible;
 }

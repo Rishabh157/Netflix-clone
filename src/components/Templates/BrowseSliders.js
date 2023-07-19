@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SliderSection from '../Molecules/SliderSection';
+import { MediaType } from '../../constants/enum';
 import {
     useGetTrendingMoviesQuery,
     useGetTopRatedMoviesQuery,
@@ -116,6 +117,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={1}
                     title='Trending'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={trendings}
                 />
@@ -127,6 +129,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={2}
                     title='Top Rated Movies'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={topRatedMovies}
                 />
@@ -138,6 +141,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={3}
                     title='Netflix Originals'
+                    mediaType={MediaType.TV}
                     isExploreAllEnable={true}
                     data={netflixOriginals}
                 />
@@ -150,6 +154,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={4}
                     title='Actions Movies'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={actionMovies}
                 />
@@ -160,6 +165,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={5}
                     title='Comedy Movies'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={comedyMovies}
                 />
@@ -171,6 +177,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={6}
                     title='Horror Movies'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={horroMovies}
                 />
@@ -182,6 +189,7 @@ const BrowseSliders = () => {
                 <SliderSection
                     scrollSliderId={7}
                     title='Documentries'
+                    mediaType={MediaType.MOVIE}
                     isExploreAllEnable={true}
                     data={documentries}
                 />

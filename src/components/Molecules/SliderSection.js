@@ -5,7 +5,7 @@ import { BiChevronRight } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
 import { TMDB_URL } from '../../constants/constants';
 
-const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSliderId, data = [] }) => {
+const SliderSection = ({ title, mediaType, isExploreAllEnable, titleClassName, scrollSliderId, data = [] }) => {
     return (
         <div className='slider-section-card'>
 
@@ -28,7 +28,7 @@ const SliderSection = ({ title, isExploreAllEnable, titleClassName, scrollSlider
                             <MovieCard
                                 key={ind}
                                 image={`${TMDB_URL}${photo?.poster_path}`}
-                                url={`/watch/${photo?.id}`}
+                                url={`/watch/${photo?.id}?type=${mediaType}`}
                             />
                         )
                     })}

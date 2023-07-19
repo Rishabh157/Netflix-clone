@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import netflixlogo from '../../images/netflix.svg';
 import profilelogo from '../../images/profiler.png';
 import { BiBell } from 'react-icons/bi';
@@ -12,6 +12,7 @@ import { setSearch, setIsSearch } from '../../redux/slice/searchSlice';
 
 const Navbar = ({ bgColor }) => {
 
+    const [isNotificationShow, setIsNotificationShow] = useState(false);
     const { searchValue } = useSelector((state) => state.searchValue);
     const dispatch = useDispatch();
 
@@ -36,6 +37,7 @@ const Navbar = ({ bgColor }) => {
         };
     };
 
+    // eslint-disable-next-line
     const optimizedFunc = useCallback(debounce(() => dispatch(setIsSearch(true))), []);
 
     return (
@@ -46,7 +48,7 @@ const Navbar = ({ bgColor }) => {
                 <div className='lg:col-span-7 md:col-span-5 sm:col-span-5 ms:col-span-5'>
                     <div className='flex'>
 
-                        <Link to='/'>
+                        <Link to='/browse'>
                             <img className='h-[25px]' src={netflixlogo} alt='logo.svg' />
                         </Link>
 
@@ -110,11 +112,23 @@ const Navbar = ({ bgColor }) => {
                                 <span className='text-[14px] text-white'>Children</span>
                             </div>
 
-                            <div className='relative parent-notifi ms:hidden sm:hidden md:block lg:block lg:mr-0 md:mr-2 sm:mr-4 ms:mr-4'>
+                            <div className='relative ms:hidden sm:hidden md:block lg:block lg:mr-0 md:mr-2 sm:mr-4 ms:mr-4'
+                            onMouseOver={() => {
+                                setIsNotificationShow(true);
+                            }}
+                            onMouseLeave={() => {
+                                setIsNotificationShow(false);
+                            }}
+                            >                                
                                 <div className='cursor-pointer'>
                                     <BiBell color='white' size={25} />
                                 </div>
-                                <NotificationPanel />
+                                <NotificationPanel
+                                    show={isNotificationShow}
+                                    onClose={() => {
+                                        setIsNotificationShow(false);
+                                    }}
+                                />
                             </div>
 
                             <div className='relative parent-profile'>

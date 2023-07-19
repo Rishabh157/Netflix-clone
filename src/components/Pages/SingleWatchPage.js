@@ -7,6 +7,7 @@ import { BsFillPlayFill, BsDot } from 'react-icons/bs';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
 import CastSlider from '../Templates/CastSlider';
+import { MediaType } from '../../constants/enum';
 import {
     useGetSingleMovieInfoQuery,
     useGetPlayTrailerUrlQuery,
@@ -33,7 +34,7 @@ const SingleWatchPage = () => {
     const [movieData, setMovieData] = useState({});
     const [similarMoviesData, setSimilarMoviesData] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
-    const [isShowTrailer, setIsShowTrailer] = useState(false);
+    const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
     const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery({ id, type: urlType });
 
     const {
@@ -86,9 +87,11 @@ const SingleWatchPage = () => {
             });
             if (Array.isArray(filteredOfficialTrailers) && filteredOfficialTrailers?.length > 0) {
                 const randomObjTrailer = filteredOfficialTrailers[Math.floor(Math.random() * filteredOfficialTrailers?.length)];
+                // console.log('filteredOfficialTrailers', Math.floor(Math.random() * filteredOfficialTrailers?.length))
                 setTrailerUrl(randomObjTrailer?.key);
             } else {
                 const randomObjTrailer = trailerData?.results[Math.floor(Math.random() * trailerData?.results?.length)];
+                // console.log('randomObjTrailer', randomObjTrailer);
                 setTrailerUrl(randomObjTrailer?.key);
             };
         };
@@ -109,11 +112,11 @@ const SingleWatchPage = () => {
             <Navbar bgColor='bg-black py-1' />
 
             <TrailerPlayModel
-                show={isShowTrailer}
-                url={trailerUrl}
+                show={isShowTrailerModal}
+                url={trailerUrl || ''}
                 autoplay={1}
                 disableControls={1}
-                onClose={() => setIsShowTrailer(false)}
+                onClose={() => setIsShowTrailerModal(false)}
             />
 
             <div
@@ -140,9 +143,11 @@ const SingleWatchPage = () => {
                             <h1 className='text-white font-bold inline text-[2.2rem]'>
                                 <a className='hover:text-white '
                                     href='/'>
-                                    {movieData?.original_title}
+                                    {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
                                     <span className='tag-release-date opacity-80 px-2 font-normal'>
-                                        ({movieData?.release_date?.split('-')[0]})
+                                        {
+                                            urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null
+                                        }
                                     </span>
                                 </a>
                             </h1>
@@ -153,15 +158,14 @@ const SingleWatchPage = () => {
                                 </span>
 
                                 <span className='text-white px-2 text-[15px] align-middle'>
-                                    {movieData?.release_date && getDateIntoDDMMYYY(movieData?.release_date)} (IN)  <BsDot className='inline' fill='#ffffff' />
+                                    {urlType === MediaType.MovieCard
+                                        ? movieData?.release_date && getDateIntoDDMMYYY(movieData?.release_date)
+                                        : movieData?.first_air_date && getDateIntoDDMMYYY(movieData?.first_air_date)}
+                                    (IN)  <BsDot className='inline' fill='#ffffff' />
                                 </span>
 
                                 <span className='text-white text-[15px]'>
-                                    {movieData?.genres?.map((genre, ind) => {
-                                        return (
-                                            genre?.name + ' , '
-                                        )
-                                    })}
+                                    {movieData?.genres?.map((genre, ind) => <React.Fragment key={ind}>{genre?.name + ' , '}</React.Fragment>)}
 
                                     {/* Adventure, Action, Fantasy */}
                                     <BsDot className='inline' fill='#ffffff' />
@@ -172,7 +176,7 @@ const SingleWatchPage = () => {
                             <div className='h-[90px] flex items-center trailer-play-btns'>
                                 <div
                                     onClick={() => {
-                                        setIsShowTrailer(true);
+                                        setIsShowTrailerModal(true);
                                         setTrailerId(movieData?.id);
                                     }}
                                     className='flex items-center transition-all cursor-pointer hover:opacity-70'>
@@ -258,10 +262,10 @@ const SingleWatchPage = () => {
                     <div className='grid grid-cols-12 gap-2'>
                         {similarMoviesData?.map((ele, ind) => {
                             return (
-                                <div className='p-2 col-span-2'>
+                                <div className='p-2 col-span-2' key={ele?.id || ind}>
                                     <MovieCard
-                                        image={`${TMDB_URL}${ele?.poster_path}`}
-                                        url={`/watch/${ele?.id}`}
+                                        image={`${TMDB_URL}${ele?.poster_path || ''}`}
+                                        url={`/watch/${ele?.id}?type=movie`}
                                     />
                                 </div>
                             )
