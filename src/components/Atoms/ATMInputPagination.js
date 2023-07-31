@@ -2,11 +2,10 @@ import React from 'react';
 
 
 const ATMInputPagination = ({ totalPages, currentPage, onChange, isHover, onRemoveToolTip, ...rest }) => {
-    // const [isHover, setIsHover] = useState(false);
 
     return (
         <div className='flex justify-center'>
-            <div className='w-[3.5%] relative' onMouseLeave={onRemoveToolTip}>
+            <div className='lg:w-[3.5%] md:w-[5.5%] sm:w-[10.5%] ms:w-[10.5%] relative' onMouseLeave={onRemoveToolTip}>
                 <input
                     className='outline-none py-[6px] w-[100%] border-[4px] border-black text-center text-[14px] rounded-[2px]'
                     type='number'

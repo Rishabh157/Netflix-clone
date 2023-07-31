@@ -3,7 +3,6 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
-import { BsFillPlayFill, BsDot } from 'react-icons/bs';
 import { getDateIntoDDMMYYY } from '../../common/date';
 import TrailerPlayModel from '../Atoms/TrailerPlayModel';
 import { MediaType } from '../../constants/enum';
@@ -15,6 +14,8 @@ import {
 import CastSlider from '../Templates/CastSlider';
 import MovieCard from '../Atoms/MoviesCard';
 import ATMInputPagination from '../Atoms/ATMInputPagination';
+import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 
 const SingleWatchPage = () => {
@@ -25,7 +26,7 @@ const SingleWatchPage = () => {
     const [trailerId, setTrailerId] = useState('');
     const [urlType, setUrlType] = useState('');
 
-    //  this state handle ATMInputPagination
+    // this state handle ATMInputPagination
     const [totalPage, setTotalPage] = useState();
     const [page, setPage] = useState(1 || 1);
     const [isHover, setIsHover] = useState(false);
@@ -42,7 +43,6 @@ const SingleWatchPage = () => {
         isFetching: isSimilarFetching,
         data: similarData
     } = useGetSimilarShowsOrMoviesQuery({ id, type: urlType, page });
-
 
     useEffect(() => {
         if (!isSimilarLoading && !isSimilarFetching) {
@@ -119,12 +119,11 @@ const SingleWatchPage = () => {
                 onClose={() => setIsShowTrailerModal(false)}
             />
 
-            <div
-                style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
-                className='h-[600px] bg-cover bg-no-repeat px-10 py-6'>
+            {/* this is for Lg and Md */}
+            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
+                className='h-[600px] bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
 
                 <div className='grid grid-cols-12'>
-
                     <div className='col-span-3'>
                         <div className='h-[500px] relative '>
                             <img
@@ -135,12 +134,9 @@ const SingleWatchPage = () => {
                         </div>
                     </div>
 
-
                     <div className='col-span-9 py-14 px-6'>
-
                         <div className='h-full w-full '>
-
-                            <h1 className='text-white font-bold inline text-[2.2rem]'>
+                            <h1 className='text-white font-bold inline lg:text-[2.2rem] md:text-[2.0rem] sm:text-[1rem] ms:text-[0.8rem]'>
                                 <a className='hover:text-white '
                                     href='/'>
                                     {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
@@ -156,7 +152,6 @@ const SingleWatchPage = () => {
                                 <span className='px-[0.4rem] py-[0.2rem] rounded-[3px] text-[14px] border-white border-[1px] opacity-80 text-white' >
                                     UA
                                 </span>
-
                                 <span className='text-white px-2 text-[15px] align-middle'>
                                     {urlType === MediaType.MovieCard
                                         ? movieData?.release_date && getDateIntoDDMMYYY(movieData?.release_date)
@@ -166,8 +161,6 @@ const SingleWatchPage = () => {
 
                                 <span className='text-white text-[15px]'>
                                     {movieData?.genres?.map((ele) => ele.name).join(' , ')}
-
-
                                     {/* Adventure, Action, Fantasy */}
                                     {movieData?.release_date && <BsDot className='inline' fill='#ffffff' />}
                                     {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).hours + 'h'}
@@ -247,9 +240,61 @@ const SingleWatchPage = () => {
 
             </div>
 
+            {/* this is for Sm and MS */}
+            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
+                className='h-[90vh] bg-cover bg-no-repeat px-8 py-6 lg:hidden md:hidden sm:block ms:block'>
+                <div className='grid grid-cols-12'>
+
+                    <div className='col-span-12'>
+                        <div className='w-full relative'>
+                            <img
+                                src={`${TMDB_URL}${movieData?.poster_path}`}
+                                alt='pirates'
+                                className='rounded'
+                            />
+                        </div>
+                    </div>
+
+                    <div className='col-span-6 mt-6'>
+                        <button
+                            className='flex top-0 items-center px-6 py-1 bg-white border-black border-[1] rounded font-bold mr-4 select-none cursor-pointer'
+                            type='button'
+                            onClick={() => {
+                                // handlePlay()
+                                setIsShowTrailerModal(true);
+                                setTrailerId(movieData?.id);
+                            }}
+                        >
+                            {isShowTrailerModal ? <BsPauseFill
+                                size={35}
+                                // fill='#ffffff'
+                                className='mr-1'
+                            /> : <BsFillPlayFill
+                                size={35}
+                                // fill='#ffffff'
+                                className='mr-1'
+                            />}
+                            Play
+                        </button>
+                    </div>
+
+                    <div className='col-span-6 mt-6 flex justify-end'>
+                        <button className={`flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none`}>
+                            <AiOutlineInfoCircle size={32} className='mr-1' />
+                            More Info
+                        </button>
+                    </div>
+
+
+
+                </div>
+            </div>
+
             <div className='mt-10'>
                 <CastSlider data={movieData?.credits?.cast} />
             </div>
+
+
             {/* Similar movies section */}
             <div className='py-20'>
                 <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2 mb-2 flex items-center'>
@@ -264,7 +309,7 @@ const SingleWatchPage = () => {
                     <div className='grid grid-cols-12 gap-2'>
                         {similarMoviesData?.map((ele, ind) => {
                             return (
-                                <div className='p-2 col-span-2' key={ele?.id || ind}>
+                                <div className='p-2 lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6' key={ele?.id || ind}>
                                     <MovieCard
                                         image={`${TMDB_URL}${ele?.poster_path || ''}`}
                                         url={`/watch/${ele?.id}?type=movie`}
@@ -293,12 +338,8 @@ const SingleWatchPage = () => {
                         }}
                     />
                 </div>
-
-
             </div>
-
             <Footer />
-
         </React.Fragment>
     )
 }
