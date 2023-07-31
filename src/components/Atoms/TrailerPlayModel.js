@@ -1,10 +1,11 @@
 import React from 'react';
 import { RxCross2 } from 'react-icons/rx';
+import { twMerge } from 'tailwind-merge';
 
-const TrailerPlayModel = ({ show, url, autoplay = 1, controls = 1, onClose }) => {
+const TrailerPlayModel = ({ show, url, autoplay = 1, controls = 1, onClose, className }) => {
 
     return (
-        <div className={`${show ? 'opacity-100 overlay' : 'opacity-0 invisible transition-all '} `}>
+        <div className={twMerge(`${show ? 'opacity-100 overlay' : 'opacity-0 invisible transition-all'}`, className)}>
             <div className='bg-black rounded fixed z-50 lg:h-[96vh] md:h-[94vh] sm:h-[94vh] ms:h-[50vh] 
                               lg:w-[60%] md:w-[80%] sm:w-[80%] ms:w-[95%] lg:left-[20%] md:left-[10%] 
                               sm:left-[10%] ms:left-[3%] lg:top-4 md:top-4 sm:top-4 ms:top-40'>

@@ -165,9 +165,7 @@ const SingleWatchPage = () => {
                                 </span>
 
                                 <span className='text-white text-[15px]'>
-                                    {
-                                        movieData?.genres?.map((ele) => ele.name).join(' , ')
-                                    }
+                                    {movieData?.genres?.map((ele) => ele.name).join(' , ')}
 
 
                                     {/* Adventure, Action, Fantasy */}
@@ -250,7 +248,7 @@ const SingleWatchPage = () => {
             </div>
 
             <div className='mt-10'>
-                {/* <CastSlider data={movieData?.credits?.cast} /> */}
+                <CastSlider data={movieData?.credits?.cast} />
             </div>
             {/* Similar movies section */}
             <div className='py-20'>
@@ -262,7 +260,7 @@ const SingleWatchPage = () => {
                 </div>
 
 
-                {/* <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
                     <div className='grid grid-cols-12 gap-2'>
                         {similarMoviesData?.map((ele, ind) => {
                             return (
@@ -276,7 +274,7 @@ const SingleWatchPage = () => {
                         })
                         }
                     </div>
-                </div> */}
+                </div>
 
                 <div className='mt-10'>
                     <ATMInputPagination

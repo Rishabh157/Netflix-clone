@@ -202,6 +202,7 @@ const BrowseSliders = () => {
                     scrollSliderId={8}
                     title='Romantic Movies'
                     isExploreAllEnable={true}
+                    mediaType={MediaType.MOVIE}
                     data={romanticMovies}
                 />
             </div>
@@ -213,6 +214,7 @@ const BrowseSliders = () => {
                     scrollSliderId={9}
                     title='Popular Movies'
                     isExploreAllEnable={true}
+                    mediaType={MediaType.MOVIE}
                     data={popularMovies}
                 />
             </div>

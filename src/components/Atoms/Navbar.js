@@ -113,13 +113,13 @@ const Navbar = ({ bgColor }) => {
                             </div>
 
                             <div className='relative ms:hidden sm:hidden md:block lg:block lg:mr-0 md:mr-2 sm:mr-4 ms:mr-4'
-                            onMouseOver={() => {
-                                setIsNotificationShow(true);
-                            }}
-                            onMouseLeave={() => {
-                                setIsNotificationShow(false);
-                            }}
-                            >                                
+                                onMouseOver={() => {
+                                    setIsNotificationShow(true);
+                                }}
+                                onMouseLeave={() => {
+                                    setIsNotificationShow(false);
+                                }}
+                            >
                                 <div className='cursor-pointer'>
                                     <BiBell color='white' size={25} />
                                 </div>

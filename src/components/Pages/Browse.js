@@ -44,6 +44,7 @@ const Browse = () => {
             />
             {searchValue?.length > 0 ? <SearchTemplate /> : <>
                 <Banner
+                    bannerId={banner?.id}
                     bannerImg={banner?.backdrop_path}
                     title={banner?.name}
                     overview={banner?.overview}
