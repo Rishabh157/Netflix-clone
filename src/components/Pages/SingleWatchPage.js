@@ -34,7 +34,7 @@ const SingleWatchPage = () => {
 
     const [movieData, setMovieData] = useState({});
     const [similarMoviesData, setSimilarMoviesData] = useState([]);
-    const [trailerUrl, setTrailerUrl] = useState('');
+    const [trailerUrlKey, setTrailerUrlKey] = useState('');
     const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
     const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery({ id, type: urlType });
 
@@ -77,7 +77,6 @@ const SingleWatchPage = () => {
 
 
     useEffect(() => {
-
         if (!trailerIsLoading && !trailerIsFetching) {
             const filteredOfficialTrailers = trailerData?.results?.filter((ele) => {
                 if (ele?.type === 'Trailer' && ele?.official === true) {
@@ -85,27 +84,25 @@ const SingleWatchPage = () => {
                 };
                 return false;
             });
-            if (Array.isArray(filteredOfficialTrailers) && filteredOfficialTrailers?.length > 0) {
+            if (Array.isArray(filteredOfficialTrailers) && filteredOfficialTrailers?.length) {
                 const randomObjTrailer = filteredOfficialTrailers[Math.floor(Math.random() * filteredOfficialTrailers?.length)];
-                // console.log('filteredOfficialTrailers', Math.floor(Math.random() * filteredOfficialTrailers?.length))
-                setTrailerUrl(randomObjTrailer?.key);
+                setTrailerUrlKey(randomObjTrailer?.key || '');
             } else {
                 const randomObjTrailer = trailerData?.results[Math.floor(Math.random() * trailerData?.results?.length)];
-                // console.log('randomObjTrailer', randomObjTrailer);
-                setTrailerUrl(randomObjTrailer?.key);
+                setTrailerUrlKey(randomObjTrailer?.key || '');
             };
         };
     }, [trailerIsLoading, trailerIsFetching, trailerData]);
 
 
     useEffect(() => {
-        if (searchParams.get('type')) {
+        if(searchParams.get('type')) {
             setUrlType(searchParams.get('type'));
         } else {
             setUrlType(searchParams.get('id'));
         };
     }, [searchParams]);
-
+   
     return (
         <React.Fragment>
 
@@ -113,10 +110,13 @@ const SingleWatchPage = () => {
 
             <TrailerPlayModel
                 show={isShowTrailerModal}
-                url={trailerUrl || ''}
+                url={trailerUrlKey || ''}
                 autoplay={1}
                 disableControls={1}
-                onClose={() => setIsShowTrailerModal(false)}
+                onClose={() => {
+                    setIsShowTrailerModal(false)
+                    setTrailerUrlKey('')
+                }}
             />
 
             {/* this is for Lg and Md */}
@@ -279,13 +279,15 @@ const SingleWatchPage = () => {
                     </div>
 
                     <div className='col-span-6 mt-6 flex justify-end'>
-                        <button className={`flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none`}>
+                        <button className={`flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none`}
+                            onClick={() => {
+                                alert('HELLO WORLD')
+                            }}
+                        >
                             <AiOutlineInfoCircle size={32} className='mr-1' />
                             More Info
                         </button>
                     </div>
-
-
 
                 </div>
             </div>

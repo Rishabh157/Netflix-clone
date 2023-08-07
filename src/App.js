@@ -5,6 +5,7 @@ import Login from './components/Pages/Login';
 import Browse from './components/Pages/Browse';
 import SingleWatchPage from './components/Pages/SingleWatchPage';
 import YourAccount from "./components/Pages/YourAccount";
+import Person from './components/Pages/Person';
 
 const MainIndexPaths = [
   '/',
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/browse' element={<Browse />} />
         <Route path='/YourAccount' element={<YourAccount />} />
         <Route path='/watch/:id' element={<SingleWatchPage />} />
+        <Route path='/person/:id' element={<Person />} />
       </Routes> 
     </BrowserRouter>
   );
