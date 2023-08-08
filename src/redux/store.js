@@ -4,6 +4,7 @@ import { bannerApi } from './services/BannerService';
 import { browseApi } from "./services/BrowseService";
 import { searchApi } from "./services/SearchService";
 import { watchApi } from "./services/WatchService";
+import { personApi } from "./services/PersonService";
 
 //Slices
 import searchSlice from "./slice/searchSlice";
@@ -17,6 +18,7 @@ export const store = configureStore({
         [browseApi.reducerPath]: browseApi.reducer,
         [searchApi.reducerPath]: searchApi.reducer,
         [watchApi.reducerPath]: watchApi.reducer,
+        [personApi.reducerPath]: personApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -26,5 +28,6 @@ export const store = configureStore({
             browseApi.middleware,
             searchApi.middleware,
             watchApi.middleware,
+            personApi.middleware
         ]),
 });

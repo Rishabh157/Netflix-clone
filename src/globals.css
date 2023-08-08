@@ -376,3 +376,20 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
   display: none;
 }
+
+/* person page information drawer */
+
+.information-drawer{
+    position: absolute;
+    transition: all 450ms ease-in;
+}
+
+.information-drawer.open{
+    height: 100vh;
+    bottom: 0;
+}
+
+.information-drawer.close{
+    height: 0vh;
+    bottom: 0;
+}

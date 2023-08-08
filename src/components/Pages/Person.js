@@ -3,29 +3,25 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
-import { getDateIntoDDMMYYY } from '../../common/date';
-import TrailerPlayModel from '../Atoms/TrailerPlayModel';
-import { MediaType } from '../../constants/enum';
-import {
-    useGetSingleMovieInfoQuery,
-    useGetPlayTrailerUrlQuery,
-    useGetSimilarShowsOrMoviesQuery
-} from '../../redux/services/WatchService';
-import CastSlider from '../Templates/CastSlider';
-import MovieCard from '../Atoms/MoviesCard';
-import ATMInputPagination from '../Atoms/ATMInputPagination';
-import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
+// import { getDateIntoDDMMYYY } from '../../common/date';
+// import TrailerPlayModel from '../Atoms/TrailerPlayModel';
+// import { MediaType } from '../../constants/enum';
+// import CastSlider from '../Templates/CastSlider';
+// import MovieCard from '../Atoms/MoviesCard';
+// import ATMInputPagination from '../Atoms/ATMInputPagination';
+// import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { useGetPersonDetailsQuery } from '../../redux/services/PersonService';
 
 const Person = () => {
 
 
-    const backdrop_path = `https://image.tmdb.org/t/p/original//fgw4rFs4XMWdJTWp1eMacHKQqbZ.jpg`
+    const [personId, setPersonId] = useState('6384');
+    const [personInfo, setPersonInfo] = useState({})
 
     const { id } = useParams();
     const [searchParams] = useSearchParams();
 
-    const [trailerId, setTrailerId] = useState('');
     const [urlType, setUrlType] = useState('');
 
     // this state handle ATMInputPagination
@@ -36,38 +32,51 @@ const Person = () => {
 
     const [movieData, setMovieData] = useState({});
 
-    const [similarMoviesData, setSimilarMoviesData] = useState([]);
-    const [trailerUrlKey, setTrailerUrlKey] = useState('');
-    const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
-    // const { isLoading, isFetching, data } = useGetSingleMovieInfoQuery({ id, type: urlType });
+    // const [similarMoviesData, setSimilarMoviesData] = useState([]);
+    // const [trailerUrlKey, setTrailerUrlKey] = useState('');
+    // const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
 
-    const {
-        isLoading: isSimilarLoading,
-        isFetching: isSimilarFetching,
-        data: similarData
-    } = useGetSimilarShowsOrMoviesQuery({ id: '6384', type: 'MOVIE', page: 1 });
+    const { isLoading, isFetching, data } = useGetPersonDetailsQuery(personId);
+
+    // const {
+    //     isLoading: isSimilarLoading,
+    //     isFetching: isSimilarFetching,
+    //     data: similarData
+    // } = useGetSimilarShowsOrMoviesQuery({ id: '6384', type: 'MOVIE', page: 1 });
+
+    // useEffect(() => {
+    //     if (!isSimilarLoading && !isSimilarFetching) {
+    //         console.log(similarData)
+    //         // setSimilarMoviesData(similarData?.results)
+    //         // setTotalPage(similarData?.total_pages)
+    //     }
+    // }, [isSimilarLoading, isSimilarFetching, similarData, page])
+
+    // const getCurrentAge = (strDate) => {
+    //     const [year] = strDate?.split('-')
+    //     const currentYear = new Date()
+    //     return String(currentYear?.getFullYear() - parseInt(year))
+    // }
+
+    // console.log(getCurrentAge('1980-04-03'))
+
+    const getGender = (nums) => {
+        switch (nums) {
+            case 1:
+                return 'FEMALE'
+            case 2:
+                return 'MALE'
+            default:
+                return 'MALE'
+        }
+    }
 
     useEffect(() => {
-        if (!isSimilarLoading && !isSimilarFetching) {
-            console.log(similarData)
-            // setSimilarMoviesData(similarData?.results)
-            // setTotalPage(similarData?.total_pages)
-        }
-    }, [isSimilarLoading, isSimilarFetching, similarData, page])
-
-    // useEffect(() => {
-    //     if (!isLoading && !isFetching) {
-    //         setMovieData(data);
-    //     };
-    // }, [isLoading, isFetching, data]);
-
-    // useEffect(() => {
-    //     if (searchParams.get('type')) {
-    //         setUrlType(searchParams.get('type'));
-    //     } else {
-    //         setUrlType(searchParams.get('id'));
-    //     };
-    // }, [searchParams]);
+        if (!isLoading && !isFetching) {
+            setPersonInfo(data)
+            // console.log('person data ', data)
+        };
+    }, [isLoading, isFetching, data]);
 
     return (
         <React.Fragment>
@@ -75,14 +84,13 @@ const Person = () => {
             <Navbar bgColor='bg-black py-1' />
 
             {/* this is for Lg and Md */}
-            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
+            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
                 className='h-[600px] bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
-
                 <div className='grid grid-cols-12'>
                     <div className='col-span-3'>
                         <div className='h-[500px] relative '>
                             <img
-                                src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/rRdru6REr9i3WIHv2mntpcgxnoY.jpg`}
+                                src={`${TMDB_URL}${personInfo?.profile_path}`}
                                 alt='pirates'
                                 className=' rounded absolute top-0'
                             />
@@ -94,7 +102,7 @@ const Person = () => {
                             <h1 className='text-white font-bold inline lg:text-[2.8rem] md:text-[2.4rem] sm:text-[1rem] ms:text-[0.8rem]'>
                                 <a className='hover:text-white '
                                     href='/person/6384-keanu-reeves'>
-                                    Keanu Reeves
+                                    {personInfo?.name}
                                 </a>
                             </h1>
 
@@ -108,37 +116,211 @@ const Person = () => {
 
                             <div>
                                 <p className='text-white text-justify text-[1em] font-normal opacity-90'>
-                                    Keanu Charles Reeves is a Canadian actor. Reeves is known for his
-                                    roles in Bill & Ted's Excellent Adventure, Speed, Point Break, and
-                                    The Matrix franchise as Neo. He has collaborated with major directors
-                                    such as Stephen Frears (in the 1988 period drama Dangerous Liaisons);
-                                    Gus Van Sant (in the 1991 independent film My Own Private Idaho); and
-                                    Bernardo Bertolucci (in the 1993 film Little Buddha). Referring to his
-                                    1991 film releases, The New York Times' critic, Janet Maslin, praised
-                                    Reeves' versatility, saying that he "displays considerable discipline
-                                    and range. He moves easily between the buttoned-down demeanor that suits
-                                    a police procedural story and the loose-jointed manner of his comic roles."
-                                    A repeated theme in roles he has portrayed is that of saving the world,
-                                    including the characters of Ted Logan, Buddha, Neo, Johnny Mnemonic, John
-                                    Constantine and Klaatu.
+                                    {personInfo?.biography}
                                 </p>
                             </div>
 
+                            {/* DEPARTMENT */}
+                            <div className='flex items-center my-4'>
+                                <div className='flex items-center transition-all'>
+                                    <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                        Personal Information
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className='flex gap-x-4'>
+
+                                <div className='w-[20%] bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Known For</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.known_for_department}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='w-[20%] bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Gender</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{getGender(personInfo?.gender)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='w-[20%] bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Place of Birth</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.place_of_birth}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='w-[20%] bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Birthday</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.birthday}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='w-[20%] bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Age</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span> (
+                                                {/* {getCurrentAge(personInfo?.birthday)}  */}
+                                                58 years old )</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* <p className='text-white text-justify text-[1em] font-normal opacity-90'>
+
+
+
+                                    Known Credits
+                                    178
+
+                                    Gender
+                                    Male
+
+                                    Birthday
+                                    1964-09-02 (58 years old)
+
+                                    Place of Birth
+                                    Beirut, Lebanon
+                                </p> */}
+
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
 
 
             {/* this is for Sm and MS */}
-            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url('')`, }}
+            <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
                 className='h-[86vh] bg-cover bg-no-repeat px-2 py-4 lg:hidden md:hidden sm:block ms:block'>
+
+
+
+                <div className={`col-span-12 z-[1000000] h-[90vh] bg-red-400 w-full opacity-80 information-drawer ${true ? 'oepn' : 'close'}`}>
+
+                    <div className='px-3'>
+                        <div className='h-full w-full '>
+                            <h1 className='text-white font-bold inline sm:text-[1rem] ms:text-[2.6rem]'>
+                                <a className='hover:text-white'
+                                    href='/person/6384-keanu-reeves'>
+                                    {/* {personInfo?.name} */}
+                                    JHON WICK
+                                </a>
+                            </h1>
+
+                            {/* <div className='h-[70px] flex items-center'>
+            <div className='flex items-center transition-all'>
+                <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                    Biography
+                </span>
+            </div>
+        </div> */}
+
+                            {/* <div>
+            <p className='text-white text-justify text-[1em] font-normal opacity-90'>
+                {personInfo?.biography}
+            </p>
+        </div> */}
+
+                            {/* DEPARTMENT */}
+                            {/* <div className='flex items-center my-4'>
+            <div className='flex items-center transition-all'>
+                <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                    Personal Information
+                </span>
+            </div>
+        </div> */}
+
+                            <div className='flex gap-x-4'>
+
+                                {/* <div className='w-[20%] bg-[#141414]'>
+                <div className='rounded border-[1px] border-white p-2'>
+                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>Known For</span>
+                    </div>
+                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>{personInfo?.known_for_department}</span>
+                    </div>
+                </div>
+            </div> */}
+
+                                {/* <div className='w-[20%] bg-[#141414]'>
+                <div className='rounded border-[1px] border-white p-2'>
+                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>Gender</span>
+                    </div>
+                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>{getGender(personInfo?.gender)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className='w-[20%] bg-[#141414]'>
+                <div className='rounded border-[1px] border-white p-2'>
+                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>Place of Birth</span>
+                    </div>
+                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>{personInfo?.place_of_birth}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className='w-[20%] bg-[#141414]'>
+                <div className='rounded border-[1px] border-white p-2'>
+                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>Birthday</span>
+                    </div>
+                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>{personInfo?.birthday}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className='w-[20%] bg-[#141414]'>
+                <div className='rounded border-[1px] border-white p-2'>
+                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span>Age</span>
+                    </div>
+                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                        <span> ( 58 years old )</span>
+                    </div>
+                </div>
+            </div> */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className='grid grid-cols-12'>
                     <div className='col-span-12 px-6'>
                         <div className='w-full relative'>
                             <img
-                                src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/rRdru6REr9i3WIHv2mntpcgxnoY.jpg`}
+                                src={`${TMDB_URL}${personInfo?.profile_path}`}
                                 alt='pirates'
                                 className='rounded'
                                 width='100%'
@@ -147,15 +329,16 @@ const Person = () => {
                     </div>
 
                     <div className='col-span-12 mt-10 flex justify-center'>
-                        <button className={`flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none`}
+                        <button className='flex justify-end items-center px-6 bg-[#6d6d6eb3] text-white text-[17px] py-2 rounded font-bold select-none'
                             onClick={() => {
-                                alert('HELLO John Wick')
+                                console.log('HELLO JOHN WICK')
                             }}
                         >
-                            <AiOutlineInfoCircle size={32} className='mr-1' />
-                            More Info
+                            <AiOutlineInfoCircle size={32} className='mr-3' />
+                            Information
                         </button>
                     </div>
+
                 </div>
             </div>
 
