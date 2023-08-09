@@ -368,28 +368,33 @@ button {
 .cast-card-bg {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* it disabled the input type number right wheel */
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-  display: none;
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
 }
 
 /* person page information drawer */
 
-.information-drawer{
+.information-drawer {
     position: absolute;
-    transition: all 450ms ease-in;
+    visibility: hidden;
+    transition: all 350ms ease-in;
+    bottom: 0px;
 }
 
-.information-drawer.open{
-    height: 100vh;
-    bottom: 0;
+.information-drawer.open {
+    max-height: 92vh;
+    overflow-y: scroll;
+    visibility: visible;
 }
 
-.information-drawer.close{
-    height: 0vh;
+.information-drawer.close {
+    max-height: 0vh;
     bottom: 0;
+    visibility: hidden;
 }

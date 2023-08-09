@@ -12,12 +12,16 @@ import Footer from '../Atoms/Footer';
 // import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { useGetPersonDetailsQuery } from '../../redux/services/PersonService';
+import { VscTriangleDown } from 'react-icons/vsc';
 
 const Person = () => {
 
 
     const [personId, setPersonId] = useState('6384');
     const [personInfo, setPersonInfo] = useState({})
+
+    const [isTruncateText, setIsTruncateText] = useState(true);
+    const [isShowMoreInfoForMobile, setIsShowMoreInfoForMobile] = useState(false);
 
     const { id } = useParams();
     const [searchParams] = useSearchParams();
@@ -105,7 +109,6 @@ const Person = () => {
                                     {personInfo?.name}
                                 </a>
                             </h1>
-
                             <div className='h-[70px] flex items-center'>
                                 <div className='flex items-center transition-all'>
                                     <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -128,9 +131,7 @@ const Person = () => {
                                     </span>
                                 </div>
                             </div>
-
                             <div className='flex gap-x-4'>
-
                                 <div className='w-[20%] bg-[#141414]'>
                                     <div className='rounded border-[1px] border-white p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -141,7 +142,6 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className='w-[20%] bg-[#141414]'>
                                     <div className='rounded border-[1px] border-white p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -152,7 +152,6 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className='w-[20%] bg-[#141414]'>
                                     <div className='rounded border-[1px] border-white p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -163,7 +162,6 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className='w-[20%] bg-[#141414]'>
                                     <div className='rounded border-[1px] border-white p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -174,7 +172,6 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className='w-[20%] bg-[#141414]'>
                                     <div className='rounded border-[1px] border-white p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
@@ -187,135 +184,16 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* <p className='text-white text-justify text-[1em] font-normal opacity-90'>
-
-
-
-                                    Known Credits
-                                    178
-
-                                    Gender
-                                    Male
-
-                                    Birthday
-                                    1964-09-02 (58 years old)
-
-                                    Place of Birth
-                                    Beirut, Lebanon
-                                </p> */}
-
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-
-
 
             {/* this is for Sm and MS */}
             <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
-                className='h-[86vh] bg-cover bg-no-repeat px-2 py-4 lg:hidden md:hidden sm:block ms:block'>
-
-
-
-                <div className={`col-span-12 z-[1000000] h-[90vh] bg-red-400 w-full opacity-80 information-drawer ${true ? 'oepn' : 'close'}`}>
-
-                    <div className='px-3'>
-                        <div className='h-full w-full '>
-                            <h1 className='text-white font-bold inline sm:text-[1rem] ms:text-[2.6rem]'>
-                                <a className='hover:text-white'
-                                    href='/person/6384-keanu-reeves'>
-                                    {/* {personInfo?.name} */}
-                                    JHON WICK
-                                </a>
-                            </h1>
-
-                            {/* <div className='h-[70px] flex items-center'>
-            <div className='flex items-center transition-all'>
-                <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                    Biography
-                </span>
-            </div>
-        </div> */}
-
-                            {/* <div>
-            <p className='text-white text-justify text-[1em] font-normal opacity-90'>
-                {personInfo?.biography}
-            </p>
-        </div> */}
-
-                            {/* DEPARTMENT */}
-                            {/* <div className='flex items-center my-4'>
-            <div className='flex items-center transition-all'>
-                <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                    Personal Information
-                </span>
-            </div>
-        </div> */}
-
-                            <div className='flex gap-x-4'>
-
-                                {/* <div className='w-[20%] bg-[#141414]'>
-                <div className='rounded border-[1px] border-white p-2'>
-                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>Known For</span>
-                    </div>
-                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>{personInfo?.known_for_department}</span>
-                    </div>
-                </div>
-            </div> */}
-
-                                {/* <div className='w-[20%] bg-[#141414]'>
-                <div className='rounded border-[1px] border-white p-2'>
-                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>Gender</span>
-                    </div>
-                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>{getGender(personInfo?.gender)}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className='w-[20%] bg-[#141414]'>
-                <div className='rounded border-[1px] border-white p-2'>
-                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>Place of Birth</span>
-                    </div>
-                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>{personInfo?.place_of_birth}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className='w-[20%] bg-[#141414]'>
-                <div className='rounded border-[1px] border-white p-2'>
-                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>Birthday</span>
-                    </div>
-                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>{personInfo?.birthday}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className='w-[20%] bg-[#141414]'>
-                <div className='rounded border-[1px] border-white p-2'>
-                    <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span>Age</span>
-                    </div>
-                    <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                        <span> ( 58 years old )</span>
-                    </div>
-                </div>
-            </div> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                className='h-[86vh] bg-cover bg-no-repeat py-4 lg:hidden md:hidden sm:block ms:block'>
                 <div className='grid grid-cols-12'>
                     <div className='col-span-12 px-6'>
                         <div className='w-full relative'>
@@ -328,62 +206,144 @@ const Person = () => {
                         </div>
                     </div>
 
+                    <div className={`col-span-12 border-white border-[1px] rounded z-[1000000] bg-black w-full opacity-90 information-drawer ${isShowMoreInfoForMobile ? 'open' : 'close'}`}>
+                        <div
+                            onClick={() => {
+                                setIsShowMoreInfoForMobile(!isShowMoreInfoForMobile)
+                            }}
+                            className='absolute right-[45%] -top-3'>
+                            <VscTriangleDown size={32} fill='#ffffff' />
+                        </div>
+                        <div className='p-4 '>
+                            <div>
+                                <h1 className='text-white inline text-[3rem] font-bold'>
+                                    <a className='hover:text-white'
+                                        href='/person/6384-keanu-reeves'>
+                                        {personInfo?.name}
+                                    </a>
+                                </h1>
+                            </div>
+
+                            <div>
+                                <div className='flex items-center transition-all'>
+                                    <span className='text-[1.2em] mt-[0.80rem] font-semibold text-white'>
+                                        Biography
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p className='text-white text-justify text-[1em] font-normal opacity-90'>
+                                    {personInfo?.biography?.slice(0, isTruncateText ? 350 : personInfo?.biography?.length)}
+                                    {" "}
+                                    <span
+                                        onClick={() => setIsTruncateText(!isTruncateText)}
+                                        className='text-red-400 text-[1.1em]'
+                                    >
+                                        {isTruncateText ? <>more...</> : <>less...</>}
+                                    </span>
+                                </p>
+                            </div>
+
+                            {/* DEPARTMENT */}
+                            <div className='flex items-center my-4'>
+                                <div className='flex items-center transition-all'>
+                                    <span className='text-[1.2em] mt-[0.30rem] font-semibold text-white'>
+                                        Personal Information
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className='grid grid-cols-12 gap-4'>
+                                <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Known For</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.known_for_department}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Gender</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{getGender(personInfo?.gender)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Place of Birth</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.place_of_birth}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Birthday</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>{personInfo?.birthday}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Age</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span> (
+                                                {/* {getCurrentAge(personInfo?.birthday)}  */}
+                                                58 years old )</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {personInfo?.deathday && <div className='col-span-6 bg-[#141414]'>
+                                    <div className='rounded border-[1px] border-white p-2'>
+                                        <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span>Death</span>
+                                        </div>
+                                        <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                            <span> {personInfo?.deathday} </span>
+                                        </div>
+                                    </div>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+
                     <div className='col-span-12 mt-10 flex justify-center'>
                         <button className='flex justify-end items-center px-6 bg-[#6d6d6eb3] text-white text-[17px] py-2 rounded font-bold select-none'
                             onClick={() => {
-                                console.log('HELLO JOHN WICK')
+                                setIsShowMoreInfoForMobile(true)
                             }}
                         >
                             <AiOutlineInfoCircle size={32} className='mr-3' />
-                            Information
+                            More Information
                         </button>
                     </div>
-
                 </div>
             </div>
 
-
-
-            {/* Similar movies section */}
             <div className='py-20'>
-                {/* <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2 mb-2 flex items-center'>
-                    <h3 className='text-white text-[1.3em] font-semibold'>Known For</h3>
-                </div> */}
-                {/* <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
-                    <div className='grid grid-cols-12 gap-2'>
-                        {Array(20)?.fill(20)?.map((ele, ind) => {
-                            return (
-                                <div className='p-2 lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6' key={ele?.id || ind}>
-                                    <MovieCard
-                                        image={`${TMDB_URL}${ele?.poster_path || ''}`}
-                                        url={`/watch/${ele?.id}?type=movie`}
-                                    />
-                                </div>
-                            )
-                        })
-                        }
-                    </div>
-                </div> */}
-                {/* <div className='mt-10'>
-                    <ATMInputPagination
-                        totalPages={totalPage}
-                        currentPage={page}
-                        isHover={isHover}
-                        onRemoveToolTip={() => {
-                            setIsHover(false)
-                        }}
-                        onChange={(pageNumber) => {
-                            if (pageNumber <= totalPage) {
-                                setPage(pageNumber)
-                            } else {
-                                setIsHover(true)
-                            }
-                        }}
-                    />
-                </div> */}
             </div>
+
             <Footer />
-        </React.Fragment>
+        </React.Fragment >
     )
 
 }
