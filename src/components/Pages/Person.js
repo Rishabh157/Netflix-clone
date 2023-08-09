@@ -17,24 +17,26 @@ import { VscTriangleDown } from 'react-icons/vsc';
 const Person = () => {
 
 
+    const { id , name} = useParams();
+
+    // console.log('castID =>', id , name)
+
+    const [searchParams] = useSearchParams();
     const [personId, setPersonId] = useState('6384');
     const [personInfo, setPersonInfo] = useState({})
 
     const [isTruncateText, setIsTruncateText] = useState(true);
     const [isShowMoreInfoForMobile, setIsShowMoreInfoForMobile] = useState(false);
 
-    const { id } = useParams();
-    const [searchParams] = useSearchParams();
-
-    const [urlType, setUrlType] = useState('');
+    // const [urlType, setUrlType] = useState('');
 
     // this state handle ATMInputPagination
-    const [totalPage, setTotalPage] = useState();
-    const [page, setPage] = useState(1 || 1);
-    const [isHover, setIsHover] = useState(false);
+    // const [totalPage, setTotalPage] = useState();
+    // const [page, setPage] = useState(1 || 1);
+    // const [isHover, setIsHover] = useState(false);
 
 
-    const [movieData, setMovieData] = useState({});
+    // const [movieData, setMovieData] = useState({});
 
     // const [similarMoviesData, setSimilarMoviesData] = useState([]);
     // const [trailerUrlKey, setTrailerUrlKey] = useState('');
@@ -132,8 +134,8 @@ const Person = () => {
                                 </div>
                             </div>
                             <div className='flex gap-x-4'>
-                                <div className='w-[20%] bg-[#141414]'>
-                                    <div className='rounded border-[1px] border-white p-2'>
+                                <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                    <div className='rounded p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                             <span>Known For</span>
                                         </div>
@@ -142,8 +144,8 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='w-[20%] bg-[#141414]'>
-                                    <div className='rounded border-[1px] border-white p-2'>
+                                <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                    <div className='rounded p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                             <span>Gender</span>
                                         </div>
@@ -152,8 +154,8 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='w-[20%] bg-[#141414]'>
-                                    <div className='rounded border-[1px] border-white p-2'>
+                                <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                    <div className='rounded p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                             <span>Place of Birth</span>
                                         </div>
@@ -162,8 +164,8 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='w-[20%] bg-[#141414]'>
-                                    <div className='rounded border-[1px] border-white p-2'>
+                                <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                    <div className='rounded p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                             <span>Birthday</span>
                                         </div>
@@ -172,8 +174,8 @@ const Person = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='w-[20%] bg-[#141414]'>
-                                    <div className='rounded border-[1px] border-white p-2'>
+                                <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                    <div className='rounded p-2'>
                                         <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
                                             <span>Age</span>
                                         </div>

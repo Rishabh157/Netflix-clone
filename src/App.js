@@ -27,7 +27,7 @@ const App = () => {
         <Route path='/browse' element={<Browse />} />
         <Route path='/YourAccount' element={<YourAccount />} />
         <Route path='/watch/:id' element={<SingleWatchPage />} />
-        <Route path='/person/:id' element={<Person />} />
+        <Route path='/person/:id/:name' element={<Person />} />
       </Routes> 
     </BrowserRouter>
   );

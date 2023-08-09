@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 const CastCard = ({ castId, image, originalName, characterName }) => {
     return (
-        <Link to={`/charchter/${castId}`} className='mx-1 text-white'>
+        <Link
+            className='mx-1 text-white'
+            to={`/person/${castId}/${originalName?.replaceAll(' ', '-')?.toLowerCase()}`}
+        >
             <div className='border-[1px] rounded border-[#ffffff33] h-[260px]'>
                 <div className='relative bg-black h-[175px] w-[138px] rounded-top'>
                     <img
