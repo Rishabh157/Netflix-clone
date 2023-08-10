@@ -96,13 +96,13 @@ const SingleWatchPage = () => {
 
 
     useEffect(() => {
-        if(searchParams.get('type')) {
+        if (searchParams.get('type')) {
             setUrlType(searchParams.get('type'));
         } else {
             setUrlType(searchParams.get('id'));
         };
     }, [searchParams]);
-   
+
     return (
         <React.Fragment>
 
@@ -115,17 +115,16 @@ const SingleWatchPage = () => {
                 disableControls={1}
                 onClose={() => {
                     setIsShowTrailerModal(false)
-                    setTrailerUrlKey('')
                 }}
             />
 
-            {/* this is for Lg and Md */}
+            {/* this is for lg and md */}
             <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
-                className='h-[600px] bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
+                className='2xxl:h-[70vh] 2xl:h-[75vh] xl:h-screen lg:h-screen bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
 
                 <div className='grid grid-cols-12'>
                     <div className='col-span-3'>
-                        <div className='h-[500px] relative '>
+                        <div className='h-[90vh] relative '>
                             <img
                                 src={`${TMDB_URL}${movieData?.poster_path}`}
                                 alt='pirates'
@@ -134,21 +133,22 @@ const SingleWatchPage = () => {
                         </div>
                     </div>
 
-                    <div className='col-span-9 py-14 px-6'>
-                        <div className='h-full w-full '>
-                            <h1 className='text-white font-bold inline lg:text-[2.2rem] md:text-[2.0rem] sm:text-[1rem] ms:text-[0.8rem]'>
-                                <a className='hover:text-white '
-                                    href='/'>
+                    <div className='col-span-9 px-6 2xxl:py-6 xl:py-8 lg:py-14 md:py-14 sm:py-14 ms:py-14'>
+                        <div>
+                            {/* movie title or name heading */}
+                            <h1 className='text-white font-bold inline 2xxl:text-[3.2rem] xl:text-[2.2rem] lg:text-[2.2rem] md:text-[2.0rem] sm:text-[1rem] ms:text-[0.8rem]'>
+                                <h1 className='hover:text-white'>
                                     {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
                                     <span className='tag-release-date opacity-80 px-2 font-normal'>
                                         {
                                             urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null
                                         }
                                     </span>
-                                </a>
+                                </h1>
                             </h1>
 
-                            <div>
+                            {/* movie genres and running time */}
+                            <div className='mt-3'>
                                 <span className='px-[0.4rem] py-[0.2rem] rounded-[3px] text-[14px] border-white border-[1px] opacity-80 text-white' >
                                     UA
                                 </span>
@@ -161,14 +161,15 @@ const SingleWatchPage = () => {
 
                                 <span className='text-white text-[15px]'>
                                     {movieData?.genres?.map((ele) => ele.name).join(' , ')}
-                                    {/* Adventure, Action, Fantasy */}
                                     {movieData?.release_date && <BsDot className='inline' fill='#ffffff' />}
+                                    {" "}
                                     {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).hours + 'h'}
                                     {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).minutes + 'm'}
                                 </span>
                             </div>
 
-                            <div className='h-[90px] flex items-center trailer-play-btns'>
+                            {/* trailer play button */}
+                            <div className='flex items-center py-6 trailer-play-btns'>
                                 <div
                                     onClick={() => {
                                         setIsShowTrailerModal(true);
@@ -182,14 +183,16 @@ const SingleWatchPage = () => {
                                 </div>
                             </div>
 
+                            {/* movie tag line */}
                             <div>
                                 <span className='text-white text-[1.1em] font-normal opacity-70 italic'>
                                     {movieData?.tagline}
                                 </span>
                             </div>
 
+                            {/* movie overview */}
                             <div className='mt-[10px] mb-[8px]'>
-                                <h2 className='text-white text-[1.3em] font-semibold'>Overview</h2>
+                                <h2 className='text-white text-[1.2em] font-semibold'>Overview</h2>
                                 <div className='mt-2' dir='auto'>
                                     <p className='text-white text-justify leading-6 text-[1em]'>
                                         {movieData?.overview}
@@ -197,6 +200,7 @@ const SingleWatchPage = () => {
                                 </div>
                             </div>
 
+                            {/* movie crew */}
                             <div className='directors-name mt-4 grid grid-cols-12'>
 
                                 <div className='col-span-4'>
@@ -235,18 +239,16 @@ const SingleWatchPage = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
-            {/* this is for Sm and MS */}
+            {/* this is for sm and ms */}
             <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
-                className='h-[90vh] bg-cover bg-no-repeat px-8 py-6 lg:hidden md:hidden sm:block ms:block'>
-                <div className='grid grid-cols-12'>
+                className='sm:h-[90vh] ms:h-[90vh] bg-cover bg-no-repeat px-8 py-6 lg:hidden md:hidden sm:block ms:block'>
 
+                <div className='grid grid-cols-12'>
                     <div className='col-span-12'>
-                        <div className='w-full relative'>
+                        <div className='h-full rounded relative'>
                             <img
                                 src={`${TMDB_URL}${movieData?.poster_path}`}
                                 alt='pirates'
@@ -292,37 +294,35 @@ const SingleWatchPage = () => {
                 </div>
             </div>
 
+            {/* movie cast slider */}
             <div className='mt-10'>
                 <CastSlider data={movieData?.credits?.cast} />
             </div>
 
-
-            {/* Similar movies section */}
+            {/* similar movies section */}
             <div className='py-20'>
-                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2 mb-2 flex items-center'>
-                    <h2 className='slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium cursor-pointer'>
+                <div className='flex items-center mb-2 lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                    <h2 className='slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block 2xxl:text-[24px] xl:text-[22px] lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium'>
                         Similar Movies
                     </h2>
-                    <span className='text-cyan-400 flex pl-2 text-[12px] explore-all-text'> Explore All  </span>
                 </div>
 
-
                 <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
-                    <div className='grid grid-cols-12 gap-2'>
-                        {similarMoviesData?.map((ele, ind) => {
+                    <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
+                        {similarMoviesData?.map((ele) => {
                             return (
-                                <div className='p-2 lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6' key={ele?.id || ind}>
-                                    <MovieCard
-                                        image={`${TMDB_URL}${ele?.poster_path || ''}`}
-                                        url={`/watch/${ele?.id}?type=movie`}
-                                    />
-                                </div>
+                                <MovieCard
+                                    key={ele?.id}
+                                    image={`${TMDB_URL}${ele?.poster_path || ''}`}
+                                    url={`/watch/${ele?.id}?type=movie`}
+                                />
                             )
                         })
                         }
                     </div>
                 </div>
 
+                {/* pagination */}
                 <div className='mt-10'>
                     <ATMInputPagination
                         totalPages={totalPage}
@@ -340,6 +340,7 @@ const SingleWatchPage = () => {
                         }}
                     />
                 </div>
+
             </div>
             <Footer />
         </React.Fragment>

@@ -3,12 +3,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     screens: {
-      ms:'346px',
+      ms: '346px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      '2xl': '1536px'
+      '2xl': '1536px',
+      '2xxl': '1920px',
     },
     backgroundImage: {
       'page-btn': 'linear-gradient(180deg, #e6e6e6, #ddd)',
@@ -40,7 +41,7 @@ module.exports = {
         'gray-light': '#f4f4f4',
         'check-box': '#737373',
         'info': '#e87c03',
-        'card-title' : '#e5e5e5'
+        'card-title': '#e5e5e5'
       },
       transitionTimingFunction: {
         'in-btn': 'cubic-bezier(0.5, 0, 0.1, 1)',
@@ -50,13 +51,13 @@ module.exports = {
         '0': '0ms',
         '250': '250ms',
       },
-      keyframes : {
-         'moviepulse' : { 
-          '50%' : { opacity : '0.5' }
-          }
+      keyframes: {
+        'moviepulse': {
+          '50%': { opacity: '0.5' }
+        }
       },
-      animation : {
-        'movie-card-pulse' : 'moviepulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
+      animation: {
+        'movie-card-pulse': 'moviepulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
       }
     },
   },

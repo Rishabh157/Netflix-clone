@@ -107,7 +107,7 @@ const Person = () => {
                         <div className='h-full w-full '>
                             <h1 className='text-white font-bold inline lg:text-[2.8rem] md:text-[2.4rem] sm:text-[1rem] ms:text-[0.8rem]'>
                                 <a className='hover:text-white '
-                                    href='/person/6384-keanu-reeves'>
+                                    href='/person/6384/keanu-reeves'>
                                     {personInfo?.name}
                                 </a>
                             </h1>

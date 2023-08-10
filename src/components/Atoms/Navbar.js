@@ -62,7 +62,9 @@ const Navbar = ({ bgColor }) => {
                         <div className='ml-3 flex ms:hidden sm:hidden md:hidden lg:block'>
                             <ul className='flex justify-between items-center'>
                                 <li className='text-white font-bold text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    Home
+                                    <Link to='/browse' className='hover:text-white'>
+                                        Home
+                                    </Link>
                                 </li>
                                 <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
                                     TV Shows
