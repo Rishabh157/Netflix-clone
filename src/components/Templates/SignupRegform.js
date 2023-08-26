@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Steps from '../Atoms/Steps';
 import Input from '../Atoms/Input';
 import Button from '../Atoms/Button';
-import { emailRegExp } from '../../constants/regularExpressions';
 import { useNavigate } from 'react-router-dom';
+import { BiShow, BiHide } from 'react-icons/bi';
+import { emailRegExp } from '../../constants/regularExpressions';
 
 const SignupRegform = () => {
 
@@ -12,6 +13,8 @@ const SignupRegform = () => {
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [isValidPassword, setIsValidPassword] = useState(false);
+    const [isShowPass, setIsShowPass] = useState(false);
+
 
     const handleChangeEmail = (value) => {
         setEmail(value);
@@ -80,15 +83,22 @@ const SignupRegform = () => {
                         onChange={(e) => handleChangeEmail(e.target.value)}
                     />
                 </div>
-                <div className='mt-2'>
+                <div className='mt-2 relative'>
                     <Input
+                        autoFocus={true}
                         label='Add a password'
                         className={`text-[16px] text-black rounded-[2px] ${password?.length <= 4 ? 'border-[1px] border-black focus:border-black' : ''}`}
                         labelClassName='text-black font-bold'
                         value={password}
+                        type={isShowPass ? 'text' : 'password'}
                         isSuccess={isValidPassword}
                         onChange={(e) => handleChangePassword(e.target.value)}
                     />
+                    <div tabIndex={0} className='absolute top-[36%] right-4 cursor-pointer' onClick={() => {
+                        setIsShowPass(!isShowPass)
+                    }}>
+                        {isShowPass ? <BiShow size={18} /> : <BiHide size={18} />}
+                    </div>
                 </div>
                 <div className='mt-4'>
                     <Button

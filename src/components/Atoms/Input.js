@@ -12,6 +12,7 @@ const Input = ({
     readOnly,
     className,
     labelClassName,
+    autoFocus = false,
     onChange,
     onFocus,
     onBlur,
@@ -27,6 +28,7 @@ const Input = ({
             <input
                 type={type}
                 name={name}
+                autoFocus={autoFocus}
                 className={twMerge(`form-control placeholder:select-none shadow-none text-white text-[15px] pt-[1.5rem] pb-[0.5rem] px-[1rem] placeholder:text-white focus:text-white focus:bg-transparent
                  ${isFocusBorderBlack && 'focus:border-black'}
                  ${isSuccess && 'focus:border-green-400 border-green-400'} 

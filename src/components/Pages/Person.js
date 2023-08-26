@@ -1,71 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
-// import { getDateIntoDDMMYYY } from '../../common/date';
-// import TrailerPlayModel from '../Atoms/TrailerPlayModel';
-// import { MediaType } from '../../constants/enum';
-// import CastSlider from '../Templates/CastSlider';
-// import MovieCard from '../Atoms/MoviesCard';
-// import ATMInputPagination from '../Atoms/ATMInputPagination';
-// import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { useGetPersonDetailsQuery } from '../../redux/services/PersonService';
 import { VscTriangleDown } from 'react-icons/vsc';
+import MovieCard from '../Atoms/MoviesCard';
+import { useGetPersonKnownForMoviesListQuery } from '../../redux/services/PersonService';
 
 const Person = () => {
 
+    const { id } = useParams();
+    const location = useLocation();
 
-    const { id , name} = useParams();
 
-    // console.log('castID =>', id , name)
-
-    const [searchParams] = useSearchParams();
-    const [personId, setPersonId] = useState('6384');
     const [personInfo, setPersonInfo] = useState({})
+    const [personSimilarMoviesList, setPersonSimilarMoviesList] = useState({});
 
     const [isTruncateText, setIsTruncateText] = useState(true);
     const [isShowMoreInfoForMobile, setIsShowMoreInfoForMobile] = useState(false);
 
-    // const [urlType, setUrlType] = useState('');
+    // rtk query to get the details of actor
+    const { isLoading, isFetching, data } = useGetPersonDetailsQuery(id);
 
-    // this state handle ATMInputPagination
-    // const [totalPage, setTotalPage] = useState();
-    // const [page, setPage] = useState(1 || 1);
-    // const [isHover, setIsHover] = useState(false);
+    // rtk query to get the similar movies of actor
+    const {
+        isLoading: isSimilarMoviesLoading,
+        isFetching: isSimilarMoviesFetching,
+        data: similarMoviesData,
+    } = useGetPersonKnownForMoviesListQuery(id);
 
 
-    // const [movieData, setMovieData] = useState({});
+    useEffect(() => {
+        if (!isSimilarMoviesLoading && !isSimilarMoviesFetching) {
+            setPersonSimilarMoviesList(similarMoviesData)
+        }
+    }, [
+        isSimilarMoviesLoading,
+        isSimilarMoviesFetching,
+        similarMoviesData
+    ])
 
-    // const [similarMoviesData, setSimilarMoviesData] = useState([]);
-    // const [trailerUrlKey, setTrailerUrlKey] = useState('');
-    // const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
-
-    const { isLoading, isFetching, data } = useGetPersonDetailsQuery(personId);
-
-    // const {
-    //     isLoading: isSimilarLoading,
-    //     isFetching: isSimilarFetching,
-    //     data: similarData
-    // } = useGetSimilarShowsOrMoviesQuery({ id: '6384', type: 'MOVIE', page: 1 });
-
-    // useEffect(() => {
-    //     if (!isSimilarLoading && !isSimilarFetching) {
-    //         console.log(similarData)
-    //         // setSimilarMoviesData(similarData?.results)
-    //         // setTotalPage(similarData?.total_pages)
-    //     }
-    // }, [isSimilarLoading, isSimilarFetching, similarData, page])
-
-    // const getCurrentAge = (strDate) => {
-    //     const [year] = strDate?.split('-')
-    //     const currentYear = new Date()
-    //     return String(currentYear?.getFullYear() - parseInt(year))
-    // }
-
-    // console.log(getCurrentAge('1980-04-03'))
-
+    // to get the gander of actor
     const getGender = (nums) => {
         switch (nums) {
             case 1:
@@ -80,7 +57,6 @@ const Person = () => {
     useEffect(() => {
         if (!isLoading && !isFetching) {
             setPersonInfo(data)
-            // console.log('person data ', data)
         };
     }, [isLoading, isFetching, data]);
 
@@ -91,7 +67,7 @@ const Person = () => {
 
             {/* this is for Lg and Md */}
             <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
-                className='h-[600px] bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
+                className='h-auto  bg-no-repeat px-10 py-10 lg:block md:block sm:hidden ms:hidden'>
                 <div className='grid grid-cols-12'>
                     <div className='col-span-3'>
                         <div className='h-[500px] relative '>
@@ -104,10 +80,10 @@ const Person = () => {
                     </div>
 
                     <div className='col-span-9 px-3'>
-                        <div className='h-full w-full '>
+                        <div className='h-full w-full'>
                             <h1 className='text-white font-bold inline lg:text-[2.8rem] md:text-[2.4rem] sm:text-[1rem] ms:text-[0.8rem]'>
                                 <a className='hover:text-white '
-                                    href='/person/6384/keanu-reeves'>
+                                    href={`${location?.pathname}`}>
                                     {personInfo?.name}
                                 </a>
                             </h1>
@@ -121,7 +97,14 @@ const Person = () => {
 
                             <div>
                                 <p className='text-white text-justify text-[1em] font-normal opacity-90'>
-                                    {personInfo?.biography}
+                                    {personInfo?.biography?.slice(0, isTruncateText ? 700 : personInfo?.biography?.length)}
+                                    {" "}
+                                    <span
+                                        onClick={() => setIsTruncateText(!isTruncateText)}
+                                        className='text-red-400 text-[1.1em] cursor-pointer'
+                                    >
+                                        {isTruncateText ? <>more...</> : <>less...</>}
+                                    </span>
                                 </p>
                             </div>
 
@@ -341,13 +324,34 @@ const Person = () => {
                 </div>
             </div>
 
-            <div className='py-20'>
-            </div>
 
+            {/* similar movies section */}
+            <div className='py-20'>
+                <div className='flex items-center mb-2 lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                    <h2 className='slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block 2xxl:text-[24px] xl:text-[22px] lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium'>
+                        Similar Movies
+                    </h2>
+                </div>
+
+                <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                    <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
+                        {personSimilarMoviesList?.cast?.map((ele) => {
+                            // console.log('after map =>', ele)
+                            return (
+                                <MovieCard
+                                    key={ele?.id}
+                                    image={`${TMDB_URL}${ele?.poster_path || ''}`}
+                                    url={`/watch/${ele?.id}?type=movie`}
+                                />
+                            )
+                        })
+                        }
+                    </div>
+                </div>
+            </div>
             <Footer />
         </React.Fragment >
     )
-
 }
 
 export default Person;

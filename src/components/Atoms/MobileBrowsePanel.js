@@ -1,10 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MobileBrowsePanel = () => {
     return (
         <div className='flex flex-col justify-between items-center py-4 px-2 w-[300%] text-white rounded-[4px] border-notifi-border border-[1px] child-browse'>
- 
-            <span className='mb-2 cursor-pointer'> HOME </span>
+            <span className='mb-2 cursor-pointer'>
+                <Link
+                    to='/browse'
+                    className='text-white'
+                >
+                    HOME
+                </Link>
+            </span>
             <span className='mb-2 cursor-pointer'> Tv Shows </span>
             <span className='mb-2 cursor-pointer'> Movies </span>
             <span className='mb-2 cursor-pointer'> My List </span>

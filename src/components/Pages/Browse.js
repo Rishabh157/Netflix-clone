@@ -33,7 +33,6 @@ const Browse = () => {
                 setnavColor(false)
             }
         });
-
     }, []);
 
     return (

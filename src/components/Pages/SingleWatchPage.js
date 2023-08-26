@@ -136,7 +136,7 @@ const SingleWatchPage = () => {
                     <div className='col-span-9 px-6 2xxl:py-6 xl:py-8 lg:py-14 md:py-14 sm:py-14 ms:py-14'>
                         <div>
                             {/* movie title or name heading */}
-                            <h1 className='text-white font-bold inline 2xxl:text-[3.2rem] xl:text-[2.2rem] lg:text-[2.2rem] md:text-[2.0rem] sm:text-[1rem] ms:text-[0.8rem]'>
+                            <div className='text-white font-bold inline 2xxl:text-[3.2rem] xl:text-[2.2rem] lg:text-[2.2rem] md:text-[2.0rem] sm:text-[1rem] ms:text-[0.8rem]'>
                                 <h1 className='hover:text-white'>
                                     {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
                                     <span className='tag-release-date opacity-80 px-2 font-normal'>
@@ -145,7 +145,7 @@ const SingleWatchPage = () => {
                                         }
                                     </span>
                                 </h1>
-                            </h1>
+                            </div>
 
                             {/* movie genres and running time */}
                             <div className='mt-3'>
@@ -314,7 +314,7 @@ const SingleWatchPage = () => {
                                 <MovieCard
                                     key={ele?.id}
                                     image={`${TMDB_URL}${ele?.poster_path || ''}`}
-                                    url={`/watch/${ele?.id}?type=movie`}
+                                    url={`/watch/${ele?.id}/?type=movie`}
                                 />
                             )
                         })

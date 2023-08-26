@@ -18,7 +18,6 @@ const CastSlider = ({ data }) => {
                             image={`${TMDB_URL}${cast?.profile_path || ''}`}
                             originalName={cast?.original_name}
                             characterName={cast?.character}
-
                         />
                     )
                 })}
