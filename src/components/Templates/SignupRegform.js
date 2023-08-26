@@ -30,7 +30,6 @@ const SignupRegform = () => {
 
     const handleSubmit = (email, password) => {
 
-        console.log(isValid)
         if (isValid) {
             if (isValidPassword) {
                 navigate('/signup')
