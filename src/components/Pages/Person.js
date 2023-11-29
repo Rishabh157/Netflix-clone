@@ -60,6 +60,11 @@ const Person = () => {
         };
     }, [isLoading, isFetching, data]);
 
+    // when component loaded first time it scroll on the top
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
     return (
         <React.Fragment>
 
@@ -103,7 +108,7 @@ const Person = () => {
                                         onClick={() => setIsTruncateText(!isTruncateText)}
                                         className='text-red-400 text-[1.1em] cursor-pointer'
                                     >
-                                        {isTruncateText ? <>more...</> : <>less...</>}
+                                        {isTruncateText ? <>show more...</> : <>show less...</>}
                                     </span>
                                 </p>
                             </div>

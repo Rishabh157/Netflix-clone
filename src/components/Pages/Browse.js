@@ -35,9 +35,9 @@ const Browse = () => {
         });
     }, []);
 
+
     return (
         <React.Fragment>
-
             <Navbar
                 bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'}
             />
@@ -52,7 +52,6 @@ const Browse = () => {
             </>
             }
             <Footer footerColor='bg-[#141414] mt-24' />
-
         </React.Fragment>
     )
 }

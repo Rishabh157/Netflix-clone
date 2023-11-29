@@ -8,11 +8,20 @@ import { useLocation } from 'react-router-dom';
 const getBackgroundColor = (route) => {
 
     switch (route) {
-        case '/':
-        case '/login':
-            return '#FFFFF7';
+        case '/signup/registration':
+            return '#454545';
+        case '/signup/regform':
+            return '#454545';
+        case '/signup':
+            return '#454545';
+        case '/signup/planform':
+            return '#454545';
+        case '/signup/paymentPicker':
+            return '#454545';
+        case '/signup/creditoption':
+            return '#454545';
         default:
-            return '#454545 ';
+            return '#FFFFF7';
     }
 }
 
@@ -21,6 +30,8 @@ const Footer = ({ footerColor = 'bg-white' }) => {
 
     const { pathname } = useLocation();
     const socialMediaIconColor = getBackgroundColor(pathname);
+
+    console.log("footerColor", footerColor)
 
     return (
         <div className={`pt-10 py-5 ${footerColor}`}>
@@ -32,14 +43,14 @@ const Footer = ({ footerColor = 'bg-white' }) => {
                     <ul className='flex justify-between'>
                         <li>
                             <a
-                                href='http://localhost:3000/' >
+                                href='https://www.facebook.com/profile.php?id=100081200933484' >
                                 <FaFacebookF fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
 
                         <li>
                             <a
-                                href='https://www.instagram.com/rishabhgour0007/' target='_blank' rel='noreferrer'>
+                                href='https://www.instagram.com/rishabh_gour7/' target='_blank' rel='noreferrer'>
                                 <AiOutlineInstagram fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>

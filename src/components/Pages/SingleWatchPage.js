@@ -103,6 +103,12 @@ const SingleWatchPage = () => {
         };
     }, [searchParams]);
 
+
+    // when component loaded first time it scroll on the top
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [id]);
+
     return (
         <React.Fragment>
 

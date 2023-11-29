@@ -3,9 +3,10 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 import { TMDB_URL } from '../../constants/constants';
 import { useGetPlayTrailerUrlQuery } from '../../redux/services/WatchService';
-import { MediaType } from '../../constants/enum';
 import TrailerPlayModel from './TrailerPlayModel';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
+import { MediaType } from '../../constants/enum';
 
 const Banner = ({ bannerId, bannerImg, title, overview, }) => {
 
@@ -13,6 +14,7 @@ const Banner = ({ bannerId, bannerImg, title, overview, }) => {
     const [bannerIdState, setBannerIdState] = useState(null)
     const [trailerId, setTrailerId] = useState('');
 
+    const navigate = useNavigate();
 
     const {
         isLoading: trailerIsLoading,
@@ -140,7 +142,7 @@ const Banner = ({ bannerId, bannerImg, title, overview, }) => {
                         Play
                     </button>
 
-                    <button className={`flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none ${isPlay && 'opacity-0 transition-all duration-300'}`}>
+                    <button onClick={() => navigate(`/watch/${bannerId}?type=${MediaType.TV}`)} className={`flex items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none ${isPlay && 'opacity-0 transition-all duration-300'}`}>
                         <AiOutlineInfoCircle size={32} color='' className='mr-1' />
                         More Info
                     </button>

@@ -7,7 +7,7 @@ const ATMInputPagination = ({ totalPages, currentPage, onChange, isHover, onRemo
         <div className='flex justify-center'>
             <div className='lg:w-[3.5%] md:w-[5.5%] sm:w-[10.5%] ms:w-[10.5%] relative' onMouseLeave={onRemoveToolTip}>
                 <input
-                    className='outline-none py-[6px] w-[100%] border-[4px] border-black text-center text-[14px] rounded-[2px]'
+                    className='outline-none py-[6px] w-[100%] border-[4px] border-[#141414] text-center text-[14px] rounded-[6px]'
                     type='number'
                     inputMode='numeric'
                     value={currentPage}
