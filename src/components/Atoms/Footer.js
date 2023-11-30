@@ -31,8 +31,6 @@ const Footer = ({ footerColor = 'bg-white' }) => {
     const { pathname } = useLocation();
     const socialMediaIconColor = getBackgroundColor(pathname);
 
-    console.log("footerColor", footerColor)
-
     return (
         <div className={`pt-10 py-5 ${footerColor}`}>
 
