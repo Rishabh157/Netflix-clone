@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { TMDB_URL } from '../../constants/constants';
 import Navbar from '../Atoms/Navbar';
 import Footer from '../Atoms/Footer';
@@ -17,6 +17,7 @@ import MovieCard from '../Atoms/MoviesCard';
 import ATMInputPagination from '../Atoms/ATMInputPagination';
 import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import ATMLoader from '../Atoms/ATMLoader';
 
 
 const SingleWatchPage = () => {
@@ -34,6 +35,7 @@ const SingleWatchPage = () => {
 
 
     const [movieData, setMovieData] = useState({});
+    const [topRolesOfCreation, setTopRolesOfCreation] = useState([])
     const [similarMoviesData, setSimilarMoviesData] = useState([]);
     const [trailerUrlKey, setTrailerUrlKey] = useState('');
     const [isShowTrailerModal, setIsShowTrailerModal] = useState(false);
@@ -73,13 +75,15 @@ const SingleWatchPage = () => {
     useEffect(() => {
         if (!isLoading && !isFetching) {
             setMovieData(data);
-            // const TOP_ROLES = ['Producer', 'Director', 'Screenplay']
-            // const getTopThreeDepartment = data?.credits?.crew?.map((ele) => {
-            //     if (ele?.job === 'Producer') {
-            //         return ele
-            //     }
-            // })
-            // console.log("okookokookok => ", getTopThreeDepartment)
+
+            const getDirector = data?.credits?.crew?.find((ele) => ele?.job === 'Director')
+            const getProducer = data?.credits?.crew?.find((ele) => ele?.job === 'Producer')
+            const getScreenPlay = data?.credits?.crew?.find((ele) => ele?.job === 'Screenplay')
+            const getSoundJob = data?.credits?.crew?.find((ele) => ele?.job === 'Music')
+
+            // Set top roles three roles for movie or series
+            setTopRolesOfCreation([getDirector, getProducer, getScreenPlay, getSoundJob])
+
         };
     }, [isLoading, isFetching, data]);
 
@@ -116,7 +120,6 @@ const SingleWatchPage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
-
 
     return (
         <React.Fragment>
@@ -219,41 +222,22 @@ const SingleWatchPage = () => {
                                         </div>
 
                                         {/* movie crew */}
-                                        <div className='directors-name mt-4 grid grid-cols-12'>
+                                        <div className='directors-name mt-4 grid grid-cols-12 gap-y-4'>
+                                            {topRolesOfCreation?.map((ele, ind) => {
+                                                return ele !== undefined && (
+                                                    <div className='col-span-4' key={ind}>
+                                                        <h4 className='text=[1em] font-bold text-white'>
+                                                            <Link className='hover:text-slate-300' to={`/person/${ele?.id}/${ele?.original_name?.replaceAll(' ', '-')?.toLowerCase()}`}>
+                                                                {ele?.original_name}
+                                                            </Link>
+                                                        </h4>
+                                                        <span className='text-[0.9em] text-white text-left'>
+                                                            {ele?.job}
+                                                        </span>
+                                                    </div>
 
-                                            <div className='col-span-4'>
-                                                <h4 className='text=[1em] font-bold text-white'>
-                                                    <a href='/watch/1'>
-                                                        Rob Marshall
-                                                    </a>
-                                                </h4>
-                                                <span className='text-[0.9em] text-white text-left'>
-                                                    Director
-                                                </span>
-                                            </div>
-
-                                            <div className='col-span-4'>
-                                                <h4 className='text=[1em] font-bold text-white'>
-                                                    <a href='/watch/1'>
-                                                        Terry Rossio
-                                                    </a>
-                                                </h4>
-                                                <span className='text-[0.9em] text-white text-left'>
-                                                    Screenplay
-                                                </span>
-                                            </div>
-
-                                            <div className='col-span-4'>
-                                                <h4 className='text=[1em] font-bold text-white'>
-                                                    <a href='/watch/1'>
-                                                        Ted Elliott
-                                                    </a>
-                                                </h4>
-                                                <span className='text-[0.9em] text-white text-left'>
-                                                    Screenplay
-                                                </span>
-                                            </div>
-
+                                                )
+                                            })}
                                         </div>
                                     </div>
                                 </div>
@@ -332,10 +316,10 @@ const SingleWatchPage = () => {
 
                             <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
                                 <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
-                                    {similarMoviesData?.map((ele) => {
+                                    {similarMoviesData?.map((ele, ind) => {
                                         return (
                                             <MovieCard
-                                                key={ele?.id}
+                                                key={ind}
                                                 image={`${TMDB_URL}${ele?.poster_path || ''}`}
                                                 url={`/watch/${ele?.id}/?type=movie`}
                                             />
@@ -365,9 +349,9 @@ const SingleWatchPage = () => {
                             </div>
 
                         </div>
-                        <Footer />
+                        <Footer footerColor='bg-[#141414] mt-24' />
                     </>
-                    : null
+                    : <ATMLoader />
             }
         </React.Fragment>
     )

@@ -6,6 +6,7 @@ import { useGetRandomBannerQuery } from '../../redux/services/BannerService';
 import Footer from '../Atoms/Footer';
 import { useSelector } from 'react-redux';
 import BrowseSliders from '../Templates/BrowseSliders';
+import ATMLoader from '../Atoms/ATMLoader';
 
 
 const Browse = () => {
@@ -36,22 +37,31 @@ const Browse = () => {
     }, []);
 
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+
     return (
         <React.Fragment>
-            <Navbar
-                bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'}
-            />
-            {searchValue?.length > 0 ? <SearchTemplate /> : <>
-                <Banner
-                    bannerId={banner?.id}
-                    bannerImg={banner?.backdrop_path}
-                    title={banner?.name}
-                    overview={banner?.overview}
-                />
-                <BrowseSliders />
-            </>
+            {
+                !isLoading ? <>
+                    <Navbar
+                        bgColor={navColor ? 'nav-bar-black' : 'nav-bar-tarnsparent'}
+                    />
+                    {searchValue?.length > 0 ? <SearchTemplate /> : <>
+                        <Banner
+                            bannerId={banner?.id}
+                            bannerImg={banner?.backdrop_path}
+                            title={banner?.name}
+                            overview={banner?.overview}
+                        />
+                        <BrowseSliders />
+                    </>
+                    }
+                    <Footer footerColor='bg-[#141414] mt-24' />
+                </> : <ATMLoader />
             }
-            <Footer footerColor='bg-[#141414] mt-24' />
         </React.Fragment>
     )
 }

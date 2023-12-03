@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Atoms/Header';
 import MainIndex from '../Templates/MainIndex';
 import SignUpRegistration from '../Templates/SignUpRegistration';
@@ -13,6 +13,10 @@ import { useLocation } from 'react-router-dom';
 const HomeRegister = () => {
 
     const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
 
     return (
         <div>

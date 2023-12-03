@@ -6,7 +6,7 @@ import { AiFillCaretDown, AiOutlineSearch } from 'react-icons/ai';
 import ProfilePanel from './ProfilePanel';
 import MobileBrowsePanel from './MobileBrowsePanel';
 import NotificationPanel from './NotificationPanel';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, setIsSearch } from '../../redux/slice/searchSlice';
 
@@ -15,6 +15,8 @@ const Navbar = ({ bgColor }) => {
     const [isNotificationShow, setIsNotificationShow] = useState(false);
     const { searchValue } = useSelector((state) => state.searchValue);
     const dispatch = useDispatch();
+
+    const { filterName } = useParams();
 
     //.............searching product after 100 ms and if min length is 3.............. //
     const debounce = (func) => {
@@ -66,20 +68,30 @@ const Navbar = ({ bgColor }) => {
                                         Home
                                     </Link>
                                 </li>
-                                <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    TV Shows
+                                <li className={`${filterName === 'tv' ? 'text-white font-bold' : 'text-white hover:text-gray-300'} font-light text-[14px] pl-6 transition`}>
+                                    <Link to='/browse/tv' className={`${filterName === 'tv' ? ' hover:text-white font-bold' : 'hover:text-white'}`}>
+                                        TV Shows
+                                    </Link>
                                 </li>
-                                <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    Movies
+                                <li className={`${filterName === 'movie' ? 'text-white font-bold' : 'text-white hover:text-gray-300'} font-light text-[14px] pl-6 transition`}>
+                                    <Link to='/browse/movie' className={`${filterName === 'movie' ? 'hover:text-white font-bold' : 'hover:text-white'}`}>
+                                        Movies
+                                    </Link>
                                 </li>
-                                <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    New & Popular
+                                <li className={`${filterName === 'discover' ? 'text-white font-bold' : 'text-white hover:text-gray-300'} font-light text-[14px] pl-6 transition`}>
+                                    <Link to='/browse/discover' className={`${filterName === 'discover' ? 'hover:text-white font-bold' : 'hover:text-white'}`}>
+                                        Documentries
+                                    </Link>
                                 </li>
-                                <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    My List
+                                <li className={`${filterName === 'action' ? 'text-white font-bold' : 'text-white hover:text-gray-300'} font-light text-[14px] pl-6 transition`}>
+                                    <Link to='/browse/action' className={`${filterName === 'action' ? 'hover:text-white font-bold' : 'hover:text-white'}`}>
+                                        Actions
+                                    </Link>
                                 </li>
-                                <li className='text-white font-light text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
-                                    Browse by Languages
+                                <li className={`${filterName === 'my-list' ? 'text-white font-bold' : 'text-white hover:text-gray-300'} font-light text-[14px] pl-6 transition`}>
+                                    <Link to='/browse/my-list' className={`${filterName === 'my-list' ? 'hover:text-white font-bold' : 'hover:text-white'}`}>
+                                        My List
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

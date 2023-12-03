@@ -11,7 +11,7 @@ const CrewSlider = ({ data }) => {
                 Crew
             </h1>
             <ScrollSlider
-                id={0}
+                id={1}
             >
                 {data?.map((cast, ind) => {
                     return (

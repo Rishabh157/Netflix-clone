@@ -8,6 +8,7 @@ import { useGetPersonDetailsQuery } from '../../redux/services/PersonService';
 import { VscTriangleDown } from 'react-icons/vsc';
 import MovieCard from '../Atoms/MoviesCard';
 import { useGetPersonKnownForMoviesListQuery } from '../../redux/services/PersonService';
+import ATMLoader from '../Atoms/ATMLoader';
 
 const Person = () => {
 
@@ -342,7 +343,6 @@ const Person = () => {
                             <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
                                 <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
                                     {personSimilarMoviesList?.cast?.map((ele) => {
-                                        // console.log('after map =>', ele)
                                         return (
                                             <MovieCard
                                                 key={ele?.id}
@@ -355,8 +355,8 @@ const Person = () => {
                                 </div>
                             </div>
                         </div>
-                        <Footer />
-                    </> : null
+                        <Footer footerColor='bg-[#141414] mt-24' />
+                    </> : <ATMLoader />
             }
         </React.Fragment >
     )

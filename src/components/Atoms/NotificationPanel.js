@@ -22,11 +22,13 @@ const NotificationPanel = ({ show, onClose }) => {
         <div
             onMouseLeave={onClose}
             className={`py-1 border-[1px] w-[420px] max-h-[400px] overflow-y-auto scroll-smooth absolute right-0 top-10 rounded-[2px] border-notifi-border child-notifi ${show && 'child-notifi-show'}`}>
-            {notifications?.map(ele => {
+            {notifications?.map((ele, ind) => {
                 return (
                     <Link
+                        key={ind}
+                        to={`/watch/${ele.id || ''}?type=movie`}
                         onClick={onClose}
-                        key={ele.id} to={`/watch/${ele.id || ''}?type=movie`}>
+                    >
                         <div className='flex p-3 border-b border-notifi-border group cursor-pointer hover:bg-black'>
                             <div>
                                 <img src={`${TMDB_URL}${ele.poster_path}`}
