@@ -26,7 +26,7 @@ const App = () => {
         {MainIndexPaths?.map((path, index) => <Route path={path} key={index} element={<HomeRegister />} />)}
         <Route path='/login' element={<Login />} />
         <Route path='/browse' element={<Browse />} />
-        <Route path='/YourAccount' element={<YourAccount />} />
+        <Route path='/account' element={<YourAccount />} />
         <Route path='/watch/:id' element={<SingleWatchPage />} />
         <Route path='/browse/:filterName' element={<FilterScreen />} />
         <Route path='/person/:id/:name' element={<Person />} />

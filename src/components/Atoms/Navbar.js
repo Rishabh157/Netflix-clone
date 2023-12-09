@@ -6,7 +6,7 @@ import { AiFillCaretDown, AiOutlineSearch } from 'react-icons/ai';
 import ProfilePanel from './ProfilePanel';
 import MobileBrowsePanel from './MobileBrowsePanel';
 import NotificationPanel from './NotificationPanel';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, setIsSearch } from '../../redux/slice/searchSlice';
 
@@ -17,6 +17,7 @@ const Navbar = ({ bgColor }) => {
     const dispatch = useDispatch();
 
     const { filterName } = useParams();
+    const location = useLocation();
 
     //.............searching product after 100 ms and if min length is 3.............. //
     const debounce = (func) => {
@@ -42,6 +43,7 @@ const Navbar = ({ bgColor }) => {
     // eslint-disable-next-line
     const optimizedFunc = useCallback(debounce(() => dispatch(setIsSearch(true))), []);
 
+
     return (
         <div className={`${bgColor} sticky top-0 z-50 py-4 lg:px-10 md:px-8 sm:px-4 ms:px-4`}>
 
@@ -63,7 +65,7 @@ const Navbar = ({ bgColor }) => {
 
                         <div className='ml-3 flex ms:hidden sm:hidden md:hidden lg:block'>
                             <ul className='flex justify-between items-center'>
-                                <li className='text-white font-bold text-[14px] pl-6 transition cursor-pointer hover:text-gray-300'>
+                                <li className={`text-white ${location.pathname === '/browse' ? 'font-bold' : ''}  text-[14px] pl-6 transition cursor-pointer hover:text-gray-300`}>
                                     <Link to='/browse' className='hover:text-white'>
                                         Home
                                     </Link>

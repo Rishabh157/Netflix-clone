@@ -3,6 +3,7 @@ import MovieCard from '../Atoms/MoviesCard';
 import { TMDB_URL } from '../../constants/constants';
 import { useSelector } from 'react-redux';
 import { useGetSearchMoviesMutation } from '../../redux/services/SearchService';
+import ATMSearchLoader from '../Atoms/ATMSearchLoader';
 
 const SearchTemplate = () => {
 
@@ -58,7 +59,10 @@ const SearchTemplate = () => {
                                     />
                                 </div>
                             )
-                        }) : <span className='text-white text-[32px]'> Loading ........</span>}
+                        }) : <div className='col-span-12'>
+                            <ATMSearchLoader />
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

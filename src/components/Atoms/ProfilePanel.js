@@ -51,7 +51,7 @@ const ProfilePanel = ({ isAccountPanel = false }) => {
 
                 <div className='flex items-center mb-3 px-1'>
                     {!isAccountPanel && <AiOutlineUser color='#c3b5b5' size={25} />}
-                    <Link to='/YourAccount'>
+                    <Link to='/account'>
                         <span className={`${!isAccountPanel && 'pl-3'} capitalize text-notifi-name text-[13px] cursor-pointer hover:underline`}>
                             account
                         </span>
