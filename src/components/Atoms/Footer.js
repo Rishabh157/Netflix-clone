@@ -41,36 +41,32 @@ const Footer = ({ footerColor = 'bg-white' }) => {
                     <ul className='flex justify-between'>
                         <li>
                             <a
-                                href='https://www.facebook.com/profile.php?id=100081200933484' >
-                                <FaFacebookF fill={socialMediaIconColor} size={25} />
+                                href='https://github.com/rishabh157' target='_blank' rel='noreferrer'>
+                                <BsGithub fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
-
                         <li>
                             <a
-                                href='https://www.instagram.com/rishabh_gour7/' target='_blank' rel='noreferrer'>
-                                <AiOutlineInstagram fill={socialMediaIconColor} size={25} />
+                                href='https://www.linkedin.com/in/rishabh-gour-3b0861221/' target='_blank' rel='noreferrer'>
+                                <AiFillLinkedin fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
-
                         <li>
                             <a
                                 href='https://twitter.com/Rishabhgour157' target='_blank' rel='noreferrer'>
                                 <BsTwitter fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
-
                         <li>
                             <a
-                                href='https://github.com/rishabh157' target='_blank' rel='noreferrer'>
-                                <BsGithub fill={socialMediaIconColor} size={25} />
+                                href='https://www.facebook.com/profile.php?id=100081200933484' >
+                                <FaFacebookF fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
-
                         <li>
                             <a
-                                href='https://www.linkedin.com/in/rishabh-gour-3b0861221/' target='_blank' rel='noreferrer'>
-                                <AiFillLinkedin fill={socialMediaIconColor} size={25} />
+                                href='https://www.instagram.com/rishabh_gour7/' target='_blank' rel='noreferrer'>
+                                <AiOutlineInstagram fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
                     </ul>
@@ -79,7 +75,7 @@ const Footer = ({ footerColor = 'bg-white' }) => {
                 <div className='col-span-10 mt-10'>
                     <div className='grid grid-cols-12'>
                         <div className='lg:col-span-1 md:col-span-1 sm:col-span-0 ms:col-span-1'></div>
-                        <div className='lg:col-span-6 md:col-span-6 sm:col-span-5 ms:col-span-11 lg:pl-6 md:pl-6 sm:pl-6 ms:pl-2'>
+                        <div className='lg:col-span-6 md:col-span-6 sm:col-span-5 ms:col-span-11 lg:pl-6 md:pl-6 sm:pl-0 ms:pl-2'>
                             <div className='text-footer-gray flex items-baseline'>
                                 <h1>Questions? Call</h1>
                                 <Link to='tel:9009648224' className='underline-none pl-2 font-mono hover:text-footer-gray'>+919009648224</Link>
