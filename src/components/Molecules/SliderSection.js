@@ -1,11 +1,14 @@
 import React from 'react';
 import ScrollSlider from '../Atoms/ScrollSlider';
-import MovieCard from '../Atoms/MoviesCard';
+import MovieCard, { LoadingMovieCard } from '../Atoms/MoviesCard';
 import { BiChevronRight } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
 import { TMDB_URL } from '../../constants/constants';
 
 const SliderSection = ({ title, mediaType, isExploreAllEnable, titleClassName, scrollSliderId, data = [] }) => {
+
+    const loadingItems = Array(10).fill(0)
+
     return (
         <div className='slider-section-card'>
 
@@ -23,18 +26,19 @@ const SliderSection = ({ title, mediaType, isExploreAllEnable, titleClassName, s
                 <ScrollSlider
                     id={scrollSliderId}
                 >
-                    {data?.map((photo, ind) => {
+                    {data?.length ? data?.map((photo) => {
                         return (
                             <MovieCard
-                                key={ind}
+                                key={photo?.id}
                                 image={`${TMDB_URL}${photo?.poster_path}`}
                                 url={`/watch/${photo?.id}?type=${mediaType}`}
                             />
                         )
-                    })}
+                    }) : <div className='flex gap-x-2'>
+                        {loadingItems?.map((__, ind) => <LoadingMovieCard key={ind} />)}
+                    </div>}
                 </ScrollSlider>
             </div>
-
         </div>
     )
 }

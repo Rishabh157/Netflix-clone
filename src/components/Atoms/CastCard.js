@@ -12,13 +12,13 @@ const CastCard = ({ castId, image, originalName, characterName }) => {
                     <img
                         src={image}
                         className='absolute top-0 left-0 h-full w-full rounded-top'
-                        alt='cast'
+                        alt={originalName ?? 'cast'}
                         loading='lazy'
                     />
                 </div>
                 <div className='px-2 py-2'>
-                    <h2 className='inline font-bold text-[15px] hover:text-[#8f8a8a]'>{originalName}</h2>
-                    <h2 className=' text-white text-[14px]'>{characterName}</h2>
+                    <h2 title={originalName} className='inline font-bold text-[15px] hover:text-[#8f8a8a]'>{originalName}</h2>
+                    <h2 title={characterName} className='text-white text-[14px] truncate-text'>{characterName}</h2>
                 </div>
             </div>
         </Link>

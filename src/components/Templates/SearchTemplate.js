@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../Atoms/MoviesCard';
 import { TMDB_URL } from '../../constants/constants';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useGetSearchMoviesMutation } from '../../redux/services/SearchService';
 import ATMSearchLoader from '../Atoms/ATMSearchLoader';
+import { setSearch } from '../../redux/slice/searchSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SearchTemplate = () => {
 
     const [searchList, setSearchList] = useState([]);
 
-    const page = useState(1);
     const { searchValue, isSearch } = useSelector((state) => state.searchValue);
+    const page = useState(1);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
 
     const [searchApi] = useGetSearchMoviesMutation();
@@ -32,6 +37,9 @@ const SearchTemplate = () => {
         // eslint-disable-next-line
     }, [isSearch])
 
+
+    console.log('searchList', searchList)
+
     return (
         <div className={`py-20 lg:px-16 md:px-14 sm:px-5 ms:px-4`}>
 
@@ -52,7 +60,12 @@ const SearchTemplate = () => {
                             return (
                                 <div
                                     key={ind}
-                                    className='lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6'>
+                                    className='lg:col-span-2 md:col-span-3 sm:col-span-4 ms:col-span-6'
+                                    onClick={() => {
+                                        navigate(`/watch/${item?.id}?type=${item?.media_type}`);
+                                        dispatch(setSearch(''));
+                                    }}
+                                >
                                     <MovieCard
                                         image={`${TMDB_URL}${item?.poster_path}`}
                                         url={`/watch/${item?.id}?type=${item?.media_type}`}

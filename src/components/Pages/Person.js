@@ -78,115 +78,119 @@ const Person = () => {
                     <React.Fragment>
                         {searchValue?.length > 0 ? <SearchTemplate /> :
                             <>
-                                {/* this is for Lg and Md */}
                                 <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
-                                    className='h-auto  bg-no-repeat px-10 py-10 lg:block md:block sm:hidden ms:hidden'>
-                                    <div className='grid grid-cols-12'>
-                                        <div className='col-span-3'>
-                                            <div className='h-[500px] relative '>
-                                                <img
-                                                    src={`${TMDB_URL}${personInfo?.profile_path}`}
-                                                    alt='pirates'
-                                                    className=' rounded absolute top-0'
-                                                />
-                                            </div>
-                                        </div>
+                                    className='h-auto bg-no-repeat py-10'>
 
-                                        <div className='col-span-9 px-3'>
-                                            <div className='h-full w-full'>
-                                                <h1 className='text-white font-bold inline lg:text-[2.8rem] md:text-[2.4rem] sm:text-[1rem] ms:text-[0.8rem]'>
-                                                    <a className='hover:text-white '
-                                                        href={`${location?.pathname}`}>
-                                                        {personInfo?.name}
-                                                    </a>
-                                                </h1>
-                                                <div className='h-[70px] flex items-center'>
-                                                    <div className='flex items-center transition-all'>
-                                                        <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                            Biography
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <p className='text-white text-justify text-[1em] font-normal opacity-90'>
-                                                        {personInfo?.biography?.slice(0, isTruncateText ? 700 : personInfo?.biography?.length)}
-                                                        {" "}
-                                                        <span
-                                                            onClick={() => setIsTruncateText(!isTruncateText)}
-                                                            className='text-red-400 text-[1.1em] cursor-pointer'
-                                                        >
-                                                            {isTruncateText ? <>show more...</> : <>show less...</>}
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                {/* DEPARTMENT */}
-                                                <div className='flex items-center my-4'>
-                                                    <div className='flex items-center transition-all'>
-                                                        <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                            Personal Information
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className='flex gap-x-4'>
-                                                    <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
-                                                        <div className='rounded p-2'>
-                                                            <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>Known For</span>
-                                                            </div>
-                                                            <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>{personInfo?.known_for_department}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
-                                                        <div className='rounded p-2'>
-                                                            <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>Gender</span>
-                                                            </div>
-                                                            <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>{getGender(personInfo?.gender)}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
-                                                        <div className='rounded p-2'>
-                                                            <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>Place of Birth</span>
-                                                            </div>
-                                                            <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>{personInfo?.place_of_birth}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
-                                                        <div className='rounded p-2'>
-                                                            <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>Birthday</span>
-                                                            </div>
-                                                            <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>{personInfo?.birthday}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
-                                                        <div className='rounded p-2'>
-                                                            <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span>Age</span>
-                                                            </div>
-                                                            <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
-                                                                <span> (
-                                                                    {/* {getCurrentAge(personInfo?.birthday)}  */}
-                                                                    58 years old )</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                    {/* this is for lg and md */}
+                                    <div className='lg:block md:block sm:hidden ms:hidden'>
+                                        <div className='grid grid-cols-12 px-10'>
+                                            <div className='col-span-3'>
+                                                <div className='relative h-[500px]'>
+                                                    <img
+                                                        src={`${TMDB_URL}${personInfo?.profile_path}`}
+                                                        alt='pirates'
+                                                        className='rounded absolute top-0'
+                                                    />
                                                 </div>
                                             </div>
-                                        </div>
 
+                                            <div className='col-span-9 px-3'>
+                                                <div className='h-full w-full'>
+                                                    <h1 className='text-white font-bold inline lg:text-[2.8rem] md:text-[2.4rem] sm:text-[1rem] ms:text-[0.8rem]'>
+                                                        <a className='hover:text-white '
+                                                            href={`${location?.pathname}`}>
+                                                            {personInfo?.name}
+                                                        </a>
+                                                    </h1>
+                                                    <div className='h-[70px] flex items-center'>
+                                                        <div className='flex items-center transition-all'>
+                                                            <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                Biography
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <p className='text-white text-justify text-[1em] font-normal opacity-90'>
+                                                            {personInfo?.biography?.slice(0, isTruncateText ? 700 : personInfo?.biography?.length)}
+                                                            {" "}
+                                                            <span
+                                                                onClick={() => setIsTruncateText(!isTruncateText)}
+                                                                className='text-red-400 text-[1.1em] cursor-pointer'
+                                                            >
+                                                                {isTruncateText ? <>show more...</> : <>show less...</>}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    {/* DEPARTMENT */}
+                                                    <div className='flex items-center my-4'>
+                                                        <div className='flex items-center transition-all'>
+                                                            <span className='text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                Personal Information
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='flex gap-x-4'>
+                                                        <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                                            <div className='rounded p-2'>
+                                                                <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>Known For</span>
+                                                                </div>
+                                                                <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>{personInfo?.known_for_department}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                                            <div className='rounded p-2'>
+                                                                <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>Gender</span>
+                                                                </div>
+                                                                <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>{getGender(personInfo?.gender)}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                                            <div className='rounded p-2'>
+                                                                <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>Place of Birth</span>
+                                                                </div>
+                                                                <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>{personInfo?.place_of_birth}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                                            <div className='rounded p-2'>
+                                                                <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>Birthday</span>
+                                                                </div>
+                                                                <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>{personInfo?.birthday}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='w-[20%] bg-[#141414] border-[1px] rounded  border-white'>
+                                                            <div className='rounded p-2'>
+                                                                <div className='text-center text-[1em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span>Age</span>
+                                                                </div>
+                                                                <div className='text-center text-[0.9em] mt-[0.20rem] font-semibold ml-[5px] text-white'>
+                                                                    <span> (
+                                                                        {/* {getCurrentAge(personInfo?.birthday)}  */}
+                                                                        58 years old )</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
+
 
                                     {/* this is for Sm and MS */}
                                     <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0))`, }}
@@ -203,7 +207,7 @@ const Person = () => {
                                                 </div>
                                             </div>
 
-                                            <div className={`col-span-12 border-white border-[1px] rounded z-[1000000] bg-black w-full opacity-90 information-drawer ${isShowMoreInfoForMobile ? 'open' : 'close'}`}>
+                                            <div className={`col-span-12 border-white border-[1px] rounded z-[1000000] bg-black w-full opacity-100 information-drawer ${isShowMoreInfoForMobile ? 'open' : 'close'}`}>
                                                 <div
                                                     onClick={() => {
                                                         setIsShowMoreInfoForMobile(!isShowMoreInfoForMobile)
@@ -337,15 +341,14 @@ const Person = () => {
                                     </div>
 
                                     {/* similar movies section */}
-                                    <div className='py-20'>
-                                        <div className='flex items-center mb-2 lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                                    <div className='py-20 px-2'>
+                                        <div className='flex items-center mb-2 lg:pl-0 md:pl-0 sm:pl-4 ms:pl-2'>
                                             <h2 className='slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block 2xxl:text-[24px] xl:text-[22px] lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium'>
                                                 Similar Movies
                                             </h2>
                                         </div>
-
-                                        <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
-                                            <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
+                                        <div className='lg:pl-0 md:pl-0 sm:pl-4 ms:pl-2'>
+                                            <div className='grid gap-4 2xxl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 ms:grid-cols-2'>
                                                 {personSimilarMoviesList?.cast?.map((ele) => {
                                                     return (
                                                         <MovieCard

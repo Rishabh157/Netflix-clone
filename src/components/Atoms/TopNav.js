@@ -14,7 +14,7 @@ const TopNav = ({ bgColor }) => {
                 <div className='col-span-6'>
                     <div className='flex'>
                         <Link to='/'>
-                            <img className='h-[33px]' src={netflixlogo} alt='logo.svg' />
+                            <img className='h-[3px]' src={netflixlogo} alt='logo.svg' />
                         </Link>
                     </div>
                 </div>

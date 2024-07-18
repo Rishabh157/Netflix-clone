@@ -414,29 +414,31 @@ input[type="number"]::-webkit-outer-spin-button {
     top: 0;
     left: 0;
     pointer-events: none;
-    overflow: hidden; /* Disable scrolling */    
-  }
-  
-  .loader {
+    overflow: hidden;
+    /* Disable scrolling */
+}
+
+.loader {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     border: 4px solid #e50914;
     border-top: 4px solid transparent;
     animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
 
-  /* Spinner css for search template */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Spinner css for search template */
 
 .loader-parent-search {
     z-index: 1000;
@@ -446,23 +448,33 @@ input[type="number"]::-webkit-outer-spin-button {
     position: relative;
     margin-top: 50px;
     pointer-events: none;
-    overflow: hidden; /* Disable scrolling */
-  }
-  
-  .loader-search {
+    overflow: hidden;
+    /* Disable scrolling */
+}
+
+.loader-search {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     border: 4px solid #e50914;
     border-top: 4px solid transparent;
     animation: spinsearch 1s linear infinite;
-  }
-  
-  @keyframes spinsearch {
+}
+
+@keyframes spinsearch {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
+
+/* Cast card truncate text */
+.truncate-text {
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

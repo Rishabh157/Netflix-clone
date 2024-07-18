@@ -73,14 +73,14 @@ const FilterScreen = () => {
                     {/* Filter movies section */}
                     {searchValue?.length > 0 ? <SearchTemplate /> :
                         <div className='py-8'>
-                            <div className='flex items-center mb-2 lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
+                            <div className='flex items-center mb-2 lg:pl-10 md:pl-10 sm:pl-6 ms:pl-6'>
                                 <h2 className='capitalize slider-section-title z-30 mb-1 text-card-title select-none hover:text-white inline-block 2xxl:text-[24px] xl:text-[22px] lg:text-[17px] md:text-[17px] sm:text-[17px] ms:text-[20px] font-medium'>
                                     {filterName?.split('-')}
                                 </h2>
                             </div>
 
-                            <div className='lg:pl-10 md:pl-10 sm:pl-4 ms:pl-2'>
-                                <div className='flex flex-wrap 2xxl:gap-8 xl:gap-8 lg:gap-4 md:gap-x-1 md:gap-y-6 sm:gap-10 ms:gap-x-4 ms:gap-y-8'>
+                            <div className='lg:pl-10 md:pl-10 sm:pl-6 ms:pl-6'>
+                                <div className='grid gap-4 2xxl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 ms:grid-cols-2'>
                                     {filteredData?.map((ele, ind) => {
                                         return (
                                             <MovieCard

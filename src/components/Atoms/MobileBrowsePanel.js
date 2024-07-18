@@ -12,12 +12,31 @@ const MobileBrowsePanel = () => {
                     HOME
                 </Link>
             </span>
-            <span className='mb-2 cursor-pointer'> Tv Shows </span>
-            <span className='mb-2 cursor-pointer'> Movies </span>
-            <span className='mb-2 cursor-pointer'> My List </span>
-            <span className='mb-2 cursor-pointer'> New & Popular </span>
-            <span className='cursor-pointer'> Browse By Languages </span>
-
+            <span className='mb-2 cursor-pointer'>
+                <Link to='/browse/tv' className='hover:text-white'>
+                    Tv Shows
+                </Link>
+            </span>
+            <span className='mb-2 cursor-pointer'>
+                <Link to='/browse/movie' className='hover:text-white'>
+                    Movies
+                </Link>
+            </span>
+            <span className='mb-2 cursor-pointer'>
+                <Link to='/browse/discover' className='hover:text-white'>
+                    Documentries
+                </Link>
+            </span>
+            <span className='mb-2 cursor-pointer'>
+                <Link to='/browse/action' className='hover:text-white'>
+                    Actions
+                </Link>
+            </span>
+            <span className='cursor-pointer'>
+                <Link to='/browse/my-list' className='hover:text-white'>
+                    My List
+                </Link>
+            </span>
         </div>
     )
 }

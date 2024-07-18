@@ -57,7 +57,7 @@ module.exports = {
         }
       },
       animation: {
-        'movie-card-pulse': 'moviepulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
+        'movie-card-pulse': 'moviepulse 1s  cubic-bezier(0.4, 0, 0.6, 1) infinite;'
       }
     },
   },
