@@ -1,5 +1,4 @@
 {
-  "homepage": "https://Rishabh157.github.io/Netflix-clone",
   "name": "netflix-client",
   "version": "0.1.0",
   "private": true,
@@ -22,8 +21,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,7 +46,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "dotenv": "^16.0.3",
-    "gh-pages": "^6.1.1",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.6"
   }
