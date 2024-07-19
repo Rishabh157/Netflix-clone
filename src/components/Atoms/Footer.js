@@ -65,7 +65,7 @@ const Footer = ({ footerColor = 'bg-white' }) => {
                         </li>
                         <li>
                             <a
-                                href='https://www.instagram.com/rishabh_gour7/' target='_blank' rel='noreferrer'>
+                                href='https://www.instagram.com/rishabh._.30/' target='_blank' rel='noreferrer'>
                                 <AiOutlineInstagram fill={socialMediaIconColor} size={25} />
                             </a>
                         </li>
