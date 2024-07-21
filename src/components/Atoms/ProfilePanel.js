@@ -3,9 +3,11 @@ import firstProfile from '../../images/first-profile.png';
 import profile from '../../images/profiler.png';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdHelpOutline } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProfilePanel = ({ isAccountPanel = false }) => {
+    const navigate = useNavigate();
+
     return (
         <div className={`py-3 border-[1px] absolute right-0 top-12 rounded-[2px] border-notifi-border  ${isAccountPanel ? 'w-[160px] child-profileAccount' : 'lg:w-[210px] md:w-[220px] sm:w-[180px] ms:w-[170px] child-profile'}`}>
 
@@ -66,9 +68,15 @@ const ProfilePanel = ({ isAccountPanel = false }) => {
 
             <hr className='border-notifi-border' />
 
-            <p className='capitalize text-notifi-name text-[12px] mt-4 text-center cursor-pointer hover:underline'>
-                sign out of netflix
-            </p>
+            <div className='select-none capitalize text-notifi-name text-[12px] mt-4 text-center cursor-pointer hover:underline'>
+                <span onClick={() => {
+                    setTimeout(() => {
+                        navigate('/login', {
+                            replace: true
+                        })
+                    }, 500)
+                }}>sign out of netflix</span>
+            </div>
 
         </div>
     )
