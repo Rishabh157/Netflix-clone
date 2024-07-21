@@ -66,7 +66,7 @@ const Login = () => {
                             />
                             <label
                                 htmlFor='checkbox'
-                                className='text-[#b3b3b3] text-[13px] font-normal'>Remember me</label>
+                                className='text-[#b3b3b3] text-[13px] font-normal select-none'>Remember me</label>
                         </div>
 
                         <p className='text-[#b3b3b3] text-[13px] font-normal cursor-pointer hover:underline'>Need help?</p>
@@ -78,7 +78,7 @@ const Login = () => {
                         </p>
                         <span className='text-gray text-[13px] leading-1'>
                             This page is protected by Google reCAPTCHA to ensure you're not a bot.
-                            <span className='text-[#0071eb]'>Learn more.</span>
+                            <span className='text-[#0071eb] hover:underline cursor-pointer select-none'>Learn more.</span>
                         </span>
                     </div>
 
