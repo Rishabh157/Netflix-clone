@@ -19,7 +19,7 @@ const Login = () => {
 
             <div className='flex justify-center lg:mb-24 md:mb-24 sm:mb-24 ms:mb-0'>
 
-                <div className='lg:w-[32%] md:w-[68%] sm:w-[100%] h-[100vh] pt-[60px] lg:px-[68px] md:px-[62px] sm:px-[50px] ms:px-[30px] lg:rounded-[4px] md:rounded-[4px] sm:rounded-[4px] ms:rounded-none bg-[rgba(0,0,0,.75)] border-[1px]'>
+                <div className='bg-[rgba(0,0,0,.75)] pb-16 border-[1px] lg:w-[32%] md:w-[68%] sm:w-[100%] pt-[60px] lg:px-[68px] md:px-[62px] sm:px-[50px] ms:px-[30px] lg:rounded-[4px] md:rounded-[4px] sm:rounded-[4px] ms:rounded-none'>
 
                     <h1 className='text-[32px] text-white font-bold mb-[28px]'>Sign In</h1>
 
