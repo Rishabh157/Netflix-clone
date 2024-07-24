@@ -141,7 +141,7 @@ const SingleWatchPage = () => {
                 }}
             />
             {
-                !isLoading || !isFetching ?
+                !isLoading ?
                     <React.Fragment>
                         {searchValue?.length > 0 ? <SearchTemplate /> :
                             <>
