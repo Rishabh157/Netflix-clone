@@ -118,7 +118,6 @@ const SingleWatchPage = () => {
         };
     }, [searchParams]);
 
-
     // when component loaded first time it scroll on the top
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -147,14 +146,14 @@ const SingleWatchPage = () => {
                             <>
                                 {/* this is for lg and md */}
                                 <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
-                                    className='2xxl:h-[70vh] 2xl:h-[75vh] xl:h-screen lg:h-screen bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
+                                    className='h-screen bg-cover bg-no-repeat px-10 py-6 lg:block md:block sm:hidden ms:hidden'>
                                     <div className='grid grid-cols-12'>
                                         <div className='col-span-3'>
-                                            <div className='h-[90vh] relative '>
+                                            <div className='relative'>
                                                 <img
                                                     src={`${TMDB_URL}${movieData?.poster_path}`}
                                                     alt='pirates'
-                                                    className=' rounded absolute top-0'
+                                                    className='rounded'
                                                 />
                                             </div>
                                         </div>

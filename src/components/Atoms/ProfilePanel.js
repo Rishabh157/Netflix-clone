@@ -1,6 +1,5 @@
 import React from 'react';
 import firstProfile from '../../images/first-profile.png';
-import profile from '../../images/profiler.png';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdHelpOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,34 +20,6 @@ const ProfilePanel = ({ isAccountPanel = false }) => {
                     <Link to='/browse'>
                         <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>priya</span>
                     </Link>
-                </div>
-
-
-                <div className='flex items-center mb-3'>
-                    <img
-                        className='rounded'
-                        src={profile}
-                        alt=''
-                    />
-                    <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>raghav</span>
-                </div>
-
-                <div className='flex items-center mb-3'>
-                    <img
-                        className='rounded'
-                        src={firstProfile}
-                        alt=''
-                    />
-                    <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>kanha</span>
-                </div>
-
-                <div className='flex items-center mb-3'>
-                    <img
-                        className='rounded'
-                        src={profile}
-                        alt=''
-                    />
-                    <span className='pl-2 capitalize text-notifi-name text-[13px] cursor-pointer hover:underline'>rishabh</span>
                 </div>
 
                 <div className='flex items-center mb-3 px-1'>
