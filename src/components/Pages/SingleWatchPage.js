@@ -20,6 +20,7 @@ import { BsFillPlayFill, BsDot, BsPauseFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import ATMLoader from '../Atoms/ATMLoader';
 import SearchTemplate from '../Templates/SearchTemplate';
+import { VscTriangleDown } from 'react-icons/vsc';
 
 
 const SingleWatchPage = () => {
@@ -36,7 +37,7 @@ const SingleWatchPage = () => {
     const [isHover, setIsHover] = useState(false);
     const { searchValue } = useSelector((state) => state.searchValue);
 
-
+    const [isShowMoreInfoForMobile, setIsShowMoreInfoForMobile] = useState(false);
     const [movieData, setMovieData] = useState({});
     const [topRolesOfCreation, setTopRolesOfCreation] = useState([])
     const [similarMoviesData, setSimilarMoviesData] = useState([]);
@@ -126,8 +127,6 @@ const SingleWatchPage = () => {
     return (
         <React.Fragment>
 
-            {/* <SingleWatchPageLoader /> */}
-
             <Navbar bgColor='bg-black py-1' />
 
             <TrailerPlayModel
@@ -139,6 +138,7 @@ const SingleWatchPage = () => {
                     setIsShowTrailerModal(false)
                 }}
             />
+
             {
                 !isLoading ?
                     <React.Fragment>
@@ -165,9 +165,7 @@ const SingleWatchPage = () => {
                                                     <h1 className='hover:text-white'>
                                                         {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
                                                         <span className='tag-release-date opacity-80 px-2 font-normal'>
-                                                            {
-                                                                urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null
-                                                            }
+                                                            {urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null}
                                                         </span>
                                                     </h1>
                                                 </div>
@@ -250,9 +248,9 @@ const SingleWatchPage = () => {
 
                                 {/* this is for sm and ms */}
                                 <div style={{ backgroundImage: `linear-gradient(300deg, rgb(0 0 0 / 32%), rgb(0 0 0)), url(${TMDB_URL}${movieData?.backdrop_path})`, }}
-                                    className='sm:h-[90vh] ms:h-[90vh] bg-cover bg-no-repeat px-8 py-6 lg:hidden md:hidden sm:block ms:block'>
+                                    className='sm:h-[90vh] ms:h-[90vh] bg-cover bg-no-repeat py-6 lg:hidden md:hidden sm:block ms:block'>
 
-                                    <div className='grid grid-cols-12'>
+                                    <div className='grid grid-cols-12 px-8'>
                                         <div className='col-span-12'>
                                             <div className='h-full rounded relative'>
                                                 <img
@@ -287,16 +285,93 @@ const SingleWatchPage = () => {
                                         </div>
 
                                         <div className='col-span-6 mt-6 flex justify-end'>
-                                            <button className={`flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none`}
+                                            <button
+                                                className='flex justify-end items-center px-6 py-1 bg-[#6d6d6eb3] text-white rounded font-bold select-none'
                                                 onClick={() => {
-                                                    alert('HELLO WORLD')
+                                                    setIsShowMoreInfoForMobile(true)
                                                 }}
                                             >
                                                 <AiOutlineInfoCircle size={32} className='mr-1' />
                                                 More Info
                                             </button>
                                         </div>
+                                    </div>
 
+                                    {/* Showing Information For Mobile Screen */}
+                                    <div className={`border-white border-[1px] h-[80vh] rounded z-[1000000] bg-black opacity-100 information-drawer ${isShowMoreInfoForMobile ? 'open' : 'close'}`}>
+                                        <div
+                                            className='absolute right-[45%] -top-3'
+                                            onClick={() => {
+                                                setIsShowMoreInfoForMobile(!isShowMoreInfoForMobile)
+                                            }}
+                                        >
+                                            <VscTriangleDown size={32} fill='#ffffff' />
+                                        </div>
+                                        <div className='p-4 '>
+                                            <div>
+                                                <div className='flex items-center'>
+                                                    <span className='text-[1.3em] text-wrap mt-[0.80rem] font-semibold text-white'>
+                                                        {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
+                                                    </span>
+
+                                                    <span className='text-sm opacity-80 text-slate-100 pl-1 font-normal'>
+                                                        {urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null}
+                                                    </span>
+                                                </div>
+
+                                                {/* movie genres and running time */}
+                                                <div className='mt-3'>
+                                                    <span className='px-[0.4rem] py-[0.2rem] rounded-[3px] text-xs border-white border-[1px] opacity-80 text-white'>
+                                                        UA
+                                                    </span>
+                                                    <span className='text-white px-2 text-xs align-middle'>
+                                                        {urlType === MediaType.MovieCard
+                                                            ? movieData?.release_date && getDateIntoDDMMYYY(movieData?.release_date)
+                                                            : movieData?.first_air_date && getDateIntoDDMMYYY(movieData?.first_air_date)}
+                                                        (IN) <BsDot className='inline' fill='#ffffff' />
+                                                    </span>
+
+                                                    <span className='text-white text-xs'>
+                                                        {movieData?.genres?.map((ele) => ele.name).join(' , ')}
+                                                        {movieData?.release_date && <BsDot className='inline' fill='#ffffff' />}
+                                                        {" "}
+                                                        {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).hours + 'h'}
+                                                        {movieData?.runtime && getMovieRunTimeIntoHours(movieData?.runtime).minutes + 'm'}
+                                                    </span>
+                                                </div>
+
+                                                {/* movie tag line */}
+                                                <p className='text-white mt-2 text-xs font-normal opacity-70 italic'>
+                                                    {movieData?.tagline}
+                                                </p>
+
+                                                {/* movie overview */}
+                                                <div className='text-white mt-4'>
+                                                    <h2 className='text-sm font-semibold'>Overview</h2>
+                                                    <span dir='auto' className='text-wrap text-justify leading-6 text-xs'>
+                                                        {movieData?.overview}
+                                                    </span>
+                                                </div>
+
+                                                {/* movie crew */}
+                                                <div className='directors-name mt-4 grid grid-cols-12 gap-y-4'>
+                                                    {topRolesOfCreation?.map((ele, ind) => {
+                                                        return ele !== undefined && (
+                                                            <div className='col-span-5' key={ind}>
+                                                                <h4 className='text=[1em] font-bold text-white'>
+                                                                    <Link className='hover:text-slate-300' to={`/person/${ele?.id}/${ele?.original_name?.replaceAll(' ', '-')?.toLowerCase()}`}>
+                                                                        {ele?.original_name}
+                                                                    </Link>
+                                                                </h4>
+                                                                <span className='text-[0.9em] text-white text-left'>
+                                                                    {ele?.job}
+                                                                </span>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
