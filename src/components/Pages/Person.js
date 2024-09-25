@@ -85,11 +85,11 @@ const Person = () => {
                                     <div className='lg:block md:block sm:hidden ms:hidden'>
                                         <div className='grid grid-cols-12 px-10'>
                                             <div className='col-span-3'>
-                                                <div className='relative h-[500px]'>
+                                                <div className='relative'>
                                                     <img
                                                         src={`${TMDB_URL}${personInfo?.profile_path}`}
                                                         alt='pirates'
-                                                        className='rounded absolute top-0'
+                                                        className='rounded'
                                                     />
                                                 </div>
                                             </div>

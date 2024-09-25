@@ -165,7 +165,7 @@ const SingleWatchPage = () => {
                                                     <h1 className='hover:text-white'>
                                                         {urlType === MediaType.MOVIE ? movieData?.original_title : movieData?.original_name}
                                                         <span className='tag-release-date opacity-80 px-2 font-normal'>
-                                                            {urlType === MediaType.MOVIE ? <>({movieData?.release_date?.split('-')[0]})</> : null}
+                                                            {urlType === MediaType.MOVIE ? movieData?.release_date ? <> {'(' + movieData?.release_date?.split('-')[0] + ')'}</> : null : null}
                                                         </span>
                                                     </h1>
                                                 </div>
